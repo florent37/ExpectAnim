@@ -3,8 +3,13 @@ apply plugin: 'com.jfrog.bintray'
 version = libraryVersion
 
 task sourcesJar(type: Jar) {
-    from sourceSets.main.allSource
+    from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
@@ -17,23 +22,12 @@ artifacts {
 }
 
 // Bintray
-
-def _user = System.getenv("BINTRAY_USER")
-def _key =  System.getenv("BINTRAY_API_KEY")
-def _passphrase = System.getenv("BINTRAY_PASSPHRASE")
-
-if(project.rootProject.file('local.properties').exists() && (_user == null || _user.isEmpty())){
-    Properties properties = new Properties()
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-    _user = properties.getProperty("bintray.user")
-    _key = properties.getProperty("bintray.apikey");
-    _passphrase = properties.getProperty("bintray.gpg.password")
-}
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 bintray {
-    user = _user
-    key = _key
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
 
     configurations = ['archives']
     pkg {
@@ -43,18 +37,16 @@ bintray {
         userOrg = orgName
         websiteUrl = siteUrl
         vcsUrl = gitUrl
-        licenses = ['Apache-2.0']
+        licenses = allLicenses
         publish = true
         publicDownloadNumbers = true
         version {
             desc = libraryDescription
             gpg {
                 sign = true //Determines whether to GPG sign the files. The default is false
-                passphrase = _passphrase
+                passphrase = properties.getProperty("bintray.gpg.password")
                 //Optional. The passphrase for GPG signing'
             }
         }
     }
 }
-
-//from https://github.com/workarounds/bundler/blob/master/gradle/bintray-java-v1.gradle

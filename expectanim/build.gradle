@@ -16,7 +16,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:' + project.supportVersion
 }
 
-
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'ExpectAnim'
@@ -43,5 +42,6 @@ ext {
 }
 
 
+
 apply from: rootProject.file('gradle/install-v1.gradle')
-apply from: rootProject.file('gradle/bintray-java-v1.gradle')
+apply from: rootProject.file('gradle/bintray-android-v1.gradle')

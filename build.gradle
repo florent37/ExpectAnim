@@ -19,10 +19,6 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
-
 ext {
     sdk = 24
     buildTools = "24.0.2"
