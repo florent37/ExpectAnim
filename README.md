@@ -2,7 +2,7 @@
 
 Describe your animation and run !
 
-[![png](https://raw.githubusercontent.com/florent37/ExpectAnim/master/media/sample.gif)](https://github.com/florent37/ExpectAnim)
+[![gif](https://raw.githubusercontent.com/florent37/ExpectAnim/master/media/sample.gif)](https://github.com/florent37/ExpectAnim)
 
 ```
 this.expectAnimMove = new ExpectAnim()
