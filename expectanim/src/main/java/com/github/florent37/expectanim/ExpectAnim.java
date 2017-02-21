@@ -1,15 +1,19 @@
 package com.github.florent37.expectanim;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.view.animation.Interpolator;
 
+import com.github.florent37.expectanim.listener.AnimationEndListener;
+import com.github.florent37.expectanim.listener.AnimationStartListener;
+
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -29,6 +33,10 @@ public class ExpectAnim {
     private ViewCalculator viewCalculator;
 
     private AnimatorSet animatorSet;
+
+    private WeakReference<AnimationEndListener> endListenerWeakReference;
+    private WeakReference<AnimationStartListener> startListenerWeakReference;
+
 
     @Nullable
     private Interpolator interpolator;
@@ -91,10 +99,45 @@ public class ExpectAnim {
                 }
             }
 
+            animatorSet.addListener(new AnimatorListenerAdapter() {
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    notifyListenerEnd();
+                }
+
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    super.onAnimationStart(animation);
+                    notifyListenerStart();
+                }
+
+            });
+
             animatorSet.playTogether(animatorList);
         }
         return this;
     }
+
+    private void notifyListenerStart() {
+        if (startListenerWeakReference != null) {
+            final AnimationStartListener listener = startListenerWeakReference.get();
+            if (listener != null) {
+                listener.onAnimationStart(ExpectAnim.this);
+            }
+        }
+    }
+
+    private void notifyListenerEnd() {
+        if (endListenerWeakReference != null) {
+            final AnimationEndListener listener = endListenerWeakReference.get();
+            if (listener != null) {
+                listener.onAnimationEnd(ExpectAnim.this);
+            }
+        }
+    }
+
 
     public ExpectAnim start() {
         executeAfterDraw(anyView, new Runnable() {
@@ -141,14 +184,7 @@ public class ExpectAnim {
     }
 
     public void executeAfterDraw(final View view, final Runnable runnable) {
-        view.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            @Override
-            public boolean onPreDraw() {
-                runnable.run();
-                view.getViewTreeObserver().removeOnPreDrawListener(this);
-                return false;
-            }
-        });
+        view.postDelayed(runnable, 50);
     }
 
     public void reset() {
@@ -169,4 +205,15 @@ public class ExpectAnim {
         this.duration = duration;
         return this;
     }
+
+    public ExpectAnim setEndListener(AnimationEndListener listener) {
+        this.endListenerWeakReference = new WeakReference<>(listener);
+        return this;
+    }
+
+    public ExpectAnim setStartListener(AnimationStartListener listener) {
+        this.startListenerWeakReference = new WeakReference<>(listener);
+        return this;
+    }
+
 }

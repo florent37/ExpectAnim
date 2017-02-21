@@ -15,12 +15,15 @@ import butterknife.OnClick;
 import static com.github.florent37.expectanim.core.Expectations.aboveOf;
 import static com.github.florent37.expectanim.core.Expectations.atHisOriginalPosition;
 import static com.github.florent37.expectanim.core.Expectations.bottomOfParent;
+import static com.github.florent37.expectanim.core.Expectations.invisible;
 import static com.github.florent37.expectanim.core.Expectations.leftOfParent;
 import static com.github.florent37.expectanim.core.Expectations.outOfScreen;
 import static com.github.florent37.expectanim.core.Expectations.rightOfParent;
 import static com.github.florent37.expectanim.core.Expectations.sameCenterVerticalAs;
+import static com.github.florent37.expectanim.core.Expectations.toHaveBackgroundAlpha;
 import static com.github.florent37.expectanim.core.Expectations.toHaveTextColor;
 import static com.github.florent37.expectanim.core.Expectations.toRightOf;
+import static com.github.florent37.expectanim.core.Expectations.visible;
 import static com.github.florent37.expectanim.core.Expectations.width;
 
 
@@ -39,6 +42,8 @@ public class SampleActivity extends AppCompatActivity {
 
     @BindView(R.id.bottomLayout)
     View bottomLayout;
+    @BindView(R.id.content)
+    View content;
 
     private ExpectAnim expectAnimMove;
 
@@ -53,6 +58,11 @@ public class SampleActivity extends AppCompatActivity {
                 .toBe(
                         outOfScreen(Gravity.BOTTOM)
                 )
+                .expect(content)
+                .toBe(
+                        outOfScreen(Gravity.BOTTOM),
+                        invisible()
+                )
                 .toAnimation()
                 .setNow();
 
@@ -62,12 +72,12 @@ public class SampleActivity extends AppCompatActivity {
                 .toBe(
                         bottomOfParent().withMarginDp(16),
                         leftOfParent().withMarginDp(16),
-                        width(30).toDp().keepRatio()
+                        width(40).toDp().keepRatio()
                 )
 
                 .expect(name)
                 .toBe(
-                        toRightOf(avatar).withMarginDp(0),
+                        toRightOf(avatar).withMarginDp(16),
                         sameCenterVerticalAs(avatar),
                         toHaveTextColor(Color.WHITE)
                 )
@@ -82,13 +92,15 @@ public class SampleActivity extends AppCompatActivity {
                 .expect(follow)
                 .toBe(
                         rightOfParent().withMarginDp(4),
-                        bottomOfParent().withMarginDp(4)
+                        bottomOfParent().withMarginDp(12),
+                        toHaveBackgroundAlpha(0f)
                 )
 
                 .expect(message)
                 .toBe(
                         aboveOf(follow).withMarginDp(4),
-                        rightOfParent().withMarginDp(4)
+                        rightOfParent().withMarginDp(4),
+                        toHaveBackgroundAlpha(0f)
                 )
 
                 .expect(bottomLayout)
@@ -96,15 +108,22 @@ public class SampleActivity extends AppCompatActivity {
                         atHisOriginalPosition()
                 )
 
-                .toAnimation();
+                .expect(content)
+                .toBe(
+                        atHisOriginalPosition(),
+                        visible()
+                )
+
+                .toAnimation()
+                .setDuration(1500);
     }
 
-    @OnClick(R.id.move)
+    @OnClick(R.id.message)
     public void onMoveClicked() {
         expectAnimMove.start();
     }
 
-    @OnClick(R.id.reset)
+    @OnClick(R.id.follow)
     public void onResetClicked() {
         expectAnimMove.reset();
     }

@@ -3,6 +3,7 @@ package com.github.florent37.expectanim.sample;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.view.Gravity;
 import android.view.View;
 

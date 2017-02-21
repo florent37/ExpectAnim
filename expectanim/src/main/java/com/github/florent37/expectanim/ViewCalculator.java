@@ -34,7 +34,8 @@ public class ViewCalculator {
         if (expectationForView.containsKey(view)) {
             final Float futurPositionX = expectationForView.get(view).getFuturPositionX();
             if (futurPositionX != null) {
-                return futurPositionX + finalWidthOfView(view);
+                final float finalWidthOfView = finalWidthOfView(view);
+                return futurPositionX + finalWidthOfView;
             }
         }
         return view.getRight();

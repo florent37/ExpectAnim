@@ -8,6 +8,7 @@ import com.github.florent37.expectanim.core.alpha.AlphaAnimExpectation;
 import com.github.florent37.expectanim.core.alpha.AlphaAnimExpectationValue;
 import com.github.florent37.expectanim.core.custom.CustomAnimExpectation;
 import com.github.florent37.expectanim.core.custom.TextColorAnimExpectation;
+import com.github.florent37.expectanim.core.custom.ViewBackgroundAlphaAnimExpectation;
 import com.github.florent37.expectanim.core.position.PositionAnimExpectation;
 import com.github.florent37.expectanim.core.position.PositionAnimExpectationAboveOf;
 import com.github.florent37.expectanim.core.position.PositionAnimExpectationAlignBottom;
@@ -215,6 +216,11 @@ public class Expectations {
     public static CustomAnimExpectation toHaveTextColor(int textColor) {
         return new TextColorAnimExpectation(textColor);
     }
+
+    public static CustomAnimExpectation toHaveBackgroundAlpha(float alpha) {
+        return new ViewBackgroundAlphaAnimExpectation(alpha);
+    }
+
 
     //endregion
 }
