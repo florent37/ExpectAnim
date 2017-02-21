@@ -2,4 +2,4 @@ deployment:
   release:
     tag: /v.*/
     commands:
-      - ./gradlew :freezer:bintrayUpload :freezer-annotations:bintrayUpload :freezer-compiler:bintrayUpload
+      - ./gradlew :expectanim:bintrayUpload
