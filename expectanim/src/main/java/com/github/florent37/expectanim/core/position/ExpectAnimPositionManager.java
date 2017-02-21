@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.github.florent37.expectanim.core.AnimExpectation;
 import com.github.florent37.expectanim.ViewCalculator;
+import com.github.florent37.expectanim.core.ExpectAnimManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +16,7 @@ import java.util.List;
  * Created by florentchampigny on 17/02/2017.
  */
 
-public class ExpectAnimPositionManager {
-
-    private final List<AnimExpectation> animExpectations;
-    private final View viewToMove;
+public class ExpectAnimPositionManager extends ExpectAnimManager {
 
     private Float positionX = null;
     private Float positionY = null;
@@ -26,13 +24,10 @@ public class ExpectAnimPositionManager {
     private Float translationX = null;
     private Float translationY = null;
 
-    private final ViewCalculator viewCalculator;
-
     public ExpectAnimPositionManager(List<AnimExpectation> animExpectations, View viewToMove, ViewCalculator viewCalculator) {
-        this.animExpectations = animExpectations;
-        this.viewToMove = viewToMove;
-        this.viewCalculator = viewCalculator;
+        super(animExpectations, viewToMove, viewCalculator);
     }
+
 
     public Float getPositionX() {
         if(translationX != null){
@@ -92,6 +87,12 @@ public class ExpectAnimPositionManager {
         }
     }
 
+    @Override
+    public void calculate() {
+
+    }
+
+    @Override
     public List<Animator> getAnimators() {
         final List<Animator> animations = new ArrayList<>();
 

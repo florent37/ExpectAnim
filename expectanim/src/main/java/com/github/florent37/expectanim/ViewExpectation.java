@@ -4,7 +4,10 @@ import android.animation.Animator;
 import android.view.View;
 
 import com.github.florent37.expectanim.core.AnimExpectation;
+import com.github.florent37.expectanim.core.Expectations;
 import com.github.florent37.expectanim.core.alpha.ExpectAnimAlphaManager;
+import com.github.florent37.expectanim.core.custom.CustomAnimExpectation;
+import com.github.florent37.expectanim.core.custom.ExpectAnimCustomManager;
 import com.github.florent37.expectanim.core.position.ExpectAnimPositionManager;
 import com.github.florent37.expectanim.core.position.PositionAnimationViewDependant;
 import com.github.florent37.expectanim.core.scale.ExpectAnimScaleManager;
@@ -39,7 +42,7 @@ public class ViewExpectation {
         this.dependencies = new ArrayList<>();
     }
 
-    public ViewExpectation andExpect(View view) {
+    public ViewExpectation expect(View view) {
         return expectAnim.expect(view);
     }
 
@@ -70,9 +73,18 @@ public class ViewExpectation {
 
     }
 
-    private void calculateAlpha() {
+    private void calculateAlpha(ViewCalculator viewCalculator) {
         if (animExpectations != null) {
-            final ExpectAnimAlphaManager manager = new ExpectAnimAlphaManager(animExpectations, viewToMove);
+            final ExpectAnimAlphaManager manager = new ExpectAnimAlphaManager(animExpectations, viewToMove, viewCalculator);
+            manager.calculate();
+            animations.addAll(manager.getAnimators());
+        }
+
+    }
+
+    private void calculateCustom(ViewCalculator viewCalculator) {
+        if (animExpectations != null) {
+            final ExpectAnimCustomManager manager = new ExpectAnimCustomManager(animExpectations, viewToMove, viewCalculator);
             manager.calculate();
             animations.addAll(manager.getAnimators());
         }
@@ -90,7 +102,8 @@ public class ViewExpectation {
     void calculate(ViewCalculator viewCalculator) {
         calculateScale(viewCalculator);
         calculatePosition(viewCalculator);
-        calculateAlpha();
+        calculateAlpha(viewCalculator);
+        calculateCustom(viewCalculator);
     }
 
     List<Animator> getAnimations() {

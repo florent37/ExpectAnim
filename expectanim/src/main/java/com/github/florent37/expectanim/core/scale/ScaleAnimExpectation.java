@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.github.florent37.expectanim.core.AnimExpectation;
+import com.github.florent37.expectanim.core.Expectations;
 
 /**
  * Created by florentchampigny on 17/02/2017.
@@ -37,7 +38,7 @@ public abstract class ScaleAnimExpectation extends AnimExpectation {
         return gravityVertical;
     }
 
-    public AnimExpectation withGravity(@Nullable Integer gravityHorizontal, @Nullable Integer gravityVertical) {
+    public AnimExpectation withGravity(@Expectations.GravityScaleHorizontalIntDef @Nullable Integer gravityHorizontal, @Expectations.GravityScaleVerticalIntDef @Nullable Integer gravityVertical) {
         if (gravityHorizontal != null) {
             this.gravityHorizontal = gravityHorizontal;
         }

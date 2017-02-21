@@ -23,7 +23,7 @@ public class PositionAnimExpectationBottomOfParent extends PositionAnimExpectati
         final ViewParent viewParent = viewToMove.getParent();
         if((viewParent instanceof View)){
             final View parentView = (View)viewParent;
-            return (float)(parentView.getHeight() - getMargin(viewToMove) - viewToMove.getHeight());
+            return parentView.getHeight() - getMargin(viewToMove) - viewToMove.getHeight();
         }
         return null;
     }

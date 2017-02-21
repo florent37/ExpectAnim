@@ -6,6 +6,8 @@ import android.view.View;
 
 import com.github.florent37.expectanim.core.alpha.AlphaAnimExpectation;
 import com.github.florent37.expectanim.core.alpha.AlphaAnimExpectationValue;
+import com.github.florent37.expectanim.core.custom.CustomAnimExpectation;
+import com.github.florent37.expectanim.core.custom.TextColorAnimExpectation;
 import com.github.florent37.expectanim.core.position.PositionAnimExpectation;
 import com.github.florent37.expectanim.core.position.PositionAnimExpectationAboveOf;
 import com.github.florent37.expectanim.core.position.PositionAnimExpectationBelowOf;
@@ -139,11 +141,11 @@ public class Expectations {
     //region scale
 
     @IntDef(value = {Gravity.TOP, Gravity.BOTTOM, Gravity.CENTER, Gravity.CENTER_VERTICAL})
-    @interface GravityScaleVerticalIntDef {
+    public @interface GravityScaleVerticalIntDef {
     }
 
     @IntDef(value = {Gravity.LEFT, Gravity.RIGHT, Gravity.CENTER, Gravity.CENTER_HORIZONTAL})
-    @interface GravityScaleHorizontalIntDef {
+    public @interface GravityScaleHorizontalIntDef {
     }
 
     public static ScaleAnimExpectation atHisOriginalScale() {
@@ -186,5 +188,13 @@ public class Expectations {
         return new ScaleAnimExpectationSameHeightAs(otherView, null, null);
     }
     
+    //endregion
+
+    //region
+
+    public static CustomAnimExpectation toHaveTextColor(int textColor) {
+        return new TextColorAnimExpectation(textColor);
+    }
+
     //endregion
 }

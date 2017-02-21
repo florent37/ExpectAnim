@@ -86,8 +86,6 @@ public class ExpectAnimScaleManager {
     public List<Animator> getAnimators() {
         final List<Animator> animations = new ArrayList<>();
 
-        calculate();
-
         if(viewToMove != null){
             if (pivotX != null) {
                 viewToMove.setPivotX(pivotX);

@@ -2,8 +2,6 @@ package com.github.florent37.expectanim;
 
 import android.view.View;
 
-import com.github.florent37.expectanim.ViewExpectation;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,40 +20,48 @@ public class ViewCalculator {
         expectationForView.put(view, viewExpectation);
     }
 
-    public float finalPositionLeftOfView(View view){
-        if(expectationForView.containsKey(view)){
-            return expectationForView.get(view).getFuturPositionX();
-        } else {
-            return view.getX();
+    public float finalPositionLeftOfView(View view) {
+        if (expectationForView.containsKey(view)) {
+            final Float futurPositionX = expectationForView.get(view).getFuturPositionX();
+            if (futurPositionX != null) {
+                return futurPositionX;
+            }
         }
+        return view.getX();
     }
 
-    public float finalPositionRightOfView(View view){
-        if(expectationForView.containsKey(view)){
-            return expectationForView.get(view).getFuturPositionX() + finalWidthOfView(view);
-        } else {
-            return view.getRight();
+    public float finalPositionRightOfView(View view) {
+        if (expectationForView.containsKey(view)) {
+            final Float futurPositionX = expectationForView.get(view).getFuturPositionX();
+            if (futurPositionX != null) {
+                return futurPositionX + finalWidthOfView(view);
+            }
         }
+        return view.getRight();
     }
 
-    public float finalPositionTopOfView(View view){
-        if(expectationForView.containsKey(view)){
-            return expectationForView.get(view).getFuturPositionY();
-        } else {
-            return view.getTop();
+    public float finalPositionTopOfView(View view) {
+        if (expectationForView.containsKey(view)) {
+            final Float futurPositionY = expectationForView.get(view).getFuturPositionY();
+            if (futurPositionY != null) {
+                return futurPositionY;
+            }
         }
+        return view.getTop();
     }
 
-    public float finalPositionBottomOfView(View view){
-        if(expectationForView.containsKey(view)){
-            return expectationForView.get(view).getFuturPositionY() + finalHeightOfView(view);
-        } else {
-            return view.getBottom();
+    public float finalPositionBottomOfView(View view) {
+        if (expectationForView.containsKey(view)) {
+            final Float futurPositionY = expectationForView.get(view).getFuturPositionY();
+            if (futurPositionY != null) {
+                return futurPositionY + finalHeightOfView(view);
+            }
         }
+        return view.getBottom();
     }
 
     public float finalCenterXOfView(View view) {
-        if(expectationForView.containsKey(view)){
+        if (expectationForView.containsKey(view)) {
             return expectationForView.get(view).getFuturPositionX() + finalWidthOfView(view) / 2f;
         } else {
             return view.getLeft() + view.getWidth() / 2f;
@@ -63,7 +69,7 @@ public class ViewCalculator {
     }
 
     public float finalCenterYOfView(View view) {
-        if(expectationForView.containsKey(view)){
+        if (expectationForView.containsKey(view)) {
             return expectationForView.get(view).getFuturPositionY() + finalHeightOfView(view) / 2f;
         } else {
             return view.getTop() + view.getHeight() / 2f;
@@ -71,21 +77,23 @@ public class ViewCalculator {
     }
 
     public float finalWidthOfView(View view) {
-        if(expectationForView.containsKey(view)){
+        if (expectationForView.containsKey(view)) {
             final Float scaleX = expectationForView.get(view).getWillHasScaleX();
-            return scaleX * view.getWidth() + view.getPivotX() * scaleX;
-        } else {
-            return view.getWidth();
+            if (scaleX != 1f) {
+                return scaleX * view.getWidth() + view.getPivotX() * scaleX;
+            }
         }
+        return view.getWidth();
     }
 
     public float finalHeightOfView(View view) {
-        if(expectationForView.containsKey(view)){
+        if (expectationForView.containsKey(view)) {
             final Float scaleY = expectationForView.get(view).getWillHasScaleY();
-            return scaleY * view.getHeight() + view.getPivotY() * scaleY;
-        } else {
-            return view.getHeight();
+            if (scaleY != 1) {
+                return scaleY * view.getHeight() + view.getPivotY() * scaleY;
+            }
         }
+        return view.getHeight();
     }
 
 }
