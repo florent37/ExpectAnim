@@ -72,7 +72,7 @@ public abstract class PositionAnimExpectation extends AnimExpectation {
         return margin;
     }
 
-    private float dpToPx(Context context, float dp){
+    public static float dpToPx(Context context, float dp){
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
     }
 

@@ -21,6 +21,7 @@ import static com.github.florent37.expectanim.core.Expectations.rightOfParent;
 import static com.github.florent37.expectanim.core.Expectations.sameCenterVerticalAs;
 import static com.github.florent37.expectanim.core.Expectations.toHaveTextColor;
 import static com.github.florent37.expectanim.core.Expectations.toRightOf;
+import static com.github.florent37.expectanim.core.Expectations.width;
 
 
 public class SampleActivity extends AppCompatActivity {
@@ -60,12 +61,13 @@ public class SampleActivity extends AppCompatActivity {
                 .expect(avatar)
                 .toBe(
                         bottomOfParent().withMarginDp(16),
-                        leftOfParent().withMarginDp(16)
+                        leftOfParent().withMarginDp(16),
+                        width(30).toDp().keepRatio()
                 )
 
                 .expect(name)
                 .toBe(
-                        toRightOf(avatar).withMarginDp(16),
+                        toRightOf(avatar).withMarginDp(0),
                         sameCenterVerticalAs(avatar),
                         toHaveTextColor(Color.WHITE)
                 )

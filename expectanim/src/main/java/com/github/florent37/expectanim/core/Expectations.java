@@ -10,6 +10,10 @@ import com.github.florent37.expectanim.core.custom.CustomAnimExpectation;
 import com.github.florent37.expectanim.core.custom.TextColorAnimExpectation;
 import com.github.florent37.expectanim.core.position.PositionAnimExpectation;
 import com.github.florent37.expectanim.core.position.PositionAnimExpectationAboveOf;
+import com.github.florent37.expectanim.core.position.PositionAnimExpectationAlignBottom;
+import com.github.florent37.expectanim.core.position.PositionAnimExpectationAlignLeft;
+import com.github.florent37.expectanim.core.position.PositionAnimExpectationAlignRight;
+import com.github.florent37.expectanim.core.position.PositionAnimExpectationAlignTop;
 import com.github.florent37.expectanim.core.position.PositionAnimExpectationBelowOf;
 import com.github.florent37.expectanim.core.position.PositionAnimExpectationBottomOfParent;
 import com.github.florent37.expectanim.core.position.PositionAnimExpectationCenterBetweenViewAndParent;
@@ -112,6 +116,22 @@ public class Expectations {
         return new PositionAnimExpectationCenterBetweenViewAndParent(otherView, horizontal, vertical, toBeOnRight, toBeOnBottom);
     }
 
+    public static PositionAnimExpectation alignBottom(View otherView) {
+        return new PositionAnimExpectationAlignBottom(otherView);
+    }
+
+    public static PositionAnimExpectation alignTop(View otherView) {
+        return new PositionAnimExpectationAlignTop(otherView);
+    }
+
+    public static PositionAnimExpectation alignLeft(View otherView) {
+        return new PositionAnimExpectationAlignLeft(otherView);
+    }
+
+    public static PositionAnimExpectation alignRight(View otherView) {
+        return new PositionAnimExpectationAlignRight(otherView);
+    }
+
     @IntDef(value = {Gravity.LEFT, Gravity.RIGHT, Gravity.TOP, Gravity.BOTTOM})
     @interface GravityIntDef {
     }
@@ -190,7 +210,7 @@ public class Expectations {
     
     //endregion
 
-    //region
+    //region custom
 
     public static CustomAnimExpectation toHaveTextColor(int textColor) {
         return new TextColorAnimExpectation(textColor);

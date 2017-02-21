@@ -13,7 +13,10 @@ public class ScaleAnimExpectationSameHeightAs extends ScaleAnimExpectationViewDe
 
     @Override
     public Float getCalculatedValueScaleX(View viewToMove) {
-       return null;
+        if(keepRatio){
+            return getCalculatedValueScaleY(viewToMove);
+        }
+        return null;
     }
 
     @Override
