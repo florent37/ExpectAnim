@@ -14,6 +14,13 @@ new ExpectAnim()
                 .start();
 ```
 
+#Download
+
+In your module [![Download](https://api.bintray.com/packages/florent37/maven/ExpectAnim/images/download.svg)](https://bintray.com/florent37/maven/ExpectAnim/_latestVersion)
+```groovy
+compile 'com.github.florent37:expectanim:1.0.0'
+```
+
 This code describe the video above
 
 ```java
@@ -131,11 +138,70 @@ new ExpectAnim()
                 .setNow();
 ```
 
-#Download
+# List of expectations
 
-In your module [![Download](https://api.bintray.com/packages/florent37/maven/ExpectAnim/images/download.svg)](https://bintray.com/florent37/maven/ExpectAnim/_latestVersion)
-```groovy
-compile 'com.github.florent37:expectanim:1.0.0'
+```
+new ExpectAnim()
+                .expect(view)
+                .toBe(
+
+                    //.withMargin(marginPx)
+                    //.withMarginDp(margin)
+                    //.withMarginDimen(R.dimen.margin)
+
+                    toRightOf(view)
+                    toLeftOf(view)
+                    belowOf(view)
+                    aboveOf(view)
+
+                    atHisOriginalPosition()
+
+
+                    sameCenterAs(view, horizontal, vertical)
+                    sameCenterHorizontalAs(view)
+                    sameCenterVerticalAs(view)
+                    centerInParent(horizontal, vertical)
+                    centerVerticalInParent()
+                    centerHorizontalInParent()
+
+                    centerBetweenViews(view1, view2, horizontal, vertical)
+                    centerBetweenViewAndParent(otherView, horizontal, vertical, toBeOnRight, toBeOnBottom)
+
+                    topOfParent()
+                    rightOfParent()
+                    bottomOfParent()
+                    leftOfParent()
+
+                    alignBottom(otherView)
+                    alignTop(otherView)
+                    alignLeft(otherView)
+                    alignRight(otherView)
+
+                    outOfScreen(gravitiy)  //Gravity.LEFT / Gravity.RIGHT / Gravity.TOP / Gravity.BOTTOM
+
+                    alpha(alpha)
+                    sameAlphaAs(otherView)
+                    visible()
+                    invisible()
+
+                    //.keepRatio()
+                    //.withGravity(horizontalGravity, verticalGravity)
+
+                    atHisOriginalScale()
+
+                    scale(scaleX, scaleY)
+                    height(height)
+                    width(width)
+                    sameScaleAs(otherView)
+                    sameWidthAs(otherView)
+                    sameHeightAs(otherView)
+
+
+                    toHaveTextColor(textColor)
+                    toHaveBackgroundAlpha(alpha)
+
+                )
+
 ```
 
 #Credits

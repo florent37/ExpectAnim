@@ -3,7 +3,6 @@ package com.github.florent37.expectanim.sample;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatButton;
 import android.view.Gravity;
 import android.view.View;
 
@@ -12,11 +11,8 @@ import com.github.florent37.expectanim.ExpectAnim;
 import butterknife.BindDimen;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-import static com.github.florent37.expectanim.core.Expectations.alphaValue;
-import static com.github.florent37.expectanim.core.Expectations.atHisOriginalPosition;
-import static com.github.florent37.expectanim.core.Expectations.atHisOriginalScale;
+import static com.github.florent37.expectanim.core.Expectations.alpha;
 import static com.github.florent37.expectanim.core.Expectations.height;
 import static com.github.florent37.expectanim.core.Expectations.leftOfParent;
 import static com.github.florent37.expectanim.core.Expectations.rightOfParent;
@@ -24,7 +20,6 @@ import static com.github.florent37.expectanim.core.Expectations.sameCenterVertic
 import static com.github.florent37.expectanim.core.Expectations.scale;
 import static com.github.florent37.expectanim.core.Expectations.toRightOf;
 import static com.github.florent37.expectanim.core.Expectations.topOfParent;
-import static com.github.florent37.expectanim.core.Expectations.visible;
 
 
 public class ScrollActivity extends AppCompatActivity {
@@ -58,7 +53,7 @@ public class ScrollActivity extends AppCompatActivity {
                         toRightOf(avatar).withMarginDp(16),
                         sameCenterVerticalAs(avatar),
 
-                        alphaValue(0.5f)
+                        alpha(0.5f)
                 )
 
                 .expect(avatar)

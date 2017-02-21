@@ -141,7 +141,7 @@ public class Expectations {
 
     //region alpha
 
-    public static AlphaAnimExpectation alphaValue(float alpha) {
+    public static AlphaAnimExpectation alpha(float alpha) {
         return new AlphaAnimExpectationValue(alpha);
     }
 
