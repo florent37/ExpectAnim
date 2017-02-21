@@ -54,10 +54,57 @@ this.expectAnimMove = new ExpectAnim()
                 )
 
                 .toAnimation()
-                .setDuration(1500)`
+                .setDuration(1500)
 
                 .start();
 ```
+
+## Follow scroll
+
+[![gif](https://raw.githubusercontent.com/florent37/ExpectAnim/master/media/scroll.gif)](https://github.com/florent37/ExpectAnim)
+
+Use `setPercent` to apply modify the current step of the animation
+
+Exemple with a scrollview
+
+```java
+this.expectAnimMove = new ExpectAnim()
+                .expect(username)
+                .toBe(
+                        toRightOf(avatar).withMarginDp(16),
+                        sameCenterVerticalAs(avatar),
+
+                        alphaValue(0.5f)
+                )
+
+                .expect(avatar)
+                .toBe(
+                        topOfParent(),
+                        leftOfParent().withMarginDp(16),
+                        scale(0.5f, 0.5f)
+                )
+                .expect(follow)
+                .toBe(
+                        rightOfParent().withMarginDp(16),
+                        sameCenterVerticalAs(avatar)
+                )
+
+                .expect(backbground)
+                .toBe(
+                        height(height).withGravity(Gravity.LEFT, Gravity.TOP)
+                )
+
+                .toAnimation();
+
+scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+    @Override
+    public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+        final float percent = (scrollY * 1f) / v.getMaxScrollAmount();
+
+        expectAnimMove.setPercent(percent);
+    }
+});
+
 
 ## Apply directly
 
