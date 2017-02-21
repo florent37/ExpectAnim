@@ -4,8 +4,20 @@ Describe your animation and run !
 
 [![gif](https://raw.githubusercontent.com/florent37/ExpectAnim/master/media/sample.gif)](https://github.com/florent37/ExpectAnim)
 
+```java
+new ExpectAnim()
+
+                .expect(avatar)
+                .toBe(
+                    Expectations...
+                )
+                .start();
 ```
-this.expectAnimMove = new ExpectAnim()
+
+This code describe the video above
+
+```java
+new ExpectAnim()
 
                 .expect(avatar)
                 .toBe(
@@ -73,8 +85,7 @@ this.expectAnimMove = new ExpectAnim()
                 .toBe(
                         toRightOf(avatar).withMarginDp(16),
                         sameCenterVerticalAs(avatar),
-
-                        alphaValue(0.5f)
+                        alpha(0.5f)
                 )
 
                 .expect(avatar)
@@ -104,7 +115,7 @@ scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener
         expectAnimMove.setPercent(percent);
     }
 });
-
+```
 
 ## Apply directly
 
