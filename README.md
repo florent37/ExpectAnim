@@ -65,12 +65,12 @@ new ExpectAnim()
 
                 .expect(bottomLayout)
                 .toBe(
-                        atHisOriginalPosition()
+                        atItsOriginalPosition()
                 )
 
                 .expect(content)
                 .toBe(
-                        atHisOriginalPosition(),
+                        atItsOriginalPosition(),
                         visible()
                 )
 
@@ -140,6 +140,14 @@ new ExpectAnim()
                 .setNow();
 ```
 
+## Reset
+
+Use `reset` to return to the initial state of views
+
+```java
+expectAnim.reset():
+```
+
 # List of expectations
 
 ```
@@ -156,7 +164,7 @@ new ExpectAnim()
                     belowOf(view)
                     aboveOf(view)
 
-                    atHisOriginalPosition()
+                    atItsOriginalPosition()
 
 
                     sameCenterAs(view, horizontal, vertical)
@@ -189,7 +197,7 @@ new ExpectAnim()
                     //.keepRatio()
                     //.withGravity(horizontalGravity, verticalGravity)
 
-                    atHisOriginalScale()
+                    atItsOriginalScale()
 
                     scale(scaleX, scaleY)
                     height(height)
@@ -202,11 +210,22 @@ new ExpectAnim()
                     toHaveTextColor(textColor)
                     toHaveBackgroundAlpha(alpha)
 
+                    rotated(rotation)
+                    vertical(bottomOfViewAtLeft)
+                    atItsOriginalRotation()
                 )
 
-```
+````
 
-#Credits
+# Changelog
+
+##1.0.1
+
+Added `rotations`
+
+[![gif](https://raw.githubusercontent.com/florent37/ExpectAnim/master/media/rotations.gif)](https://github.com/florent37/ExpectAnim)
+
+# Credits
 
 Author: Florent Champigny
 
