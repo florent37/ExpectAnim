@@ -63,7 +63,7 @@ public class Expectations {
         return new PositionAnimExpectationAboveOf(view);
     }
 
-    public static PositionAnimExpectation atHisOriginalPosition() {
+    public static PositionAnimExpectation atItsOriginalPosition() {
         return new PositionAnimExpectationOriginal();
     }
 
@@ -171,7 +171,7 @@ public class Expectations {
     public @interface GravityScaleHorizontalIntDef {
     }
 
-    public static ScaleAnimExpectation atHisOriginalScale() {
+    public static ScaleAnimExpectation atItsOriginalScale() {
         return new ScaleAnimExpectationOriginalScale();
     }
 
@@ -228,7 +228,7 @@ public class Expectations {
 
     //region rotation
 
-    public static RotationExpectation withRotation(float rotation) {
+    public static RotationExpectation rotated(float rotation) {
         return new RotationExpectationValue(rotation);
     }
 
@@ -238,6 +238,10 @@ public class Expectations {
         } else {
             return new RotationExpectationValue(270);
         }
+    }
+
+    public static RotationExpectation atItsOriginalRotation() {
+        return new RotationExpectationValue(0);
     }
 
     //endregion

@@ -14,10 +14,9 @@ import static com.github.florent37.expectanim.core.Expectations.alignLeft;
 import static com.github.florent37.expectanim.core.Expectations.alignTop;
 import static com.github.florent37.expectanim.core.Expectations.belowOf;
 import static com.github.florent37.expectanim.core.Expectations.leftOfParent;
-import static com.github.florent37.expectanim.core.Expectations.toLeftOf;
 import static com.github.florent37.expectanim.core.Expectations.toRightOf;
 import static com.github.florent37.expectanim.core.Expectations.topOfParent;
-import static com.github.florent37.expectanim.core.Expectations.withRotation;
+import static com.github.florent37.expectanim.core.Expectations.rotated;
 
 public class RotationActivity extends AppCompatActivity {
 
@@ -44,7 +43,7 @@ public class RotationActivity extends AppCompatActivity {
                 .toBe(
                         topOfParent(),
                         leftOfParent(),
-                        withRotation(90)
+                        rotated(90)
                 )
 
                 .expect(text2)

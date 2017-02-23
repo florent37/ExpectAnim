@@ -13,7 +13,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.github.florent37.expectanim.core.Expectations.aboveOf;
-import static com.github.florent37.expectanim.core.Expectations.atHisOriginalPosition;
+import static com.github.florent37.expectanim.core.Expectations.atItsOriginalPosition;
 import static com.github.florent37.expectanim.core.Expectations.bottomOfParent;
 import static com.github.florent37.expectanim.core.Expectations.invisible;
 import static com.github.florent37.expectanim.core.Expectations.leftOfParent;
@@ -105,12 +105,12 @@ public class SampleActivity extends AppCompatActivity {
 
                 .expect(bottomLayout)
                 .toBe(
-                        atHisOriginalPosition()
+                        atItsOriginalPosition()
                 )
 
                 .expect(content)
                 .toBe(
-                        atHisOriginalPosition(),
+                        atItsOriginalPosition(),
                         visible()
                 )
 
