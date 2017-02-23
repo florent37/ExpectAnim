@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".ScrollActivity"/>
         <activity android:name=".SampleActivity"/>
+        <activity android:name=".RotationActivity"/>
     </application>
 
 </manifest>
