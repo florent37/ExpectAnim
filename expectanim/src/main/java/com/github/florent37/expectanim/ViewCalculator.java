@@ -5,6 +5,10 @@ import android.view.View;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.Math.abs;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
+
 /**
  * Created by florentchampigny on 20/02/2017.
  */
@@ -12,53 +16,79 @@ import java.util.Map;
 public class ViewCalculator {
     private final Map<View, ViewExpectation> expectationForView;
 
+    private boolean enableRotation = true;
+    private boolean enableScale = true;
+
     public ViewCalculator() {
         expectationForView = new HashMap<>();
     }
 
-    public void wasCalculated(View view, ViewExpectation viewExpectation) {
+    public void setExpectationForView(View view, ViewExpectation viewExpectation) {
         expectationForView.put(view, viewExpectation);
     }
 
-    public float finalPositionLeftOfView(View view) {
-        if (expectationForView.containsKey(view)) {
-            final Float futurPositionX = expectationForView.get(view).getFuturPositionX();
+    public void wasCalculated(ViewExpectation viewExpectation) {
+        //no-op
+    }
+
+    public float finalPositionLeftOfView(View view, boolean itsMe) {
+        Float finalX = null;
+
+        final ViewExpectation viewExpectation = expectationForView.get(view);
+        if (viewExpectation != null) {
+            final Float futurPositionX = viewExpectation.getFuturPositionX();
             if (futurPositionX != null) {
-                return futurPositionX;
+                finalX = futurPositionX;
             }
         }
-        return view.getX();
+
+        if (finalX == null) {
+            finalX = view.getX();
+        }
+
+        if (itsMe) {
+            finalX -= (view.getWidth() - this.finalWidthOfView(view)) / 2f;
+        }
+
+        return finalX;
+    }
+
+    public float finalPositionLeftOfView(View view) {
+        return finalPositionLeftOfView(view, false);
     }
 
     public float finalPositionRightOfView(View view) {
-        if (expectationForView.containsKey(view)) {
-            final Float futurPositionX = expectationForView.get(view).getFuturPositionX();
-            if (futurPositionX != null) {
-                final float finalWidthOfView = finalWidthOfView(view);
-                return futurPositionX + finalWidthOfView;
+        return finalPositionLeftOfView(view) + finalWidthOfView(view);
+    }
+
+    public float finalPositionTopOfView(View view, boolean itsMe) {
+        Float finalTop = null;
+
+        final ViewExpectation viewExpectation = expectationForView.get(view);
+        if (viewExpectation != null) {
+            final Float futurPositionY = viewExpectation.getFuturPositionY();
+            if (futurPositionY != null) {
+                finalTop = futurPositionY;
             }
         }
-        return view.getRight();
+
+        if (finalTop == null) {
+            finalTop = 1f * view.getTop();
+        }
+
+        if (itsMe) {
+            finalTop -= (view.getHeight() - this.finalHeightOfView(view)) / 2f;
+        }
+
+        return finalTop;
     }
 
     public float finalPositionTopOfView(View view) {
-        if (expectationForView.containsKey(view)) {
-            final Float futurPositionY = expectationForView.get(view).getFuturPositionY();
-            if (futurPositionY != null) {
-                return futurPositionY;
-            }
-        }
-        return view.getTop();
+        return finalPositionTopOfView(view, false);
     }
 
     public float finalPositionBottomOfView(View view) {
-        if (expectationForView.containsKey(view)) {
-            final Float futurPositionY = expectationForView.get(view).getFuturPositionY();
-            if (futurPositionY != null) {
-                return futurPositionY + finalHeightOfView(view);
-            }
-        }
-        return view.getBottom();
+        return finalPositionTopOfView(view) + finalHeightOfView(view);
     }
 
     public float finalCenterXOfView(View view) {
@@ -78,23 +108,66 @@ public class ViewCalculator {
     }
 
     public float finalWidthOfView(View view) {
+        float with = view.getWidth();
         if (expectationForView.containsKey(view)) {
-            final Float scaleX = expectationForView.get(view).getWillHasScaleX();
-            if (scaleX != 1f) {
-                return scaleX * view.getWidth() + view.getPivotX() * scaleX;
+            final ViewExpectation viewExpectation = expectationForView.get(view);
+
+            with = widthScaled(viewExpectation, view, with);
+
+            if (enableRotation) {
+                with = widthRotated(viewExpectation, view, with);
             }
         }
-        return view.getWidth();
+        return with;
+    }
+
+    private float widthScaled(ViewExpectation viewExpectation, View view, float width) {
+        final Float scaleX = viewExpectation.getWillHasScaleX();
+        if (scaleX != 1f) {
+            width = scaleX * width; // + view.getPivotX() * scaleX;
+        }
+        return width;
+    }
+
+    private float widthRotated(ViewExpectation viewExpectation, View view, float width) {
+        final Float willHaveRotationX = viewExpectation.getWillHaveRotation();
+        if (willHaveRotationX != null) {
+            final double radians = Math.toRadians(90 - willHaveRotationX);
+            width = (float) (abs(width * sin(radians)) + abs(heightScaled(viewExpectation, view, view.getHeight()) * cos(radians)));
+        }
+        return width;
     }
 
     public float finalHeightOfView(View view) {
+        float height = view.getHeight();
         if (expectationForView.containsKey(view)) {
-            final Float scaleY = expectationForView.get(view).getWillHasScaleY();
-            if (scaleY != 1) {
-                return scaleY * view.getHeight() + view.getPivotY() * scaleY;
+            final ViewExpectation viewExpectation = expectationForView.get(view);
+
+            height = heightScaled(viewExpectation, view, height);
+
+            if (enableRotation) {
+                height = heightRotated(viewExpectation, view, height);
             }
         }
-        return view.getHeight();
+        return height;
     }
+
+    private float heightScaled(ViewExpectation viewExpectation, View view, float height) {
+        final Float scaleY = viewExpectation.getWillHasScaleY();
+        if (scaleY != 1) {
+            height = scaleY * height; // + view.getPivotY() * scaleY;
+        }
+        return height;
+    }
+
+    private float heightRotated(ViewExpectation viewExpectation, View view, float height) {
+        final Float willHaveRotationX = viewExpectation.getWillHaveRotation();
+        if (willHaveRotationX != null) {
+            final double radians = Math.toRadians(willHaveRotationX);
+            height = (float) (abs(height * cos(radians)) + abs(widthScaled(viewExpectation, view, view.getWidth()) * sin(radians)));
+        }
+        return height;
+    }
+
 
 }

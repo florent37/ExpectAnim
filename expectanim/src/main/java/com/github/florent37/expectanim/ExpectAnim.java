@@ -74,6 +74,8 @@ public class ExpectAnim {
                 viewExpectation.calculateDependencies();
                 viewToMove.add(viewExpectation.getViewToMove());
                 expectationsToCalculate.add(viewExpectation);
+
+                viewCalculator.setExpectationForView(viewExpectation.getViewToMove(), viewExpectation);
             }
 
             while (!expectationsToCalculate.isEmpty()) {
@@ -90,7 +92,7 @@ public class ExpectAnim {
 
                         final View view = viewExpectation.getViewToMove();
                         viewToMove.remove(view);
-                        viewCalculator.wasCalculated(view, viewExpectation);
+                        viewCalculator.wasCalculated(viewExpectation);
 
                         iterator.remove();
                     } else {

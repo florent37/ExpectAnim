@@ -70,7 +70,7 @@ public class SampleActivity extends AppCompatActivity {
 
                 .expect(avatar)
                 .toBe(
-                        bottomOfParent().withMarginDp(16),
+                        bottomOfParent().withMarginDp(36),
                         leftOfParent().withMarginDp(16),
                         width(40).toDp().keepRatio()
                 )

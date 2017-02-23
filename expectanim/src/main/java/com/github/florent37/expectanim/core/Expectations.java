@@ -28,6 +28,8 @@ import com.github.florent37.expectanim.core.position.PositionAnimExpectationRigh
 import com.github.florent37.expectanim.core.position.PositionAnimExpectationRightOfParent;
 import com.github.florent37.expectanim.core.position.PositionAnimExpectationSameCenterAs;
 import com.github.florent37.expectanim.core.position.PositionAnimExpectationTopOfParent;
+import com.github.florent37.expectanim.core.rotation.RotationExpectation;
+import com.github.florent37.expectanim.core.rotation.RotationExpectationValue;
 import com.github.florent37.expectanim.core.scale.ScaleAnimExpectation;
 import com.github.florent37.expectanim.core.scale.ScaleAnimExpectationHeight;
 import com.github.florent37.expectanim.core.scale.ScaleAnimExpectationOriginalScale;
@@ -223,4 +225,21 @@ public class Expectations {
 
 
     //endregion
+
+    //region rotation
+
+    public static RotationExpectation withRotation(float rotation) {
+        return new RotationExpectationValue(rotation);
+    }
+
+    public static RotationExpectation vertical(boolean bottomOfViewAtLeft) {
+        if(bottomOfViewAtLeft) {
+            return new RotationExpectationValue(90);
+        } else {
+            return new RotationExpectationValue(270);
+        }
+    }
+
+    //endregion
+
 }

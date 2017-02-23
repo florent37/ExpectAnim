@@ -45,7 +45,7 @@ public class ExpectAnimPositionManager extends ExpectAnimManager {
         }
     }
 
-    public void calculate(@Nullable Float willHasScaleX, @Nullable Float willHasScaleY) {
+    public void calculate() {
         for (AnimExpectation animExpectation : animExpectations) {
             if(animExpectation instanceof PositionAnimExpectation) {
                 PositionAnimExpectation expectation = (PositionAnimExpectation)animExpectation;
@@ -56,11 +56,6 @@ public class ExpectAnimPositionManager extends ExpectAnimManager {
                     if (calculatedValueX != null) {
                         if (expectation.isForPositionX()) {
                             positionX = calculatedValueX;
-                            if (willHasScaleX != null) {
-                                final float paddingOfScale = viewToMove.getWidth() * willHasScaleX - viewToMove.getWidth();
-                                final int tx = (int) (paddingOfScale / 2f);
-                                positionX += tx;
-                            }
                         }
                         if (expectation.isForTranslationX()) {
                             translationX = calculatedValueX;
@@ -71,13 +66,6 @@ public class ExpectAnimPositionManager extends ExpectAnimManager {
                     if (calculatedValueY != null) {
                         if (expectation.isForPositionY()) {
                             positionY = calculatedValueY;
-                            if (willHasScaleY != null) {
-
-                                //TODO
-                                final float paddingOfScale = viewToMove.getHeight() * willHasScaleY - viewToMove.getHeight();
-                                final int ty = (int) (paddingOfScale / 2f);
-                                //positionY += ty;
-                            }
                         }
                         if (expectation.isForTranslationY()) {
                             translationY = calculatedValueY;
@@ -88,20 +76,15 @@ public class ExpectAnimPositionManager extends ExpectAnimManager {
     }
 
     @Override
-    public void calculate() {
-
-    }
-
-    @Override
     public List<Animator> getAnimators() {
         final List<Animator> animations = new ArrayList<>();
 
         if (positionX != null) {
-            animations.add(ObjectAnimator.ofFloat(viewToMove, View.X, positionX));
+            animations.add(ObjectAnimator.ofFloat(viewToMove, View.X, viewCalculator.finalPositionLeftOfView(viewToMove, true)));
         }
 
         if (positionY != null) {
-            animations.add(ObjectAnimator.ofFloat(viewToMove, View.Y, positionY));
+            animations.add(ObjectAnimator.ofFloat(viewToMove, View.Y, viewCalculator.finalPositionTopOfView(viewToMove, true)));
         }
 
         if (translationX != null) {

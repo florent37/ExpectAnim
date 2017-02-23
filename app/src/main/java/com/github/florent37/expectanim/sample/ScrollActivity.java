@@ -48,6 +48,13 @@ public class ScrollActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         this.expectAnimMove = new ExpectAnim()
+                .expect(avatar)
+                .toBe(
+                        topOfParent().withMarginDp(20),
+                        leftOfParent().withMarginDp(20),
+                        scale(0.5f, 0.5f)
+                )
+
                 .expect(username)
                 .toBe(
                         toRightOf(avatar).withMarginDp(16),
@@ -56,15 +63,9 @@ public class ScrollActivity extends AppCompatActivity {
                         alpha(0.5f)
                 )
 
-                .expect(avatar)
-                .toBe(
-                        topOfParent(),
-                        leftOfParent().withMarginDp(16),
-                        scale(0.5f, 0.5f)
-                )
                 .expect(follow)
                 .toBe(
-                        rightOfParent().withMarginDp(16),
+                        rightOfParent().withMarginDp(20),
                         sameCenterVerticalAs(avatar)
                 )
 

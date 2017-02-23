@@ -22,9 +22,10 @@ public class PositionAnimExpectationSameCenterAs extends PositionAnimationViewDe
     @Override
     public Float getCalculatedValueX(View viewToMove) {
         if(horizontal) {
+
             final float x = viewCalculator.finalPositionLeftOfView(otherView);
             final float myWidth = viewToMove.getWidth() / 2f;
-            final float hisWidth = otherView.getWidth() / 2f;
+            final float hisWidth = viewCalculator.finalWidthOfView(otherView) / 2f;
 
             if (myWidth > hisWidth) {
                 return x - myWidth + hisWidth;
@@ -37,15 +38,18 @@ public class PositionAnimExpectationSameCenterAs extends PositionAnimationViewDe
     @Override
     public Float getCalculatedValueY(View viewToMove) {
         if(vertical) {
+
             final float y = viewCalculator.finalPositionTopOfView(otherView);
             final float myHeight = viewToMove.getHeight() / 2f;
-            final float hisHeight = otherView.getHeight() / 2f;
+            final float hisHeight = viewCalculator.finalHeightOfView(otherView) / 2f;
 
             if (myHeight > hisHeight) {
                 return y + myHeight - hisHeight;
             } else {
                 return y + hisHeight - myHeight;
             }
+
         } else return null;
     }
+
 }

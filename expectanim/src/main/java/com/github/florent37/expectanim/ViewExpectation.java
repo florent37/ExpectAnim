@@ -4,12 +4,10 @@ import android.animation.Animator;
 import android.view.View;
 
 import com.github.florent37.expectanim.core.AnimExpectation;
-import com.github.florent37.expectanim.core.Expectations;
 import com.github.florent37.expectanim.core.alpha.ExpectAnimAlphaManager;
-import com.github.florent37.expectanim.core.custom.CustomAnimExpectation;
 import com.github.florent37.expectanim.core.custom.ExpectAnimCustomManager;
 import com.github.florent37.expectanim.core.position.ExpectAnimPositionManager;
-import com.github.florent37.expectanim.core.position.PositionAnimationViewDependant;
+import com.github.florent37.expectanim.core.rotation.ExpectAnimRotationManager;
 import com.github.florent37.expectanim.core.scale.ExpectAnimScaleManager;
 
 import java.util.ArrayList;
@@ -34,6 +32,8 @@ public class ViewExpectation {
     private Float willHasPositionX;
     private Float willHasPositionY;
 
+    private Float willHasRotationX;
+
     ViewExpectation(ExpectAnim expectAnim, View viewToMove) {
         this.expectAnim = expectAnim;
         this.viewToMove = viewToMove;
@@ -54,7 +54,7 @@ public class ViewExpectation {
     private void calculatePosition(ViewCalculator viewCalculator) {
         if (animExpectations != null) {
             final ExpectAnimPositionManager manager = new ExpectAnimPositionManager(animExpectations, viewToMove, viewCalculator);
-            manager.calculate(willHasScaleX, willHasScaleY);
+            manager.calculate();
             willHasPositionX = manager.getPositionX();
             willHasPositionY = manager.getPositionY();
             animations.addAll(manager.getAnimators());
@@ -82,6 +82,16 @@ public class ViewExpectation {
 
     }
 
+    private void calculateRotation(ViewCalculator viewCalculator) {
+        if (animExpectations != null) {
+            final ExpectAnimRotationManager manager = new ExpectAnimRotationManager(animExpectations, viewToMove, viewCalculator);
+            manager.calculate();
+            willHasRotationX = manager.getRotation();
+            animations.addAll(manager.getAnimators());
+        }
+
+    }
+
     private void calculateCustom(ViewCalculator viewCalculator) {
         if (animExpectations != null) {
             final ExpectAnimCustomManager manager = new ExpectAnimCustomManager(animExpectations, viewToMove, viewCalculator);
@@ -100,6 +110,7 @@ public class ViewExpectation {
     }
 
     void calculate(ViewCalculator viewCalculator) {
+        calculateRotation(viewCalculator);
         calculateScale(viewCalculator);
         calculatePosition(viewCalculator);
         calculateAlpha(viewCalculator);
@@ -114,7 +125,7 @@ public class ViewExpectation {
         dependencies.clear();
         if (animExpectations != null) {
             for (AnimExpectation animExpectation : animExpectations) {
-                    dependencies.addAll(animExpectation.getViewsDependencies());
+                dependencies.addAll(animExpectation.getViewsDependencies());
             }
         }
         return dependencies;
@@ -149,6 +160,14 @@ public class ViewExpectation {
             return willHasScaleY;
         } else {
             return 1f;
+        }
+    }
+
+    Float getWillHaveRotation() {
+        if (willHasRotationX != null) {
+            return willHasRotationX;
+        } else {
+            return null;
         }
     }
 
