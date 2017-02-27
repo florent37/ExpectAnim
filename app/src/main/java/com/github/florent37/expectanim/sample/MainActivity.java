@@ -38,4 +38,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, RotationActivity.class));
     }
 
+    @OnClick(R.id.setnow)
+    public void onSetNowClicked(){
+        startActivity(new Intent(this, SetNowActivity.class));
+    }
+
 }
