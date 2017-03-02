@@ -1,10 +1,13 @@
 package com.github.florent37.expectanim;
 
 import android.animation.Animator;
+import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.github.florent37.expectanim.core.AnimExpectation;
 import com.github.florent37.expectanim.core.alpha.ExpectAnimAlphaManager;
+import com.github.florent37.expectanim.core.anim3d.ExpectAnimCameraDistanceManager;
+import com.github.florent37.expectanim.core.anim3d.flip.ExpectAnimFlipManager;
 import com.github.florent37.expectanim.core.custom.ExpectAnimCustomManager;
 import com.github.florent37.expectanim.core.position.ExpectAnimPositionManager;
 import com.github.florent37.expectanim.core.rotation.ExpectAnimRotationManager;
@@ -33,6 +36,9 @@ public class ViewExpectation {
     private Float willHasPositionY;
 
     private Float willHasRotationX;
+
+    private Float willHaveRotationX, willHaveRotationY;
+    private Float willHaveCameraDistance;
 
     ViewExpectation(ExpectAnim expectAnim, View viewToMove) {
         this.expectAnim = expectAnim;
@@ -82,6 +88,26 @@ public class ViewExpectation {
 
     }
 
+    private void calculate3DTransforms(ViewCalculator viewCalculator) {
+        if (animExpectations != null) {
+
+            // camera distance animations
+            final ExpectAnimCameraDistanceManager cameraDistanceManager = new ExpectAnimCameraDistanceManager(animExpectations, viewToMove, viewCalculator);
+            cameraDistanceManager.calculate();
+            willHaveCameraDistance = cameraDistanceManager.getCameraDistance();
+            animations.addAll(cameraDistanceManager.getAnimators());
+
+            // flip animations
+            final ExpectAnimFlipManager flipManager = new ExpectAnimFlipManager(animExpectations, viewToMove, viewCalculator);
+            flipManager.calculate();
+            willHaveRotationX = flipManager.getRotationX();
+            willHaveRotationY = flipManager.getRotationY();
+            animations.addAll(flipManager.getAnimators());
+
+        }
+
+    }
+
     private void calculateRotation(ViewCalculator viewCalculator) {
         if (animExpectations != null) {
             final ExpectAnimRotationManager manager = new ExpectAnimRotationManager(animExpectations, viewToMove, viewCalculator);
@@ -110,6 +136,7 @@ public class ViewExpectation {
     }
 
     void calculate(ViewCalculator viewCalculator) {
+        calculate3DTransforms(viewCalculator);
         calculateRotation(viewCalculator);
         calculateScale(viewCalculator);
         calculatePosition(viewCalculator);
@@ -169,6 +196,16 @@ public class ViewExpectation {
         } else {
             return null;
         }
+    }
+
+    @Nullable
+    Float getWillHaveRotationX() {
+        return willHaveRotationX;
+    }
+
+    @Nullable
+    Float getWillHaveRotationY() {
+        return willHaveRotationY;
     }
 
     public ExpectAnim toAnimation() {

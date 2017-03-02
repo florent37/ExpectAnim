@@ -6,6 +6,10 @@ import android.view.View;
 
 import com.github.florent37.expectanim.core.alpha.AlphaAnimExpectation;
 import com.github.florent37.expectanim.core.alpha.AlphaAnimExpectationValue;
+import com.github.florent37.expectanim.core.anim3d.CameraDistanceExpectation;
+import com.github.florent37.expectanim.core.anim3d.CameraDistanceExpectationValue;
+import com.github.florent37.expectanim.core.anim3d.flip.FlipExpectation;
+import com.github.florent37.expectanim.core.anim3d.flip.FlipExpectationValue;
 import com.github.florent37.expectanim.core.custom.CustomAnimExpectation;
 import com.github.florent37.expectanim.core.custom.TextColorAnimExpectation;
 import com.github.florent37.expectanim.core.custom.ViewBackgroundAlphaAnimExpectation;
@@ -147,7 +151,7 @@ public class Expectations {
         return new AlphaAnimExpectationValue(alpha);
     }
 
-    public static AlphaAnimExpectation sameAlphaAs(View otherView){
+    public static AlphaAnimExpectation sameAlphaAs(View otherView) {
         return new AlphaAnimExpectationValue(otherView.getAlpha());
     }
 
@@ -176,11 +180,11 @@ public class Expectations {
     }
 
     public static ScaleAnimExpectation scale(float scaleX, float scaleY, @GravityScaleHorizontalIntDef int gravityHorizontal, @GravityScaleVerticalIntDef int gravityVertical) {
-        return new ScaleAnimExpectationValues(scaleX, scaleY,  gravityHorizontal, gravityVertical);
+        return new ScaleAnimExpectationValues(scaleX, scaleY, gravityHorizontal, gravityVertical);
     }
 
     public static ScaleAnimExpectation scale(float scaleX, float scaleY) {
-        return new ScaleAnimExpectationValues(scaleX, scaleY,  null, null);
+        return new ScaleAnimExpectationValues(scaleX, scaleY, null, null);
     }
 
     public static ScaleAnimExpectation height(int height, @GravityScaleHorizontalIntDef int gravityHorizontal, @GravityScaleVerticalIntDef int gravityVertical) {
@@ -210,7 +214,7 @@ public class Expectations {
     public static ScaleAnimExpectation sameHeightAs(View otherView) {
         return new ScaleAnimExpectationSameHeightAs(otherView, null, null);
     }
-    
+
     //endregion
 
     //region custom
@@ -232,8 +236,24 @@ public class Expectations {
         return new RotationExpectationValue(rotation);
     }
 
+    public static CameraDistanceExpectation withCameraDistance(float cameraDistance) {
+        return new CameraDistanceExpectationValue(cameraDistance);
+    }
+
+    public static FlipExpectation flippedHorizontally() {
+        return new FlipExpectationValue(0f, 180f);
+    }
+
+    public static FlipExpectation flippedVertically() {
+        return new FlipExpectationValue(180f, 0f);
+    }
+
+    public static FlipExpectation flippedHorizontallyAndVertically() {
+        return new FlipExpectationValue(180f, 180f);
+    }
+
     public static RotationExpectation vertical(boolean bottomOfViewAtLeft) {
-        if(bottomOfViewAtLeft) {
+        if (bottomOfViewAtLeft) {
             return new RotationExpectationValue(90);
         } else {
             return new RotationExpectationValue(270);

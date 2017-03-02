@@ -19,6 +19,7 @@
         <activity android:name=".SampleActivity"/>
         <activity android:name=".RotationActivity"/>
         <activity android:name=".SetNowActivity"/>
+        <activity android:name=".FlipActivity"/>
     </application>
 
 </manifest>

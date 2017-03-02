@@ -111,7 +111,7 @@ this.expectAnimMove = new ExpectAnim()
 
                 .expect(backbground)
                 .toBe(
-                        height(height).withGravity(Gravity.LEFT, Gravity.TOP)
+                        height(height).withGravity(Gravity.LEFT|Gravity.START, Gravity.TOP)
                 )
 
                 .toAnimation();
