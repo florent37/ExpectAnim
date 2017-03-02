@@ -135,7 +135,7 @@ public class Expectations {
         return new PositionAnimExpectationAlignRight(otherView);
     }
 
-    @IntDef(value = {Gravity.LEFT, Gravity.RIGHT, Gravity.TOP, Gravity.BOTTOM})
+    @IntDef(value = {Gravity.LEFT, Gravity.RIGHT, Gravity.END, Gravity.START, Gravity.TOP, Gravity.BOTTOM})
     @interface GravityIntDef {
     }
 
@@ -147,7 +147,7 @@ public class Expectations {
         return new AlphaAnimExpectationValue(alpha);
     }
 
-    public static AlphaAnimExpectation sameAlphaAs(View otherView){
+    public static AlphaAnimExpectation sameAlphaAs(View otherView) {
         return new AlphaAnimExpectationValue(otherView.getAlpha());
     }
 
@@ -167,7 +167,7 @@ public class Expectations {
     public @interface GravityScaleVerticalIntDef {
     }
 
-    @IntDef(value = {Gravity.LEFT, Gravity.RIGHT, Gravity.CENTER, Gravity.CENTER_HORIZONTAL})
+    @IntDef(value = {Gravity.LEFT, Gravity.RIGHT, Gravity.END, Gravity.START, Gravity.CENTER, Gravity.CENTER_HORIZONTAL})
     public @interface GravityScaleHorizontalIntDef {
     }
 
@@ -176,11 +176,11 @@ public class Expectations {
     }
 
     public static ScaleAnimExpectation scale(float scaleX, float scaleY, @GravityScaleHorizontalIntDef int gravityHorizontal, @GravityScaleVerticalIntDef int gravityVertical) {
-        return new ScaleAnimExpectationValues(scaleX, scaleY,  gravityHorizontal, gravityVertical);
+        return new ScaleAnimExpectationValues(scaleX, scaleY, gravityHorizontal, gravityVertical);
     }
 
     public static ScaleAnimExpectation scale(float scaleX, float scaleY) {
-        return new ScaleAnimExpectationValues(scaleX, scaleY,  null, null);
+        return new ScaleAnimExpectationValues(scaleX, scaleY, null, null);
     }
 
     public static ScaleAnimExpectation height(int height, @GravityScaleHorizontalIntDef int gravityHorizontal, @GravityScaleVerticalIntDef int gravityVertical) {
@@ -210,7 +210,7 @@ public class Expectations {
     public static ScaleAnimExpectation sameHeightAs(View otherView) {
         return new ScaleAnimExpectationSameHeightAs(otherView, null, null);
     }
-    
+
     //endregion
 
     //region custom
@@ -233,7 +233,7 @@ public class Expectations {
     }
 
     public static RotationExpectation vertical(boolean bottomOfViewAtLeft) {
-        if(bottomOfViewAtLeft) {
+        if (bottomOfViewAtLeft) {
             return new RotationExpectationValue(90);
         } else {
             return new RotationExpectationValue(270);
