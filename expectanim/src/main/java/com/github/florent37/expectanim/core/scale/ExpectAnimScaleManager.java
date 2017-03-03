@@ -54,8 +54,14 @@ public class ExpectAnimScaleManager {
                 final Integer gravityHorizontal = expectation.getGravityHorizontal();
                 if (gravityHorizontal != null) {
                     switch (gravityHorizontal){
-                        case Gravity.LEFT : pivotX = (float)viewToMove.getLeft(); break;
-                        case Gravity.RIGHT : pivotX = (float)viewToMove.getRight(); break;
+                        case Gravity.LEFT:
+                        case Gravity.START:
+                            pivotX = (float)viewToMove.getLeft();
+                            break;
+                        case Gravity.RIGHT:
+                        case Gravity.END:
+                            pivotX = (float)viewToMove.getRight();
+                            break;
                         case Gravity.CENTER_HORIZONTAL:
                         case Gravity.CENTER : pivotX = viewToMove.getLeft() + viewToMove.getWidth()/2f; break;
                     }
