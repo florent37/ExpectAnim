@@ -223,7 +223,16 @@ new ExpectAnim()
 
 # Changelog
 
-##1.0.1
+##1.0.2
+
+Added `flips` rotations
+
+`flippedHorizontally()`
+`flippedVertically()`
+`flippedHorizontallyAndVertically()`
+`withCameraDistance(1000f)`
+
+##1.0.
 
 Added `rotations`
 
