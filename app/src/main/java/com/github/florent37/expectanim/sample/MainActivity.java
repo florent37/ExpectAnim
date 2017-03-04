@@ -24,22 +24,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.sample)
-    public void onSampleClicked(){
+    public void onSampleClicked() {
         startActivity(new Intent(this, SampleActivity.class));
     }
 
     @OnClick(R.id.scroll)
-    public void onScrollClicked(){
+    public void onScrollClicked() {
         startActivity(new Intent(this, ScrollActivity.class));
     }
 
     @OnClick(R.id.rotation)
-    public void onRotationClicked(){
+    public void onRotationClicked() {
         startActivity(new Intent(this, RotationActivity.class));
     }
 
+    @OnClick(R.id.flip)
+    public void onFlipClicked() {
+        startActivity(new Intent(this, FlipActivity.class));
+    }
+
     @OnClick(R.id.setnow)
-    public void onSetNowClicked(){
+    public void onSetNowClicked() {
         startActivity(new Intent(this, SetNowActivity.class));
     }
 

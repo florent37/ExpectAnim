@@ -4,6 +4,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_alignParentBottom="true"
     android:orientation="vertical"
     tools:context="com.github.florent37.expectanim.sample.ScrollActivity">
 
@@ -11,28 +12,30 @@
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:text="scroll" />
 
     <Button
         android:id="@+id/sample"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:text="sample" />
 
     <Button
         android:id="@+id/rotation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:text="rotation" />
+
+    <Button
+        android:id="@+id/flip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="flip" />
 
     <Button
         android:id="@+id/setnow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:text="set now" />
 
 </LinearLayout>
