@@ -1,4 +1,4 @@
-package com.github.florent37.expectanim.core.anim3d.flip;
+package com.github.florent37.expectanim.core.rotation;
 
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -8,7 +8,7 @@ import android.view.View;
  * <p>
  * A container for storing the rotation values for the flip animation
  */
-public class FlipExpectationValue extends FlipExpectation {
+public class RotationFlipExpectationValue extends RotationExpectation {
 
     private final float mRotationX, mRotationY;
 
@@ -19,9 +19,14 @@ public class FlipExpectationValue extends FlipExpectation {
      * @param rotationX the x-rotation value around the x axis in degrees
      * @param rotationY the y-rotation value around the y axis in degrees
      */
-    public FlipExpectationValue(float rotationX, float rotationY) {
+    public RotationFlipExpectationValue(float rotationX, float rotationY) {
         mRotationX = rotationX;
         mRotationY = rotationY;
+    }
+
+    @Override
+    public Float getCalculatedRotation(View viewToMove) {
+        return null;
     }
 
     @Override

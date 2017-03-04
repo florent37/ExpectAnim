@@ -2,31 +2,23 @@ package com.github.florent37.expectanim.core.rotation;
 
 import android.view.View;
 
-import com.github.florent37.expectanim.core.alpha.AlphaAnimExpectation;
-
 /**
  * Created by florentchampigny on 17/02/2017.
  */
-public class RotationExpectationValue extends RotationExpectation {
-
-    private final float rotation;
-
-    public RotationExpectationValue(float rotation) {
-        this.rotation = rotation;
-    }
+public class RotationExpectationOriginal extends RotationExpectation {
 
     @Override
     public Float getCalculatedRotation(View viewToMove) {
-        return rotation;
+        return 0f;
     }
 
     @Override
     public Float getCalculatedRotationX(View viewToMove) {
-        return null;
+        return 0f;
     }
 
     @Override
     public Float getCalculatedRotationY(View viewToMove) {
-        return null;
+        return 0f;
     }
 }

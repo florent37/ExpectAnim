@@ -7,7 +7,6 @@ import android.view.View;
 import com.github.florent37.expectanim.core.AnimExpectation;
 import com.github.florent37.expectanim.core.alpha.ExpectAnimAlphaManager;
 import com.github.florent37.expectanim.core.anim3d.ExpectAnimCameraDistanceManager;
-import com.github.florent37.expectanim.core.anim3d.flip.ExpectAnimFlipManager;
 import com.github.florent37.expectanim.core.custom.ExpectAnimCustomManager;
 import com.github.florent37.expectanim.core.position.ExpectAnimPositionManager;
 import com.github.florent37.expectanim.core.rotation.ExpectAnimRotationManager;
@@ -97,13 +96,6 @@ public class ViewExpectation {
             willHaveCameraDistance = cameraDistanceManager.getCameraDistance();
             animations.addAll(cameraDistanceManager.getAnimators());
 
-            // flip animations
-            final ExpectAnimFlipManager flipManager = new ExpectAnimFlipManager(animExpectations, viewToMove, viewCalculator);
-            flipManager.calculate();
-            willHaveRotationX = flipManager.getRotationX();
-            willHaveRotationY = flipManager.getRotationY();
-            animations.addAll(flipManager.getAnimators());
-
         }
 
     }
@@ -113,6 +105,8 @@ public class ViewExpectation {
             final ExpectAnimRotationManager manager = new ExpectAnimRotationManager(animExpectations, viewToMove, viewCalculator);
             manager.calculate();
             willHasRotationX = manager.getRotation();
+            willHaveRotationX = manager.getRotationX();
+            willHaveRotationY = manager.getRotationY();
             animations.addAll(manager.getAnimators());
         }
 

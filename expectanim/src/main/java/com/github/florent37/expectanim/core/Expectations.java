@@ -8,8 +8,6 @@ import com.github.florent37.expectanim.core.alpha.AlphaAnimExpectation;
 import com.github.florent37.expectanim.core.alpha.AlphaAnimExpectationValue;
 import com.github.florent37.expectanim.core.anim3d.CameraDistanceExpectation;
 import com.github.florent37.expectanim.core.anim3d.CameraDistanceExpectationValue;
-import com.github.florent37.expectanim.core.anim3d.flip.FlipExpectation;
-import com.github.florent37.expectanim.core.anim3d.flip.FlipExpectationValue;
 import com.github.florent37.expectanim.core.custom.CustomAnimExpectation;
 import com.github.florent37.expectanim.core.custom.TextColorAnimExpectation;
 import com.github.florent37.expectanim.core.custom.ViewBackgroundAlphaAnimExpectation;
@@ -33,7 +31,9 @@ import com.github.florent37.expectanim.core.position.PositionAnimExpectationRigh
 import com.github.florent37.expectanim.core.position.PositionAnimExpectationSameCenterAs;
 import com.github.florent37.expectanim.core.position.PositionAnimExpectationTopOfParent;
 import com.github.florent37.expectanim.core.rotation.RotationExpectation;
+import com.github.florent37.expectanim.core.rotation.RotationExpectationOriginal;
 import com.github.florent37.expectanim.core.rotation.RotationExpectationValue;
+import com.github.florent37.expectanim.core.rotation.RotationFlipExpectationValue;
 import com.github.florent37.expectanim.core.scale.ScaleAnimExpectation;
 import com.github.florent37.expectanim.core.scale.ScaleAnimExpectationHeight;
 import com.github.florent37.expectanim.core.scale.ScaleAnimExpectationOriginalScale;
@@ -240,16 +240,16 @@ public class Expectations {
         return new CameraDistanceExpectationValue(cameraDistance);
     }
 
-    public static FlipExpectation flippedHorizontally() {
-        return new FlipExpectationValue(0f, 180f);
+    public static RotationExpectation flippedHorizontally() {
+        return new RotationFlipExpectationValue(0f, 180f);
     }
 
-    public static FlipExpectation flippedVertically() {
-        return new FlipExpectationValue(180f, 0f);
+    public static RotationExpectation flippedVertically() {
+        return new RotationFlipExpectationValue(180f, 0f);
     }
 
-    public static FlipExpectation flippedHorizontallyAndVertically() {
-        return new FlipExpectationValue(180f, 180f);
+    public static RotationExpectation flippedHorizontallyAndVertically() {
+        return new RotationFlipExpectationValue(180f, 180f);
     }
 
     public static RotationExpectation vertical(boolean bottomOfViewAtLeft) {
@@ -261,7 +261,7 @@ public class Expectations {
     }
 
     public static RotationExpectation atItsOriginalRotation() {
-        return new RotationExpectationValue(0);
+        return new RotationExpectationOriginal();
     }
 
     //endregion
