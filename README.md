@@ -24,7 +24,7 @@ new ExpectAnim()
 
 In your module [![Download](https://api.bintray.com/packages/florent37/maven/ExpectAnim/images/download.svg)](https://bintray.com/florent37/maven/ExpectAnim/_latestVersion)
 ```groovy
-compile 'com.github.florent37:expectanim:1.0.1'
+compile 'com.github.florent37:expectanim:1.0.2'
 ```
 
 This code describe the video above
