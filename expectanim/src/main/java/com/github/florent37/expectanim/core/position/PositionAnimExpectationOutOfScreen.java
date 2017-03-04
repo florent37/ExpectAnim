@@ -30,12 +30,12 @@ public class PositionAnimExpectationOutOfScreen extends PositionAnimExpectation 
 
     @Override
     public Float getCalculatedValueX(View viewToMove) {
-        if (contains(Gravity.RIGHT)) {
+        if (contains(Gravity.RIGHT) || contains(Gravity.END)) {
             if (windowManager == null) {
                 windowManager = (WindowManager) viewToMove.getContext().getSystemService(Context.WINDOW_SERVICE);
             }
             return (float) windowManager.getDefaultDisplay().getWidth();
-        } else if (contains(Gravity.LEFT)) {
+        } else if (contains(Gravity.LEFT) || contains(Gravity.START)) {
             return -1f * viewToMove.getWidth();
         } else
             return null;
