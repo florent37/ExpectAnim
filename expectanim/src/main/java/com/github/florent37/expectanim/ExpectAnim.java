@@ -186,7 +186,7 @@ public class ExpectAnim {
     }
 
     public void executeAfterDraw(final View view, final Runnable runnable) {
-        view.postDelayed(runnable, 50);
+        view.postDelayed(runnable, 5);
     }
 
     public void reset() {

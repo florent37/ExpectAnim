@@ -6,6 +6,8 @@ import android.view.View;
 
 import com.github.florent37.expectanim.core.alpha.AlphaAnimExpectation;
 import com.github.florent37.expectanim.core.alpha.AlphaAnimExpectationValue;
+import com.github.florent37.expectanim.core.anim3d.CameraDistanceExpectation;
+import com.github.florent37.expectanim.core.anim3d.CameraDistanceExpectationValue;
 import com.github.florent37.expectanim.core.custom.CustomAnimExpectation;
 import com.github.florent37.expectanim.core.custom.TextColorAnimExpectation;
 import com.github.florent37.expectanim.core.custom.ViewBackgroundAlphaAnimExpectation;
@@ -29,7 +31,9 @@ import com.github.florent37.expectanim.core.position.PositionAnimExpectationRigh
 import com.github.florent37.expectanim.core.position.PositionAnimExpectationSameCenterAs;
 import com.github.florent37.expectanim.core.position.PositionAnimExpectationTopOfParent;
 import com.github.florent37.expectanim.core.rotation.RotationExpectation;
+import com.github.florent37.expectanim.core.rotation.RotationExpectationOriginal;
 import com.github.florent37.expectanim.core.rotation.RotationExpectationValue;
+import com.github.florent37.expectanim.core.rotation.RotationFlipExpectationValue;
 import com.github.florent37.expectanim.core.scale.ScaleAnimExpectation;
 import com.github.florent37.expectanim.core.scale.ScaleAnimExpectationHeight;
 import com.github.florent37.expectanim.core.scale.ScaleAnimExpectationOriginalScale;
@@ -135,7 +139,7 @@ public class Expectations {
         return new PositionAnimExpectationAlignRight(otherView);
     }
 
-    @IntDef(value = {Gravity.LEFT, Gravity.RIGHT, Gravity.TOP, Gravity.BOTTOM})
+    @IntDef(value = {Gravity.LEFT, Gravity.RIGHT, Gravity.END, Gravity.START, Gravity.TOP, Gravity.BOTTOM})
     @interface GravityIntDef {
     }
 
@@ -147,7 +151,7 @@ public class Expectations {
         return new AlphaAnimExpectationValue(alpha);
     }
 
-    public static AlphaAnimExpectation sameAlphaAs(View otherView){
+    public static AlphaAnimExpectation sameAlphaAs(View otherView) {
         return new AlphaAnimExpectationValue(otherView.getAlpha());
     }
 
@@ -167,7 +171,7 @@ public class Expectations {
     public @interface GravityScaleVerticalIntDef {
     }
 
-    @IntDef(value = {Gravity.LEFT, Gravity.RIGHT, Gravity.CENTER, Gravity.CENTER_HORIZONTAL})
+    @IntDef(value = {Gravity.LEFT, Gravity.RIGHT, Gravity.END, Gravity.START, Gravity.CENTER, Gravity.CENTER_HORIZONTAL})
     public @interface GravityScaleHorizontalIntDef {
     }
 
@@ -176,11 +180,11 @@ public class Expectations {
     }
 
     public static ScaleAnimExpectation scale(float scaleX, float scaleY, @GravityScaleHorizontalIntDef int gravityHorizontal, @GravityScaleVerticalIntDef int gravityVertical) {
-        return new ScaleAnimExpectationValues(scaleX, scaleY,  gravityHorizontal, gravityVertical);
+        return new ScaleAnimExpectationValues(scaleX, scaleY, gravityHorizontal, gravityVertical);
     }
 
     public static ScaleAnimExpectation scale(float scaleX, float scaleY) {
-        return new ScaleAnimExpectationValues(scaleX, scaleY,  null, null);
+        return new ScaleAnimExpectationValues(scaleX, scaleY, null, null);
     }
 
     public static ScaleAnimExpectation height(int height, @GravityScaleHorizontalIntDef int gravityHorizontal, @GravityScaleVerticalIntDef int gravityVertical) {
@@ -210,7 +214,7 @@ public class Expectations {
     public static ScaleAnimExpectation sameHeightAs(View otherView) {
         return new ScaleAnimExpectationSameHeightAs(otherView, null, null);
     }
-    
+
     //endregion
 
     //region custom
@@ -232,8 +236,24 @@ public class Expectations {
         return new RotationExpectationValue(rotation);
     }
 
+    public static CameraDistanceExpectation withCameraDistance(float cameraDistance) {
+        return new CameraDistanceExpectationValue(cameraDistance);
+    }
+
+    public static RotationExpectation flippedHorizontally() {
+        return new RotationFlipExpectationValue(0f, 180f);
+    }
+
+    public static RotationExpectation flippedVertically() {
+        return new RotationFlipExpectationValue(180f, 0f);
+    }
+
+    public static RotationExpectation flippedHorizontallyAndVertically() {
+        return new RotationFlipExpectationValue(180f, 180f);
+    }
+
     public static RotationExpectation vertical(boolean bottomOfViewAtLeft) {
-        if(bottomOfViewAtLeft) {
+        if (bottomOfViewAtLeft) {
             return new RotationExpectationValue(90);
         } else {
             return new RotationExpectationValue(270);
@@ -241,7 +261,7 @@ public class Expectations {
     }
 
     public static RotationExpectation atItsOriginalRotation() {
-        return new RotationExpectationValue(0);
+        return new RotationExpectationOriginal();
     }
 
     //endregion

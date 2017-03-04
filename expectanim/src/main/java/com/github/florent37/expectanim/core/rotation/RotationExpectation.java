@@ -11,4 +11,6 @@ import com.github.florent37.expectanim.core.alpha.AlphaAnimExpectation;
 public abstract class RotationExpectation extends AnimExpectation {
 
     public abstract Float getCalculatedRotation(View viewToMove);
+    public abstract Float getCalculatedRotationX(View viewToMove);
+    public abstract Float getCalculatedRotationY(View viewToMove);
 }
