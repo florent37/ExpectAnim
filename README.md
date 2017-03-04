@@ -1,5 +1,8 @@
 # ExpectAnim
 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ExpectAnim-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5335)
+[![CircleCI](https://circleci.com/gh/florent37/ExpectAnim/tree/master.svg?style=svg)](https://circleci.com/gh/florent37/ExpectAnim/tree/master)
+
 Describe your animation and run !
 
 [![gif](https://raw.githubusercontent.com/florent37/ExpectAnim/master/media/sample.gif)](https://github.com/florent37/ExpectAnim)
@@ -11,6 +14,7 @@ new ExpectAnim()
                 .toBe(
                     Expectations...
                 )
+                .toAnimation()
                 .start();
 ```
 
@@ -20,7 +24,7 @@ new ExpectAnim()
 
 In your module [![Download](https://api.bintray.com/packages/florent37/maven/ExpectAnim/images/download.svg)](https://bintray.com/florent37/maven/ExpectAnim/_latestVersion)
 ```groovy
-compile 'com.github.florent37:expectanim:1.0.0'
+compile 'com.github.florent37:expectanim:1.0.1'
 ```
 
 This code describe the video above
