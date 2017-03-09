@@ -28,6 +28,7 @@ public class ExpectAnim {
 
     private List<ViewExpectation> expectationList;
     private View anyView;
+    private Object tag;
 
     private List<View> viewToMove;
     private ViewCalculator viewCalculator;
@@ -195,6 +196,27 @@ public class ExpectAnim {
         if (interpolator != null) {
             objectAnimator.setInterpolator(interpolator);
         }
+        objectAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                notifyListenerStart();
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                notifyListenerEnd();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
         objectAnimator.start();
     }
 
@@ -218,4 +240,12 @@ public class ExpectAnim {
         return this;
     }
 
+    public Object getTag() {
+        return tag;
+    }
+
+    public ExpectAnim setTag(Object tag) {
+        this.tag = tag;
+        return this;
+    }
 }
