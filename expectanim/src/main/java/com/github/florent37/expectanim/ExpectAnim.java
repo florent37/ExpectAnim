@@ -154,37 +154,6 @@ public class ExpectAnim {
 
     }
 
-    private ExpectAnim calculateReverse() {
-        if (reverseAnimatorSet == null) {
-            calculate();
-            reverseAnimatorSet = generateNewAnimatorSet();
-            if (interpolator != null) {
-                reverseAnimatorSet.setInterpolator(interpolator);
-            }
-            reverseAnimatorSet.setDuration(duration);
-
-            //build animatorSets
-            List<List<Animator>> animatorSequentialLists = new ArrayList<>();
-            List<Animator> sequenceAnimatorList = new ArrayList<>();
-            animatorSequentialLists.add(sequenceAnimatorList);
-            for (int i = expectationList.size() - 1; i >= 0; i--) {
-                sequenceAnimatorList.addAll(expectationList.get(i).getReverseAnimations());
-                if (sequenceIndexes.contains(i - 1)) {
-                    sequenceAnimatorList = new ArrayList<>();
-                    animatorSequentialLists.add(sequenceAnimatorList);
-                }
-            }
-//            for (int i = 0; i < duplicate.size(); i++) {
-//                if (sequenceIndexes.contains(i) && !sequenceAnimatorList.isEmpty()) {
-//                    sequenceAnimatorList = new ArrayList<>();
-//                    animatorSequentialLists.add(sequenceAnimatorList);
-//                }
-//                sequenceAnimatorList.addAll(duplicate.get(i).getAnimations());
-//            }
-        }
-        return this;
-    }
-
     private AnimatorSet generateNewAnimatorSet() {
         AnimatorSet set = new AnimatorSet();
         return set;
@@ -276,7 +245,6 @@ public class ExpectAnim {
     }
 
     public void reset() {
-        calculateReverse();
         final ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(this, "percent", 1f, 0f);
         objectAnimator.setDuration(duration);
         if (interpolator != null) {

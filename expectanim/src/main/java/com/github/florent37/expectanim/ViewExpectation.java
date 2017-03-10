@@ -26,7 +26,6 @@ public class ViewExpectation {
     private final View viewToMove;
     private final List<View> dependencies;
     private List<Animator> animations;
-    private List<Animator> reverseAnimations;
     private List<AnimExpectation> animExpectations;
 
     private Float willHasScaleX;
@@ -44,7 +43,6 @@ public class ViewExpectation {
         this.expectAnim = expectAnim;
         this.viewToMove = viewToMove;
         this.animations = new ArrayList<>();
-        this.reverseAnimations = new ArrayList<>();
         this.animExpectations = new ArrayList<>();
         this.dependencies = new ArrayList<>();
     }
@@ -69,7 +67,6 @@ public class ViewExpectation {
             willHasPositionX = manager.getPositionX();
             willHasPositionY = manager.getPositionY();
             animations.addAll(manager.getAnimators());
-            reverseAnimations.addAll(manager.getAnimators());
         }
 
     }
@@ -147,10 +144,6 @@ public class ViewExpectation {
 
     List<Animator> getAnimations() {
         return animations;
-    }
-
-    List<Animator> getReverseAnimations() {
-        return reverseAnimations;
     }
 
     List<View> calculateDependencies() {
