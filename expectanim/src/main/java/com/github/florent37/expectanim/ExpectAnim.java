@@ -200,13 +200,7 @@ public class ExpectAnim {
         float sequenceShare = 1f / numberOfSequences;
         List<Float> percents = new ArrayList<>();
         for (int i = 1; i <= numberOfSequences; i++) {
-            if (percent >= i * sequenceShare) {
-                percents.add(1f);
-            } else if (percent < sequenceShare * (i - 1)) {
-                percents.add(0f);
-            } else {
-                percents.add((percent - sequenceShare * (i - 1)) * numberOfSequences);
-            }
+            percents.add(Math.min(1f, Math.max(0f, percent - sequenceShare * (i - 1)) * numberOfSequences));
         }
         for (int i = 0; i < anims.size(); i++) {
             Animator animator = anims.get(i);
