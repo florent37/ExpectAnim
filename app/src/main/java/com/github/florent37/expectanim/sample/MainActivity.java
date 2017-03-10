@@ -48,4 +48,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, SetNowActivity.class));
     }
 
+    @OnClick(R.id.sequence)
+    public void onSequenceClicked() {
+        startActivity(new Intent(this, SequenceActivity.class));
+    }
+
 }
