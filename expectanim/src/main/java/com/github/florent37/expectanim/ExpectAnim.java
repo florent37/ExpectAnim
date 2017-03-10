@@ -58,7 +58,7 @@ public class ExpectAnim {
         return viewExpectation;
     }
 
-    public ViewExpectation expectInNewSequence(View view) {
+    public ViewExpectation thenExpect(View view) {
         if (!expectationList.isEmpty()) {
             sequenceIndexes.add(expectationList.size());
         }

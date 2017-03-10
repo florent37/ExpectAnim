@@ -37,7 +37,7 @@ public class SequenceActivity extends AppCompatActivity {
                 .toBe(
                         bottomOfParent()
                 )
-                .expectInNewSequence(view2)
+                .thenExpect(view2)
                 .toBe(
                         outOfScreen(Gravity.END)
                 )

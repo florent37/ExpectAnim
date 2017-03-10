@@ -154,7 +154,7 @@ expectAnim.reset():
 
 ## Play in sequence
 
-Use `expectInNewSequence` to start a new sequence of animation
+Use `thenExpect` to start a new sequence of animation
 
 ```java
 anim1 = new ExpectAnim()
@@ -162,7 +162,7 @@ anim1 = new ExpectAnim()
         .toBe(
                 bottomOfParent()
         )
-        .expectInNewSequence(view2)
+        .thenExpect(view2)
         .toBe(
                 outOfScreen(Gravity.END)
         )

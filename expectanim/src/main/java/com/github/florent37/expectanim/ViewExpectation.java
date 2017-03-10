@@ -51,8 +51,8 @@ public class ViewExpectation {
         return expectAnim.expect(view);
     }
 
-    public ViewExpectation expectInNewSequence(View view) {
-        return expectAnim.expectInNewSequence(view);
+    public ViewExpectation thenExpect(View view) {
+        return expectAnim.thenExpect(view);
     }
 
     public ViewExpectation toBe(AnimExpectation... animExpectations) {
