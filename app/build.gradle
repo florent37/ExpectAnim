@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.github.triplet.play'
 
 android {
     compileSdkVersion project.sdk
@@ -28,11 +27,4 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.1.0'
 
     compile project(":expectanim")
-}
-
-play {
-    serviceAccountEmail = 'champigny.florent@gmail.com'
-    jsonFile = file('keys.json')
-    track = 'production'
-    uploadImages = true
 }
