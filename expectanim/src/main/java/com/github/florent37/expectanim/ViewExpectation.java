@@ -51,6 +51,10 @@ public class ViewExpectation {
         return expectAnim.expect(view);
     }
 
+    public ViewExpectation thenExpect(View view) {
+        return expectAnim.thenExpect(view);
+    }
+
     public ViewExpectation toBe(AnimExpectation... animExpectations) {
         this.animExpectations.addAll(Arrays.asList(animExpectations));
         return this;

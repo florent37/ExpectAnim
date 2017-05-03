@@ -27,7 +27,9 @@ public class ExpectAnim {
     private static final long DEFAULT_DURATION = 300l;
 
     private List<ViewExpectation> expectationList;
+    private List<Integer> sequenceIndexes;
     private View anyView;
+    private Object tag;
 
     private List<View> viewToMove;
     private ViewCalculator viewCalculator;
@@ -46,6 +48,7 @@ public class ExpectAnim {
         this.expectationList = new ArrayList<>();
         this.viewToMove = new ArrayList<>();
         this.viewCalculator = new ViewCalculator();
+        this.sequenceIndexes = new ArrayList<>();
     }
 
     public ViewExpectation expect(View view) {
@@ -55,17 +58,20 @@ public class ExpectAnim {
         return viewExpectation;
     }
 
+    public ViewExpectation thenExpect(View view) {
+        if (!expectationList.isEmpty()) {
+            sequenceIndexes.add(expectationList.size());
+        }
+        return expect(view);
+    }
+
     private ExpectAnim calculate() {
         if (animatorSet == null) {
-            animatorSet = new AnimatorSet();
-
+            animatorSet = generateNewAnimatorSet();
             if (interpolator != null) {
                 animatorSet.setInterpolator(interpolator);
             }
-
             animatorSet.setDuration(duration);
-
-            final List<Animator> animatorList = new ArrayList<>();
 
             final List<ViewExpectation> expectationsToCalculate = new ArrayList<>();
 
@@ -88,7 +94,6 @@ public class ExpectAnim {
                     if (!hasDependency(viewExpectation)) {
                         //si non
                         viewExpectation.calculate(viewCalculator);
-                        animatorList.addAll(viewExpectation.getAnimations());
 
                         final View view = viewExpectation.getViewToMove();
                         viewToMove.remove(view);
@@ -99,6 +104,18 @@ public class ExpectAnim {
                         //si oui, attendre le prochain tour
                     }
                 }
+            }
+
+            //build animatorSets
+            List<List<Animator>> animatorSequentialLists = new ArrayList<>();
+            List<Animator> sequenceAnimatorList = new ArrayList<>();
+            animatorSequentialLists.add(sequenceAnimatorList);
+            for (int i = 0; i < expectationList.size(); i++) {
+                if (sequenceIndexes.contains(i) && !sequenceAnimatorList.isEmpty()) {
+                    sequenceAnimatorList = new ArrayList<>();
+                    animatorSequentialLists.add(sequenceAnimatorList);
+                }
+                sequenceAnimatorList.addAll(expectationList.get(i).getAnimations());
             }
 
             animatorSet.addListener(new AnimatorListenerAdapter() {
@@ -117,9 +134,21 @@ public class ExpectAnim {
 
             });
 
-            animatorSet.playTogether(animatorList);
+            List<Animator> sets = new ArrayList<>();
+            for (int i = 0; i < animatorSequentialLists.size(); i++) {
+                AnimatorSet sequenceAnimator = generateNewAnimatorSet();
+                sequenceAnimator.playTogether(animatorSequentialLists.get(i));
+                sets.add(sequenceAnimator);
+            }
+            animatorSet.playSequentially(sets);
         }
         return this;
+
+    }
+
+    private AnimatorSet generateNewAnimatorSet() {
+        AnimatorSet set = new AnimatorSet();
+        return set;
     }
 
     private void notifyListenerStart() {
@@ -166,11 +195,22 @@ public class ExpectAnim {
 
     public void setPercent(float percent) {
         calculate();
-        if (animatorSet != null) {
-            final ArrayList<Animator> anims = animatorSet.getChildAnimations();
-            for (Animator animator : anims) {
-                if (animator instanceof ValueAnimator) {
-                    ((ValueAnimator) animator).setCurrentPlayTime((long) (percent * animator.getDuration()));
+        final List<Animator> anims = animatorSet.getChildAnimations();
+        int numberOfSequences = anims.size();
+        float sequenceShare = 1f / numberOfSequences;
+        List<Float> percents = new ArrayList<>();
+        for (int i = 1; i <= numberOfSequences; i++) {
+            percents.add(Math.min(1f, Math.max(0f, percent - sequenceShare * (i - 1)) * numberOfSequences));
+        }
+        for (int i = 0; i < anims.size(); i++) {
+            Animator animator = anims.get(i);
+            if (animator instanceof AnimatorSet) {
+                List<Animator> childAnimations = ((AnimatorSet) animator).getChildAnimations();
+                for (int j = 0; j < childAnimations.size(); j++) {
+                    Animator anim1 = childAnimations.get(j);
+                    if (anim1 instanceof ValueAnimator) {
+                        ((ValueAnimator) anim1).setCurrentPlayTime((long) (percents.get(i) * animator.getDuration()));
+                    }
                 }
             }
         }
@@ -195,6 +235,17 @@ public class ExpectAnim {
         if (interpolator != null) {
             objectAnimator.setInterpolator(interpolator);
         }
+        objectAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                notifyListenerStart();
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                notifyListenerEnd();
+            }
+        });
         objectAnimator.start();
     }
 
@@ -218,4 +269,12 @@ public class ExpectAnim {
         return this;
     }
 
+    public Object getTag() {
+        return tag;
+    }
+
+    public ExpectAnim setTag(Object tag) {
+        this.tag = tag;
+        return this;
+    }
 }

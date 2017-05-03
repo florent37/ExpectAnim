@@ -152,6 +152,57 @@ Use `reset` to return to the initial state of views
 expectAnim.reset():
 ```
 
+## Play in sequence
+
+Use `thenExpect` to start a new sequence of animation
+
+```java
+anim1 = new ExpectAnim()
+        .expect(view1)
+        .toBe(
+                bottomOfParent()
+        )
+        .thenExpect(view2)
+        .toBe(
+                outOfScreen(Gravity.END)
+        )
+        .toAnimation()
+        .setDuration(1000);
+```
+
+## Fill with a tag
+
+Use `setTag` and `getTag` to pass some information through the `ExpectAnim` object
+
+```java
+anim1 = new ExpectAnim()
+        .expect(view1)
+        .toBe(
+                bottomOfParent()
+        )
+        .expect(view2)
+        .toBe(
+                outOfScreen(Gravity.END)
+        )
+        .toAnimation()
+        .setDuration(1000)
+        .setTag(true);
+
+view1.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Boolean tag = (Boolean) anim1.getTag();
+        anim1.setTag(!tag);
+        if (tag) {
+            anim1.start();
+        } else {
+            anim1.reset();
+        }
+    }
+});
+```
+
+
 # List of expectations
 
 ```

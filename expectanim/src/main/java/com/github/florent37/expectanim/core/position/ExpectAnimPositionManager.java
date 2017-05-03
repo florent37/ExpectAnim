@@ -2,11 +2,10 @@ package com.github.florent37.expectanim.core.position;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.github.florent37.expectanim.core.AnimExpectation;
 import com.github.florent37.expectanim.ViewCalculator;
+import com.github.florent37.expectanim.core.AnimExpectation;
 import com.github.florent37.expectanim.core.ExpectAnimManager;
 
 import java.util.ArrayList;
@@ -97,4 +96,27 @@ public class ExpectAnimPositionManager extends ExpectAnimManager {
 
         return animations;
     }
+
+//    @Override
+//    public List<Animator> getReverseAnimators() {
+//        final List<Animator> animations = new ArrayList<>();
+//
+//        if (positionX != null) {
+//            animations.add(ObjectAnimator.ofFloat(viewToMove, View.X, -viewCalculator.finalPositionLeftOfView(viewToMove, true)));
+//        }
+//
+//        if (positionY != null) {
+//            animations.add(ObjectAnimator.ofFloat(viewToMove, View.Y, -viewCalculator.finalPositionTopOfView(viewToMove, true)));
+//        }
+//
+//        if (translationX != null) {
+//            animations.add(ObjectAnimator.ofFloat(viewToMove, View.TRANSLATION_X, -translationX));
+//        }
+//
+//        if (translationY != null) {
+//            animations.add(ObjectAnimator.ofFloat(viewToMove, View.TRANSLATION_Y, -translationY));
+//        }
+//
+//        return animations;
+//    }
 }

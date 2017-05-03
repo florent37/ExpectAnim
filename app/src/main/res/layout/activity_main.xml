@@ -38,4 +38,10 @@
         android:layout_height="wrap_content"
         android:text="set now" />
 
+    <Button
+        android:id="@+id/sequence"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sequence" />
+
 </LinearLayout>
