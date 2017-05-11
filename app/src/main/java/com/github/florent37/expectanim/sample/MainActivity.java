@@ -48,4 +48,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, SetNowActivity.class));
     }
 
+    @OnClick(R.id.visible)
+    public void onVisibleClicked() {
+        startActivity(new Intent(this, AlphaActivity.class));
+    }
+
 }

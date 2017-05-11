@@ -1,6 +1,7 @@
 package com.github.florent37.expectanim.core.alpha;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
@@ -42,7 +43,25 @@ public class ExpectAnimAlphaManager extends ExpectAnimManager {
         calculate();
 
         if (alpha != null) {
-            animations.add(ObjectAnimator.ofFloat(viewToMove, View.ALPHA, alpha));
+            final ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(viewToMove, View.ALPHA, alpha);
+
+            if(alpha == 0){
+                objectAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        viewToMove.setVisibility(View.INVISIBLE);
+                    }
+                });
+            } else {
+                objectAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        viewToMove.setVisibility(View.VISIBLE);
+                    }
+                });
+            }
+
+            animations.add(objectAnimator);
         }
 
         return animations;

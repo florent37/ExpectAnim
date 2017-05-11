@@ -24,7 +24,7 @@ new ExpectAnim()
 
 In your module [![Download](https://api.bintray.com/packages/florent37/maven/ExpectAnim/images/download.svg)](https://bintray.com/florent37/maven/ExpectAnim/_latestVersion)
 ```groovy
-compile 'com.github.florent37:expectanim:1.0.2'
+compile 'com.github.florent37:expectanim:1.0.3'
 ```
 
 This code describe the video above
@@ -222,6 +222,10 @@ new ExpectAnim()
 ````
 
 # Changelog
+
+## 1.0.3
+
+Alpha 0 force view to be INVISIBLE`
 
 ## 1.0.2
 
