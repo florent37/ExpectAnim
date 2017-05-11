@@ -221,6 +221,13 @@ new ExpectAnim()
 
 ````
 
+# Proguard
+
+```
+-keep class com.github.florent37.expectanim.*{ *; }
+-dontwarn com.github.florent37.expectanim.**
+```
+
 # Changelog
 
 ## 1.0.3
