@@ -251,7 +251,8 @@ Added `rotations`
 
 # Credits
 
-Author: Florent Champigny
+Author: Florent Champigny [http://www.florentchampigny.com/](http://www.florentchampigny.com/)
+Blog : [http://www.tutos-android-france.com/](http://www.www.tutos-android-france.com/)
 
 <a href="https://plus.google.com/+florentchampigny">
   <img alt="Follow me on Google+"
