@@ -13,7 +13,6 @@ import android.view.animation.Interpolator;
 import com.github.florent37.expectanim.listener.AnimationEndListener;
 import com.github.florent37.expectanim.listener.AnimationStartListener;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -34,8 +33,8 @@ public class ExpectAnim {
 
     private AnimatorSet animatorSet;
 
-    private WeakReference<AnimationEndListener> endListenerWeakReference;
-    private WeakReference<AnimationStartListener> startListenerWeakReference;
+    private AnimationEndListener endListener;
+    private AnimationStartListener startListener;
 
 
     @Nullable
@@ -123,20 +122,14 @@ public class ExpectAnim {
     }
 
     private void notifyListenerStart() {
-        if (startListenerWeakReference != null) {
-            final AnimationStartListener listener = startListenerWeakReference.get();
-            if (listener != null) {
-                listener.onAnimationStart(ExpectAnim.this);
-            }
+        if (startListener != null) {
+            startListener.onAnimationStart(ExpectAnim.this);
         }
     }
 
     private void notifyListenerEnd() {
-        if (endListenerWeakReference != null) {
-            final AnimationEndListener listener = endListenerWeakReference.get();
-            if (listener != null) {
-                listener.onAnimationEnd(ExpectAnim.this);
-            }
+        if (endListener != null) {
+            endListener.onAnimationEnd(ExpectAnim.this);
         }
     }
 
@@ -209,12 +202,12 @@ public class ExpectAnim {
     }
 
     public ExpectAnim setEndListener(AnimationEndListener listener) {
-        this.endListenerWeakReference = new WeakReference<>(listener);
+        this.endListener = listener;
         return this;
     }
 
     public ExpectAnim setStartListener(AnimationStartListener listener) {
-        this.startListenerWeakReference = new WeakReference<>(listener);
+        this.startListener = listener;
         return this;
     }
 
