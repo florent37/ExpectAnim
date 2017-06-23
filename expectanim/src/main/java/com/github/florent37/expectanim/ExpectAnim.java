@@ -29,7 +29,7 @@ public class ExpectAnim {
     private List<ViewExpectation> expectationList;
     private View anyView;
 
-    private int index = 0;
+    private long startDelay = 5;
 
     private List<View> viewToMove;
     private ViewCalculator viewCalculator;
@@ -143,6 +143,11 @@ public class ExpectAnim {
         }
     }
 
+    public ExpectAnim setStartDelay(long startDelay) {
+        this.startDelay = startDelay;
+        return this;
+    }
+
     public ExpectAnim start() {
         executeAfterDraw(anyView, new Runnable() {
             @Override
@@ -192,7 +197,7 @@ public class ExpectAnim {
     }
 
     public void executeAfterDraw(final View view, final Runnable runnable) {
-        view.postDelayed(runnable, 5);
+        view.postDelayed(runnable, Math.max(5, startDelay));
     }
 
     public void reset() {
