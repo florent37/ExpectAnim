@@ -16,6 +16,7 @@ import com.github.florent37.expectanim.listener.AnimationStartListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by florentchampigny on 17/02/2017.
@@ -35,6 +36,7 @@ public class ExpectAnim {
 
     private AnimationEndListener endListener;
     private AnimationStartListener startListener;
+    private AtomicBoolean isPlaying = new AtomicBoolean(false);
 
 
     @Nullable
@@ -105,12 +107,14 @@ public class ExpectAnim {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
+                    isPlaying.set(false);
                     notifyListenerEnd();
                 }
 
                 @Override
                 public void onAnimationStart(Animator animation) {
                     super.onAnimationStart(animation);
+                    isPlaying.set(true);
                     notifyListenerStart();
                 }
 
@@ -167,6 +171,10 @@ public class ExpectAnim {
                 }
             }
         }
+    }
+
+    public boolean isPlaying(){
+        return isPlaying.get();
     }
 
     public void setNow() {
