@@ -45,14 +45,31 @@ public class ExpectAnimAlphaManager extends ExpectAnimManager {
         if (alpha != null) {
             final ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(viewToMove, View.ALPHA, alpha);
 
-            if(alpha == 0){
-                objectAnimator.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        viewToMove.setVisibility(View.INVISIBLE);
-                    }
-                });
+            if (alpha == 0) {
+                if (viewToMove.getAlpha() != 0) {
+                    animations.add(objectAnimator);
+
+                    objectAnimator.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            viewToMove.setVisibility(View.INVISIBLE);
+                        }
+                    });
+                }
+            } else if (alpha == 1) {
+                if (viewToMove.getAlpha() != 1) {
+                    animations.add(objectAnimator);
+
+                    objectAnimator.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+                            viewToMove.setVisibility(View.VISIBLE);
+                        }
+                    });
+                }
             } else {
+                animations.add(objectAnimator);
+
                 objectAnimator.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationStart(Animator animation) {
@@ -61,7 +78,6 @@ public class ExpectAnimAlphaManager extends ExpectAnimManager {
                 });
             }
 
-            animations.add(objectAnimator);
         }
 
         return animations;

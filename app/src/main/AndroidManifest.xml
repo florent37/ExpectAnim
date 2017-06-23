@@ -21,6 +21,7 @@
         <activity android:name=".SetNowActivity"/>
         <activity android:name=".FlipActivity"/>
         <activity android:name=".AlphaActivity" />
+        <activity android:name=".ConcatActivity" />
     </application>
 
 </manifest>

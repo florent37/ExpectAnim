@@ -53,4 +53,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, AlphaActivity.class));
     }
 
+    @OnClick(R.id.concat)
+    public void onConcatClicked() {
+        startActivity(new Intent(this, ConcatActivity.class));
+    }
+
 }

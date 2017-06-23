@@ -130,6 +130,32 @@ scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener
 });
 ```
 
+## Concat
+
+You can play an anim after one other using `ExpectAnim.concat` (static method)
+
+```
+ExpectAnim.concat(
+                new ExpectAnim()
+                        .expect(image1)
+                        .toBe(
+                                withCameraDistance(500f),
+                                flippedHorizontally()
+                        )
+                        .toAnimation()
+                        .setDuration(1000),
+                new ExpectAnim()
+                        .expect(image2)
+                        .toBe(
+                                withCameraDistance(1000f),
+                                flippedVertically()
+                        )
+                        .toAnimation()
+                        .setDuration(500)
+                )
+                .start()
+```
+
 ## Apply directly
 
 Use `setNow` to apply directly the transformation
@@ -229,6 +255,10 @@ new ExpectAnim()
 ```
 
 # Changelog
+
+## 1.0.6
+
+Added ExpectAnim.concat
 
 ## 1.0.4
 

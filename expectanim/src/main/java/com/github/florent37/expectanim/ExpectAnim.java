@@ -29,13 +29,15 @@ public class ExpectAnim {
     private List<ViewExpectation> expectationList;
     private View anyView;
 
+    private int index = 0;
+
     private List<View> viewToMove;
     private ViewCalculator viewCalculator;
 
     private AnimatorSet animatorSet;
 
-    private AnimationEndListener endListener;
-    private AnimationStartListener startListener;
+    private List<AnimationEndListener> endListeners = new ArrayList<>();
+    private List<AnimationStartListener> startListeners = new ArrayList<>();
     private AtomicBoolean isPlaying = new AtomicBoolean(false);
 
 
@@ -126,17 +128,20 @@ public class ExpectAnim {
     }
 
     private void notifyListenerStart() {
-        if (startListener != null) {
-            startListener.onAnimationStart(ExpectAnim.this);
+        for (AnimationStartListener startListener : startListeners) {
+            if (startListener != null) {
+                startListener.onAnimationStart(ExpectAnim.this);
+            }
         }
     }
 
     private void notifyListenerEnd() {
-        if (endListener != null) {
-            endListener.onAnimationEnd(ExpectAnim.this);
+        for (AnimationEndListener endListener : endListeners) {
+            if (endListener != null) {
+                endListener.onAnimationEnd(ExpectAnim.this);
+            }
         }
     }
-
 
     public ExpectAnim start() {
         executeAfterDraw(anyView, new Runnable() {
@@ -173,7 +178,7 @@ public class ExpectAnim {
         }
     }
 
-    public boolean isPlaying(){
+    public boolean isPlaying() {
         return isPlaying.get();
     }
 
@@ -209,14 +214,32 @@ public class ExpectAnim {
         return this;
     }
 
-    public ExpectAnim setEndListener(AnimationEndListener listener) {
-        this.endListener = listener;
+    public ExpectAnim addEndListener(AnimationEndListener listener) {
+        this.endListeners.add(listener);
         return this;
     }
 
-    public ExpectAnim setStartListener(AnimationStartListener listener) {
-        this.startListener = listener;
+    public ExpectAnim addStartListener(AnimationStartListener listener) {
+        this.startListeners.add(listener);
         return this;
     }
 
+    private void concatWith(final ExpectAnim otherAnim) {
+        addEndListener(new AnimationEndListener() {
+            @Override
+            public void onAnimationEnd(ExpectAnim expectAnim) {
+                otherAnim.start();
+            }
+        });
+    }
+
+    public static ExpectAnim concat(ExpectAnim expectAnim, ExpectAnim... expectAnims) {
+        if(expectAnims.length > 0) {
+            expectAnim.concatWith(expectAnims[0]);
+            for (int i = 0; i < expectAnims.length - 1; i++) {
+                expectAnims[i].concatWith(expectAnims[i + 1]);
+            }
+        }
+        return expectAnim;
+    }
 }
