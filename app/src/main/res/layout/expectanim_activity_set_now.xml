@@ -5,7 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.github.florent37.expectanim.sample.ScrollActivity">
+    tools:context="com.github.florent37.expectanim.sample.ExpectAnimScrollActivity">
 
 
     <View
@@ -30,9 +30,9 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/circle"
+            android:background="@drawable/expectanim_circle"
             android:gravity="center"
-            android:src="@drawable/small" />
+            android:src="@drawable/expectanim_small" />
 
         <TextView
             android:id="@+id/username"

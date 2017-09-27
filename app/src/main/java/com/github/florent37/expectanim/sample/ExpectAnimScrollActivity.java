@@ -22,7 +22,7 @@ import static com.github.florent37.expectanim.core.Expectations.toRightOf;
 import static com.github.florent37.expectanim.core.Expectations.topOfParent;
 
 
-public class ScrollActivity extends AppCompatActivity {
+public class ExpectAnimScrollActivity extends AppCompatActivity {
 
     @BindView(R.id.username)
     View username;
@@ -44,7 +44,7 @@ public class ScrollActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scroll);
+        setContentView(R.layout.expectanim_activity_scroll);
         ButterKnife.bind(this);
 
         this.expectAnimMove = new ExpectAnim()

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/include_sample" />
+        <include layout="@layout/expectanim_include_sample" />
 
     </FrameLayout>
 
@@ -30,7 +30,7 @@
         android:layout_centerVertical="true"
         android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:src="@drawable/small" />
+        android:src="@drawable/expectanim_small" />
 
     <TextView
         android:id="@+id/name"
@@ -57,7 +57,7 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="16dp"
         android:layout_toLeftOf="@+id/avatar"
-        android:background="@drawable/roundrect"
+        android:background="@drawable/expectanim_roundrect"
         android:paddingBottom="12dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
@@ -75,7 +75,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="16dp"
         android:layout_toRightOf="@+id/avatar"
-        android:background="@drawable/roundrect"
+        android:background="@drawable/expectanim_roundrect"
         android:paddingBottom="12dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"

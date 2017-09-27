@@ -8,20 +8,20 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ExpectAnimMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ScrollActivity"/>
-        <activity android:name=".SampleActivity"/>
-        <activity android:name=".RotationActivity"/>
-        <activity android:name=".SetNowActivity"/>
-        <activity android:name=".FlipActivity"/>
-        <activity android:name=".AlphaActivity" />
-        <activity android:name=".ConcatActivity" />
+        <activity android:name=".ExpectAnimScrollActivity"/>
+        <activity android:name=".ExpectAnimSampleActivity"/>
+        <activity android:name=".ExpectAnimRotationActivity"/>
+        <activity android:name=".ExpectAnimSetNowActivity"/>
+        <activity android:name=".ExpectAnimFlipActivity"/>
+        <activity android:name=".ExpectAnimAlphaActivity" />
+        <activity android:name=".ExpectAnimConcatActivity" />
     </application>
 
 </manifest>

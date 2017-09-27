@@ -18,7 +18,7 @@ import static com.github.florent37.expectanim.core.Expectations.toRightOf;
 import static com.github.florent37.expectanim.core.Expectations.topOfParent;
 import static com.github.florent37.expectanim.core.Expectations.rotated;
 
-public class RotationActivity extends AppCompatActivity {
+public class ExpectAnimRotationActivity extends AppCompatActivity {
 
     @BindView(R.id.text1)
     View text1;
@@ -34,7 +34,7 @@ public class RotationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rotation);
+        setContentView(R.layout.expectanim_activity_rotation);
         ButterKnife.bind(this);
 
         this.expectAnimMove = new ExpectAnim()

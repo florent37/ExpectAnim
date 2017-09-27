@@ -27,7 +27,7 @@ import static com.github.florent37.expectanim.core.Expectations.visible;
 import static com.github.florent37.expectanim.core.Expectations.width;
 
 
-public class SampleActivity extends AppCompatActivity {
+public class ExpectAnimSampleActivity extends AppCompatActivity {
 
     @BindView(R.id.name)
     View name;
@@ -50,7 +50,7 @@ public class SampleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sample);
+        setContentView(R.layout.expectanim_activity_sample);
         ButterKnife.bind(this);
 
         new ExpectAnim()

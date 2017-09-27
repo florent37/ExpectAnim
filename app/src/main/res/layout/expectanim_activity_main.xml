@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_alignParentBottom="true"
     android:orientation="vertical"
-    tools:context="com.github.florent37.expectanim.sample.ScrollActivity">
+    tools:context="com.github.florent37.expectanim.sample.ExpectAnimScrollActivity">
 
     <Button
         android:id="@+id/scroll"

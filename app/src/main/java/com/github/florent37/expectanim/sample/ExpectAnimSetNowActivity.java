@@ -12,7 +12,7 @@ import butterknife.ButterKnife;
 import static com.github.florent37.expectanim.core.Expectations.invisible;
 
 
-public class SetNowActivity extends AppCompatActivity {
+public class ExpectAnimSetNowActivity extends AppCompatActivity {
 
     @BindView(R.id.follow)
     View view;
@@ -20,7 +20,7 @@ public class SetNowActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_now);
+        setContentView(R.layout.expectanim_activity_set_now);
         ButterKnife.bind(this);
 
         new ExpectAnim()

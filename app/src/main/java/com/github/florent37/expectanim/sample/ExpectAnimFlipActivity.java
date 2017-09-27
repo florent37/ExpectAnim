@@ -15,7 +15,7 @@ import static com.github.florent37.expectanim.core.Expectations.flippedHorizonta
 import static com.github.florent37.expectanim.core.Expectations.flippedVertically;
 import static com.github.florent37.expectanim.core.Expectations.withCameraDistance;
 
-public class FlipActivity extends AppCompatActivity {
+public class ExpectAnimFlipActivity extends AppCompatActivity {
 
     @BindView(R.id.image_1)
     View image1;
@@ -31,7 +31,7 @@ public class FlipActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_flip);
+        setContentView(R.layout.expectanim_activity_flip);
         ButterKnife.bind(this);
 
         this.expectAnimMove = new ExpectAnim()

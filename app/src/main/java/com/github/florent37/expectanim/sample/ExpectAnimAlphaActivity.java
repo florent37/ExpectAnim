@@ -11,14 +11,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.github.florent37.expectanim.core.Expectations.flippedHorizontally;
-import static com.github.florent37.expectanim.core.Expectations.flippedHorizontallyAndVertically;
-import static com.github.florent37.expectanim.core.Expectations.flippedVertically;
 import static com.github.florent37.expectanim.core.Expectations.invisible;
 import static com.github.florent37.expectanim.core.Expectations.visible;
-import static com.github.florent37.expectanim.core.Expectations.withCameraDistance;
 
-public class AlphaActivity extends AppCompatActivity {
+public class ExpectAnimAlphaActivity extends AppCompatActivity {
 
     @BindView(R.id.image_1)
     View image1;
@@ -26,7 +22,7 @@ public class AlphaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_alpha);
+        setContentView(R.layout.expectanim_activity_alpha);
         ButterKnife.bind(this);
     }
 

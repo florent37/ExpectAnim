@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context="com.github.florent37.expectanim.sample.FlipActivity">
+    tools:context="com.github.florent37.expectanim.sample.ExpectAnimFlipActivity">
 
     <LinearLayout
         android:id="@+id/content"
@@ -25,16 +25,16 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/circle"
-                android:src="@drawable/small" />
+                android:background="@drawable/expectanim_circle"
+                android:src="@drawable/expectanim_small" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/image_2"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/circle"
-                android:src="@drawable/small" />
+                android:background="@drawable/expectanim_circle"
+                android:src="@drawable/expectanim_small" />
         </LinearLayout>
 
         <LinearLayout
@@ -47,16 +47,16 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/circle"
-                android:src="@drawable/small" />
+                android:background="@drawable/expectanim_circle"
+                android:src="@drawable/expectanim_small" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/image_4"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="8dp"
-                android:background="@drawable/circle"
-                android:src="@drawable/small" />
+                android:background="@drawable/expectanim_circle"
+                android:src="@drawable/expectanim_small" />
         </LinearLayout>
     </LinearLayout>
 
