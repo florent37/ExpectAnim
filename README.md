@@ -9,9 +9,6 @@ Describe your animation and run !
   <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/iqkQGAc2EFNdScAzpwZr1Sdy/florent37/ExpectAnim.svg' />
 </a>
 
-<a href="https://play.google.com/store/apps/details?id=com.github.florent37.florent.champigny">
-  <img alt="Android app on Google Play" src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" />
-</a>
 
 [![gif](https://raw.githubusercontent.com/florent37/ExpectAnim/master/media/sample.gif)](https://github.com/florent37/ExpectAnim)
 
