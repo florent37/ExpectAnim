@@ -3,11 +3,11 @@
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ExpectAnim-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5335)
 [![CircleCI](https://circleci.com/gh/florent37/ExpectAnim/tree/master.svg?style=svg)](https://circleci.com/gh/florent37/ExpectAnim/tree/master)
 
-Describe your animation and run !
-
 <a target="_blank" rel="nofollow" href="https://app.codesponsor.io/link/iqkQGAc2EFNdScAzpwZr1Sdy/florent37/ExpectAnim">
   <img alt="Sponsor" src="https://app.codesponsor.io/embed/iqkQGAc2EFNdScAzpwZr1Sdy/florent37/ExpectAnim.svg" />
 </a>
+
+Describe your animation and run !
 
 
 [![gif](https://raw.githubusercontent.com/florent37/ExpectAnim/master/media/sample.gif)](https://github.com/florent37/ExpectAnim)
