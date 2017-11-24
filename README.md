@@ -5,8 +5,8 @@
 
 Describe your animation and run !
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/iqkQGAc2EFNdScAzpwZr1Sdy/florent37/ExpectAnim'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/iqkQGAc2EFNdScAzpwZr1Sdy/florent37/ExpectAnim.svg' />
+<a target="_blank" rel="nofollow" href="https://app.codesponsor.io/link/iqkQGAc2EFNdScAzpwZr1Sdy/florent37/ExpectAnim">
+  <img alt="Sponsor" src="https://app.codesponsor.io/embed/iqkQGAc2EFNdScAzpwZr1Sdy/florent37/ExpectAnim.svg" />
 </a>
 
 
