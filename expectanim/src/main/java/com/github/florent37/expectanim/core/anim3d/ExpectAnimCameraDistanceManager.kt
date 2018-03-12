@@ -9,9 +9,9 @@ import com.github.florent37.expectanim.ViewCalculator
 import com.github.florent37.expectanim.core.AnimExpectation
 import com.github.florent37.expectanim.core.ExpectAnimManager
 
-import java.util.ArrayList
-
-class ExpectAnimCameraDistanceManager(animExpectations: List<AnimExpectation>, viewToMove: View, viewCalculator: ViewCalculator) : ExpectAnimManager(animExpectations, viewToMove, viewCalculator) {
+class ExpectAnimCameraDistanceManager(
+        animExpectations: List<AnimExpectation>, viewToMove: View,
+        viewCalculator: ViewCalculator) : ExpectAnimManager(animExpectations, viewToMove, viewCalculator) {
 
     private var mCurrentCameraDistance: Float? = null
     var cameraDistance: Float? = null
@@ -31,7 +31,7 @@ class ExpectAnimCameraDistanceManager(animExpectations: List<AnimExpectation>, v
     }
 
     override fun getAnimators(): List<Animator> {
-        val animations = ArrayList<Animator>()
+        val animations = mutableListOf<Animator>()
         calculate()
         if (cameraDistance != null && mCurrentCameraDistance != null) {
             val animator = ValueAnimator.ofFloat(mCurrentCameraDistance!!, cameraDistance!!)

@@ -9,8 +9,6 @@ import com.github.florent37.expectanim.ViewCalculator
 import com.github.florent37.expectanim.core.AnimExpectation
 import com.github.florent37.expectanim.core.ExpectAnimManager
 
-import java.util.ArrayList
-
 class ExpectAnimAlphaManager(
         animExpectations: List<AnimExpectation>,
         viewToMove: View, viewCalculator: ViewCalculator) : ExpectAnimManager(animExpectations, viewToMove, viewCalculator) {

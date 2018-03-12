@@ -1,13 +1,9 @@
 package com.github.florent37.expectanim.core.position
 
 import android.content.Context
-import android.support.annotation.DimenRes
 import android.util.TypedValue
 import android.view.View
-
 import com.github.florent37.expectanim.core.AnimExpectation
-
-import java.util.ArrayList
 
 abstract class PositionAnimExpectation : AnimExpectation() {
 
@@ -30,8 +26,8 @@ abstract class PositionAnimExpectation : AnimExpectation() {
     fun getMargin(view: View): Float {
         return when {
             this.margin != null -> this.margin!!
-            marginRes != null -> view.context.resources.getDimension(marginRes!!)
-            marginDp != null -> dpToPx(view.context, marginDp!!)
+            this.marginRes != null -> view.context.resources.getDimension(marginRes!!)
+            this.marginDp != null -> dpToPx(view.context, marginDp!!)
             else -> 0f
         }
     }

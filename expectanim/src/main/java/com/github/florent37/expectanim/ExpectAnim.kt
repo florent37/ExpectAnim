@@ -21,16 +21,16 @@ class ExpectAnim {
 
     private var animatorSet: AnimatorSet? = null
 
-    private val endListeners = ArrayList<AnimationEndListener>()
-    private val startListeners = ArrayList<AnimationStartListener>()
+    private val endListeners = mutableListOf<AnimationEndListener>()
+    private val startListeners = mutableListOf<AnimationStartListener>()
     private val isPlaying = AtomicBoolean(false)
 
-
     private var interpolator: Interpolator? = null
-    private var duration: Long? = DEFAULT_DURATION
+    private var duration: Long = DEFAULT_DURATION
 
     fun animate(view: View, block: (Expectations.() -> Unit)): ViewExpectation {
         this.anyView = view
+
         val viewExpectation = ViewExpectation(this, view)
         expectationList.add(viewExpectation)
 
@@ -49,14 +49,14 @@ class ExpectAnim {
                 animatorSet!!.interpolator = interpolator
             }
 
-            animatorSet!!.duration = duration!!
+            animatorSet!!.duration = duration
 
             val animatorList = mutableListOf<Animator>()
 
             val expectationsToCalculate = mutableListOf<ViewExpectation>()
 
             //"ViewDependencies" = récupérer toutes les vues des "Expectations"
-            for (viewExpectation in expectationList) {
+            expectationList.forEach { viewExpectation ->
                 viewExpectation.calculateDependencies()
                 viewToMove.add(viewExpectation.viewToMove)
                 expectationsToCalculate.add(viewExpectation)
@@ -109,14 +109,14 @@ class ExpectAnim {
     }
 
     private fun notifyListenerStart() {
-        for (startListener in startListeners) {
-            startListener?.onAnimationStart(this@ExpectAnim)
+        startListeners.forEach { startListener ->
+            startListener.onAnimationStart(this@ExpectAnim)
         }
     }
 
     private fun notifyListenerEnd() {
-        for (endListener in endListeners) {
-            endListener?.onAnimationEnd(this@ExpectAnim)
+        endListeners.forEach { endListener ->
+            endListener.onAnimationEnd(this@ExpectAnim)
         }
     }
 
@@ -170,7 +170,7 @@ class ExpectAnim {
 
     fun reset() {
         val objectAnimator = ObjectAnimator.ofFloat(this, "percent", 1f, 0f)
-        objectAnimator.duration = duration!!
+        objectAnimator.duration = duration
         if (interpolator != null) {
             objectAnimator.interpolator = interpolator
         }

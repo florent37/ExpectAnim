@@ -8,8 +8,6 @@ import com.github.florent37.expectanim.core.AnimExpectation
 import com.github.florent37.expectanim.ViewCalculator
 import com.github.florent37.expectanim.core.ExpectAnimManager
 
-import java.util.ArrayList
-
 class ExpectAnimPositionManager(animExpectations: List<AnimExpectation>, viewToMove: View, viewCalculator: ViewCalculator) : ExpectAnimManager(animExpectations, viewToMove, viewCalculator) {
 
     private var positionX: Float? = null
@@ -35,7 +33,7 @@ class ExpectAnimPositionManager(animExpectations: List<AnimExpectation>, viewToM
     }
 
     override fun calculate() {
-        for (animExpectation in animExpectations) {
+        animExpectations.forEach { animExpectation ->
             if (animExpectation is PositionAnimExpectation) {
 
                 animExpectation.viewCalculator = viewCalculator

@@ -3,12 +3,9 @@ package com.github.florent37.expectanim.core.rotation
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.view.View
-
 import com.github.florent37.expectanim.ViewCalculator
 import com.github.florent37.expectanim.core.AnimExpectation
 import com.github.florent37.expectanim.core.ExpectAnimManager
-
-import java.util.ArrayList
 
 class ExpectAnimRotationManager(
         animExpectations: List<AnimExpectation>,
@@ -45,7 +42,7 @@ class ExpectAnimRotationManager(
 
         calculate()
 
-        rotation?.let{
+        rotation?.let {
             animations.add(ObjectAnimator.ofFloat(viewToMove, View.ROTATION, it))
         }
         rotationX?.let {

@@ -21,7 +21,7 @@ import java.util.*
 
 class Expectations {
 
-    internal val expectations = ArrayList<AnimExpectation>()
+    internal val expectations = mutableListOf<AnimExpectation>()
 
     //region position
 
