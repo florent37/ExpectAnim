@@ -15,12 +15,14 @@ class ExpectAnimSetNowActivity : AppCompatActivity() {
         setContentView(R.layout.expectanim_activity_set_now)
 
         view = findViewById(R.id.follow)
+        view.setOnClickListener {
+            animation {
+                animate(view) {
+                    invisible()
+                }
+            }.setNow()
+        }
 
-        animation {
-            animate(view) {
-                invisible()
-            }
-        }.setNow()
 
     }
 

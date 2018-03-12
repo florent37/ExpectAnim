@@ -51,9 +51,9 @@ class ExpectAnim {
 
             animatorSet!!.duration = duration!!
 
-            val animatorList = ArrayList<Animator>()
+            val animatorList = mutableListOf<Animator>()
 
-            val expectationsToCalculate = ArrayList<ViewExpectation>()
+            val expectationsToCalculate = mutableListOf<ViewExpectation>()
 
             //"ViewDependencies" = récupérer toutes les vues des "Expectations"
             for (viewExpectation in expectationList) {
@@ -147,9 +147,8 @@ class ExpectAnim {
 
     fun setPercent(percent: Float) {
         calculate()
-        if (animatorSet != null) {
-            val anims = animatorSet!!.childAnimations
-            for (animator in anims) {
+        animatorSet?.childAnimations?.let { anims ->
+            anims.forEach { animator ->
                 if (animator is ValueAnimator) {
                     animator.currentPlayTime = (percent * animator.getDuration()).toLong()
                 }
@@ -166,7 +165,7 @@ class ExpectAnim {
     }
 
     fun executeAfterDraw(view: View?, runnable: Runnable) {
-        view!!.postDelayed(runnable, Math.max(5, startDelay))
+        view?.postDelayed(runnable, Math.max(5, startDelay))
     }
 
     fun reset() {

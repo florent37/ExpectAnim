@@ -28,32 +28,32 @@ class Expectations {
     fun toRightOf(view: View, marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationRightOf(view).apply {
             expectations.add(this)
-            withMarginDp(marginDp)
-            withMargin(margin)
+            this.marginDp = marginDp
+            this.margin = margin
         }
     }
 
     fun toLeftOf(view: View, marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationLeftOf(view).apply {
             expectations.add(this)
-            withMarginDp(marginDp)
-            withMargin(margin)
+            this.marginDp = marginDp
+            this.margin = margin
         }
     }
 
     fun belowOf(view: View, marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationBelowOf(view).apply {
             expectations.add(this)
-            withMarginDp(marginDp)
-            withMargin(margin)
+            this.marginDp = marginDp
+            this.margin = margin
         }
     }
 
     fun aboveOf(view: View, marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationAboveOf(view).apply {
             expectations.add(this)
-            withMarginDp(marginDp)
-            withMargin(margin)
+            this.marginDp = marginDp
+            this.margin = margin
         }
     }
 
@@ -114,72 +114,72 @@ class Expectations {
     fun topOfParent(marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationTopOfParent().apply {
             expectations.add(this)
-            withMarginDp(marginDp)
-            withMargin(margin)
+            this.marginDp = marginDp
+            this.margin = margin
         }
     }
 
     fun rightOfParent(marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationRightOfParent().apply {
             expectations.add(this)
-            withMarginDp(marginDp)
-            withMargin(margin)
+            this.marginDp = marginDp
+            this.margin = margin
         }
     }
 
     fun bottomOfParent(marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationBottomOfParent().apply {
             expectations.add(this)
-            withMarginDp(marginDp)
-            withMargin(margin)
+            this.marginDp = marginDp
+            this.margin = margin
         }
     }
 
     fun leftOfParent(marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationLeftOfParent().apply {
             expectations.add(this)
-            withMarginDp(marginDp)
-            withMargin(margin)
+            this.marginDp = marginDp
+            this.margin = margin
         }
     }
 
     fun centerBetweenViewAndParent(otherView: View, horizontal: Boolean, vertical: Boolean, toBeOnRight: Boolean, toBeOnBottom: Boolean, marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationCenterBetweenViewAndParent(otherView, horizontal, vertical, toBeOnRight, toBeOnBottom).apply {
             expectations.add(this)
-            withMarginDp(marginDp)
-            withMargin(margin)
+            this.marginDp = marginDp
+            this.margin = margin
         }
     }
 
     fun alignBottom(otherView: View, marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationAlignBottom(otherView).apply {
             expectations.add(this)
-            withMarginDp(marginDp)
-            withMargin(margin)
+            this.marginDp = marginDp
+            this.margin = margin
         }
     }
 
     fun alignTop(otherView: View, marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationAlignTop(otherView).apply {
             expectations.add(this)
-            withMarginDp(marginDp)
-            withMargin(margin)
+            this.marginDp = marginDp
+            this.margin = margin
         }
     }
 
     fun alignLeft(otherView: View, marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationAlignLeft(otherView).apply {
             expectations.add(this)
-            withMarginDp(marginDp)
-            withMargin(margin)
+            this.marginDp = marginDp
+            this.margin = margin
         }
     }
 
     fun alignRight(otherView: View, marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationAlignRight(otherView).apply {
             expectations.add(this)
-            withMarginDp(marginDp)
-            withMargin(margin)
+            this.marginDp = marginDp
+            this.margin = margin
         }
     }
 
@@ -234,30 +234,34 @@ class Expectations {
         }
     }
 
-    fun height(height: Int, @GravityScaleHorizontalIntDef gravityHorizontal: Int, @GravityScaleVerticalIntDef gravityVertical: Int): ScaleAnimExpectation {
+    fun height(height: Int, @GravityScaleHorizontalIntDef gravityHorizontal: Int, @GravityScaleVerticalIntDef gravityVertical: Int, keepRatio: Boolean = false, toDp: Boolean = false): ScaleAnimExpectation {
         return ScaleAnimExpectationHeight(height, gravityHorizontal, gravityVertical).apply {
             expectations.add(this)
+            this.keepRatio = keepRatio
+            this.toDp = toDp
         }
     }
 
     fun height(height: Int, keepRatio: Boolean = false, toDp: Boolean = false): ScaleAnimExpectation {
         return ScaleAnimExpectationHeight(height, null, null).apply {
-            setKeepRatio(keepRatio)
-            setToDp(toDp)
+            this.keepRatio = keepRatio
+            this.toDp = toDp
             expectations.add(this)
         }
     }
 
-    fun width(width: Int, @GravityScaleHorizontalIntDef gravityHorizontal: Int, @GravityScaleVerticalIntDef gravityVertical: Int): ScaleAnimExpectation {
+    fun width(width: Int, @GravityScaleHorizontalIntDef gravityHorizontal: Int, @GravityScaleVerticalIntDef gravityVertical: Int, keepRatio: Boolean = false, toDp: Boolean = false): ScaleAnimExpectation {
         return ScaleAnimExpectationWidth(width, gravityHorizontal, gravityVertical).apply {
             expectations.add(this)
+            this.keepRatio = keepRatio
+            this.toDp = toDp
         }
     }
 
     fun width(width: Int, keepRatio: Boolean = false, toDp: Boolean = false): ScaleAnimExpectation {
         return ScaleAnimExpectationWidth(width, null, null).apply {
-            setKeepRatio(keepRatio)
-            setToDp(toDp)
+            this.keepRatio = keepRatio
+            this.toDp = toDp
             expectations.add(this)
         }
     }

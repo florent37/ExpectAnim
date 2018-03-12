@@ -34,7 +34,7 @@ class ViewExpectation internal constructor(private val expectAnim: ExpectAnim, i
         manager.calculate()
         willHasPositionX = manager.getPositionX();
         willHasPositionY = manager.getPositionY();
-        animations.addAll(manager.animators)
+        animations.addAll(manager.getAnimators())
     }
 
     private fun calculateScale(viewCalculator: ViewCalculator) {
@@ -48,7 +48,7 @@ class ViewExpectation internal constructor(private val expectAnim: ExpectAnim, i
     private fun calculateAlpha(viewCalculator: ViewCalculator) {
         val manager = ExpectAnimAlphaManager(animExpectations, viewToMove, viewCalculator)
         manager.calculate()
-        animations.addAll(manager.animators)
+        animations.addAll(manager.getAnimators())
     }
 
     private fun calculate3DTransforms(viewCalculator: ViewCalculator) {
@@ -56,7 +56,7 @@ class ViewExpectation internal constructor(private val expectAnim: ExpectAnim, i
         val cameraDistanceManager = ExpectAnimCameraDistanceManager(animExpectations, viewToMove, viewCalculator)
         cameraDistanceManager.calculate()
         willHaveCameraDistance = cameraDistanceManager.cameraDistance
-        animations.addAll(cameraDistanceManager.animators)
+        animations.addAll(cameraDistanceManager.getAnimators())
     }
 
     private fun calculateRotation(viewCalculator: ViewCalculator) {
@@ -65,13 +65,13 @@ class ViewExpectation internal constructor(private val expectAnim: ExpectAnim, i
         willHasRotationX = manager.rotation
         willHaveRotationX = manager.rotationX
         willHaveRotationY = manager.rotationY
-        animations.addAll(manager.animators)
+        animations.addAll(manager.getAnimators())
     }
 
     private fun calculateCustom(viewCalculator: ViewCalculator) {
         val manager = ExpectAnimCustomManager(animExpectations, viewToMove, viewCalculator)
         manager.calculate()
-        animations.addAll(manager.animators)
+        animations.addAll(manager.getAnimators())
     }
 
     internal fun start(): ExpectAnim {

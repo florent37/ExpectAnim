@@ -9,5 +9,5 @@ import java.util.ArrayList
 abstract class AnimExpectation {
     var viewCalculator: ViewCalculator? = null
 
-    var viewsDependencies: List<View> =  mutableListOf()
+    var viewsDependencies: MutableList<View> =  mutableListOf()
 }
