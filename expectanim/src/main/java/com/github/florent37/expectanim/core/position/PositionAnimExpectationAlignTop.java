@@ -21,6 +21,6 @@ public class PositionAnimExpectationAlignTop extends PositionAnimationViewDepend
 
     @Override
     public Float getCalculatedValueY(View viewToMove) {
-        return viewCalculator.finalPositionTopOfView(otherView) + getMargin(viewToMove);
+        return getViewCalculator().finalPositionTopOfView(otherView) + getMargin(viewToMove);
     }
 }

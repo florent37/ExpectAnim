@@ -18,7 +18,7 @@ public class PositionAnimExpectationRightOfParent extends PositionAnimExpectatio
         final ViewParent viewParent = viewToMove.getParent();
         if((viewParent instanceof View)){
             final View parentView = (View)viewParent;
-            return parentView.getWidth() - getMargin(viewToMove) - viewCalculator.finalWidthOfView(viewToMove);
+            return parentView.getWidth() - getMargin(viewToMove) - getViewCalculator().finalWidthOfView(viewToMove);
         }
         return null;
     }

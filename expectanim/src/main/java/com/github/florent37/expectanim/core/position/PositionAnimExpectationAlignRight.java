@@ -16,7 +16,7 @@ public class PositionAnimExpectationAlignRight extends PositionAnimationViewDepe
 
     @Override
     public Float getCalculatedValueX(View viewToMove) {
-        return viewCalculator.finalPositionRightOfView(otherView) - getMargin(viewToMove) - viewToMove.getWidth();
+        return getViewCalculator().finalPositionRightOfView(otherView) - getMargin(viewToMove) - viewToMove.getWidth();
     }
 
     @Override

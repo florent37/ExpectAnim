@@ -31,7 +31,7 @@ public class PositionAnimExpectationCenterBetweenViewAndParent extends PositionA
             final ViewParent viewParent = otherView.getParent();
             if((viewParent instanceof View) && horizontal){
                 final View parentView = (View) viewParent;
-                final float centerOfOtherView = viewCalculator.finalCenterXOfView(otherView);
+                final float centerOfOtherView = getViewCalculator().finalCenterXOfView(otherView);
                 if(toBeOnRight) {
                     final float parentWidth = parentView.getWidth();
                     return (parentWidth + centerOfOtherView) / 2f - viewToMove.getWidth() / 2f;
@@ -49,7 +49,7 @@ public class PositionAnimExpectationCenterBetweenViewAndParent extends PositionA
             final ViewParent viewParent = viewToMove.getParent();
             if((viewParent instanceof View) && vertical){
                 final View parentView = (View)viewParent;
-                final float centerOfOtherView = viewCalculator.finalCenterYOfView(otherView);
+                final float centerOfOtherView = getViewCalculator().finalCenterYOfView(otherView);
                 if(toBeOnBottom){
                     final float parentHeight = parentView.getHeight();
                     return parentHeight + centerOfOtherView / 2f - viewToMove.getHeight() / 2f;

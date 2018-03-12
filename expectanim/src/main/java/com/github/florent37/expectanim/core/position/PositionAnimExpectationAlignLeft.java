@@ -16,7 +16,7 @@ public class PositionAnimExpectationAlignLeft extends PositionAnimationViewDepen
 
     @Override
     public Float getCalculatedValueX(View viewToMove) {
-        return viewCalculator.finalPositionLeftOfView(otherView) + getMargin(viewToMove) ;
+        return getViewCalculator().finalPositionLeftOfView(otherView) + getMargin(viewToMove) ;
     }
 
     @Override

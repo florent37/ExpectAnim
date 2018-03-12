@@ -21,6 +21,6 @@ public class PositionAnimExpectationBelowOf extends PositionAnimationViewDependa
 
     @Override
     public Float getCalculatedValueY(View viewToMove) {
-        return viewCalculator.finalPositionBottomOfView(otherView) + getMargin(viewToMove);
+        return getViewCalculator().finalPositionBottomOfView(otherView) + getMargin(viewToMove);
     }
 }

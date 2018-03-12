@@ -16,17 +16,7 @@ public abstract class PositionAnimationViewDependant extends PositionAnimExpecta
 
     public PositionAnimationViewDependant(View otherView) {
         this.otherView = otherView;
-    }
-
-    @Override
-    public List<View> getViewsDependencies() {
-        final List<View> viewsDependencies = super.getViewsDependencies();
-        viewsDependencies.add(otherView);
-        return viewsDependencies;
-    }
-
-    public void setViewCalculator(ViewCalculator viewCalculator) {
-        this.viewCalculator = viewCalculator;
+        getViewsDependencies().add(otherView);
     }
 
 }

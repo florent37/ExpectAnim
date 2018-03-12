@@ -21,6 +21,6 @@ public class PositionAnimExpectationAlignBottom extends PositionAnimationViewDep
 
     @Override
     public Float getCalculatedValueY(View viewToMove) {
-        return viewCalculator.finalPositionBottomOfView(otherView) - getMargin(viewToMove) - viewToMove.getHeight();
+        return getViewCalculator().finalPositionBottomOfView(otherView) - getMargin(viewToMove) - viewToMove.getHeight();
     }
 }

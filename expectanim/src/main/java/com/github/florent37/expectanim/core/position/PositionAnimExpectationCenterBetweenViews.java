@@ -24,6 +24,9 @@ public class PositionAnimExpectationCenterBetweenViews extends PositionAnimExpec
 
         setForPositionY(true);
         setForPositionX(true);
+
+        getViewsDependencies().add(view1);
+        getViewsDependencies().add(view2);
     }
 
     @Override
@@ -35,14 +38,6 @@ public class PositionAnimExpectationCenterBetweenViews extends PositionAnimExpec
             return (centerXView1 + centerXView2) / 2f - viewToMove.getWidth() / 2f;
         }
         return null;
-    }
-
-    @Override
-    public List<View> getViewsDependencies() {
-        final List<View> viewsDependencies = super.getViewsDependencies();
-        viewsDependencies.add(view1);
-        viewsDependencies.add(view2);
-        return viewsDependencies;
     }
 
     @Override
