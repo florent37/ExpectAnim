@@ -1,9 +1,10 @@
 package com.github.florent37.expectanim.core;
 
-import android.support.annotation.IntDef;
-import android.view.Gravity;
 import android.view.View;
 
+import com.github.florent37.expectanim.GravityIntDef;
+import com.github.florent37.expectanim.GravityScaleHorizontalIntDef;
+import com.github.florent37.expectanim.GravityScaleVerticalIntDef;
 import com.github.florent37.expectanim.core.alpha.AlphaAnimExpectation;
 import com.github.florent37.expectanim.core.alpha.AlphaAnimExpectationValue;
 import com.github.florent37.expectanim.core.anim3d.CameraDistanceExpectation;
@@ -43,188 +44,254 @@ import com.github.florent37.expectanim.core.scale.ScaleAnimExpectationSameWidthA
 import com.github.florent37.expectanim.core.scale.ScaleAnimExpectationValues;
 import com.github.florent37.expectanim.core.scale.ScaleAnimExpectationWidth;
 
-/**
- * Created by florentchampigny on 20/02/2017.
- */
+import java.util.ArrayList;
+import java.util.List;
 
 public class Expectations {
 
+    private List<AnimExpectation> expectations = new ArrayList<>();
+
     //region position
 
-    public static PositionAnimExpectation toRightOf(View view) {
-        return new PositionAnimExpectationRightOf(view);
+    public PositionAnimExpectation toRightOf(View view) {
+        final PositionAnimExpectation expect = new PositionAnimExpectationRightOf(view);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation toLeftOf(View view) {
-        return new PositionAnimExpectationLeftOf(view);
+    public PositionAnimExpectation toLeftOf(View view) {
+        final PositionAnimExpectation expect = new PositionAnimExpectationLeftOf(view);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation belowOf(View view) {
-        return new PositionAnimExpectationBelowOf(view);
+    public PositionAnimExpectation belowOf(View view) {
+        final PositionAnimExpectation expect = new PositionAnimExpectationBelowOf(view);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation aboveOf(View view) {
-        return new PositionAnimExpectationAboveOf(view);
+    public PositionAnimExpectation aboveOf(View view) {
+        final PositionAnimExpectationAboveOf expect = new PositionAnimExpectationAboveOf(view);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation atItsOriginalPosition() {
-        return new PositionAnimExpectationOriginal();
+    public PositionAnimExpectation atItsOriginalPosition() {
+        final PositionAnimExpectation expect = new PositionAnimExpectationOriginal();
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation sameCenterAs(View view, boolean horizontal, boolean vertical) {
-        return new PositionAnimExpectationSameCenterAs(view, horizontal, vertical);
+    public PositionAnimExpectation sameCenterAs(View view, boolean horizontal, boolean vertical) {
+        final PositionAnimExpectationSameCenterAs expect = new PositionAnimExpectationSameCenterAs(view, horizontal, vertical);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation sameCenterHorizontalAs(View view) {
-        return sameCenterAs(view, true, false);
+    public PositionAnimExpectation sameCenterHorizontalAs(View view) {
+        final PositionAnimExpectation expect = sameCenterAs(view, true, false);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation sameCenterVerticalAs(View view) {
-        return sameCenterAs(view, false, true);
+    public PositionAnimExpectation sameCenterVerticalAs(View view) {
+        final PositionAnimExpectation expect = sameCenterAs(view, false, true);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation centerInParent(boolean horizontal, boolean vertical) {
-        return new PositionAnimExpectationCenterInParent(horizontal, vertical);
+    public PositionAnimExpectation centerInParent(boolean horizontal, boolean vertical) {
+        final PositionAnimExpectation expect = new PositionAnimExpectationCenterInParent(horizontal, vertical);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation centerVerticalInParent() {
-        return centerInParent(false, true);
+    public PositionAnimExpectation centerVerticalInParent() {
+        final PositionAnimExpectation expect = centerInParent(false, true);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation centerHorizontalInParent() {
-        return centerInParent(true, false);
+    public PositionAnimExpectation centerHorizontalInParent() {
+        final PositionAnimExpectation expect = centerInParent(true, false);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation outOfScreen(@GravityIntDef int... gravities) {
-        return new PositionAnimExpectationOutOfScreen(gravities);
+    public PositionAnimExpectation outOfScreen(@GravityIntDef int... gravities) {
+        final PositionAnimExpectationOutOfScreen expect = new PositionAnimExpectationOutOfScreen(gravities);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation centerBetweenViews(View view1, View view2, boolean horizontal, boolean vertical) {
-        return new PositionAnimExpectationCenterBetweenViews(view1, view2, horizontal, vertical);
+    public PositionAnimExpectation centerBetweenViews(View view1, View view2, boolean horizontal, boolean vertical) {
+        final PositionAnimExpectation expect = new PositionAnimExpectationCenterBetweenViews(view1, view2, horizontal, vertical);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation topOfParent() {
-        return new PositionAnimExpectationTopOfParent();
+    public PositionAnimExpectation topOfParent() {
+        final PositionAnimExpectationTopOfParent expect = new PositionAnimExpectationTopOfParent();
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation rightOfParent() {
-        return new PositionAnimExpectationRightOfParent();
+    public PositionAnimExpectation rightOfParent() {
+        final PositionAnimExpectationRightOfParent expect = new PositionAnimExpectationRightOfParent();
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation bottomOfParent() {
-        return new PositionAnimExpectationBottomOfParent();
+    public PositionAnimExpectation bottomOfParent() {
+        final PositionAnimExpectationBottomOfParent expect = new PositionAnimExpectationBottomOfParent();
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation leftOfParent() {
-        return new PositionAnimExpectationLeftOfParent();
+    public PositionAnimExpectation leftOfParent() {
+        final PositionAnimExpectationLeftOfParent expect = new PositionAnimExpectationLeftOfParent();
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation centerBetweenViewAndParent(View otherView, boolean horizontal, boolean vertical, boolean toBeOnRight, boolean toBeOnBottom) {
-        return new PositionAnimExpectationCenterBetweenViewAndParent(otherView, horizontal, vertical, toBeOnRight, toBeOnBottom);
+    public PositionAnimExpectation centerBetweenViewAndParent(View otherView, boolean horizontal, boolean vertical, boolean toBeOnRight, boolean toBeOnBottom) {
+        final PositionAnimExpectationCenterBetweenViewAndParent expect = new PositionAnimExpectationCenterBetweenViewAndParent(otherView, horizontal, vertical, toBeOnRight, toBeOnBottom);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation alignBottom(View otherView) {
-        return new PositionAnimExpectationAlignBottom(otherView);
+    public PositionAnimExpectation alignBottom(View otherView) {
+        final PositionAnimExpectationAlignBottom expect = new PositionAnimExpectationAlignBottom(otherView);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation alignTop(View otherView) {
-        return new PositionAnimExpectationAlignTop(otherView);
+    public PositionAnimExpectation alignTop(View otherView) {
+        final PositionAnimExpectationAlignTop expect = new PositionAnimExpectationAlignTop(otherView);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation alignLeft(View otherView) {
-        return new PositionAnimExpectationAlignLeft(otherView);
+    public PositionAnimExpectation alignLeft(View otherView) {
+        final PositionAnimExpectationAlignLeft expect = new PositionAnimExpectationAlignLeft(otherView);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static PositionAnimExpectation alignRight(View otherView) {
-        return new PositionAnimExpectationAlignRight(otherView);
-    }
-
-    @IntDef(value = {Gravity.LEFT, Gravity.RIGHT, Gravity.END, Gravity.START, Gravity.TOP, Gravity.BOTTOM})
-    @interface GravityIntDef {
+    public PositionAnimExpectation alignRight(View otherView) {
+        final PositionAnimExpectationAlignRight expect = new PositionAnimExpectationAlignRight(otherView);
+        expectations.add(expect);
+        return expect;
     }
 
     //endregion
 
     //region alpha
 
-    public static AlphaAnimExpectation alpha(float alpha) {
-        return new AlphaAnimExpectationValue(alpha);
+    public AlphaAnimExpectation alpha(float alpha) {
+        final AlphaAnimExpectationValue expect = new AlphaAnimExpectationValue(alpha);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static AlphaAnimExpectation sameAlphaAs(View otherView) {
-        return new AlphaAnimExpectationValue(otherView.getAlpha());
+    public AlphaAnimExpectation sameAlphaAs(View otherView) {
+        final AlphaAnimExpectationValue expect = new AlphaAnimExpectationValue(otherView.getAlpha());
+        expectations.add(expect);
+        return expect;
     }
 
-    public static AlphaAnimExpectation visible() {
-        return new AlphaAnimExpectationValue(1f);
+    public AlphaAnimExpectation visible() {
+        final AlphaAnimExpectationValue expect = new AlphaAnimExpectationValue(1f);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static AlphaAnimExpectation invisible() {
-        return new AlphaAnimExpectationValue(0f);
+    public AlphaAnimExpectation invisible() {
+        final AlphaAnimExpectationValue expect = new AlphaAnimExpectationValue(0f);
+        expectations.add(expect);
+        return expect;
     }
 
     //endregion
 
     //region scale
 
-    @IntDef(value = {Gravity.TOP, Gravity.BOTTOM, Gravity.CENTER, Gravity.CENTER_VERTICAL})
-    public @interface GravityScaleVerticalIntDef {
+
+    public ScaleAnimExpectation atItsOriginalScale() {
+        final ScaleAnimExpectationOriginalScale expect = new ScaleAnimExpectationOriginalScale();
+        expectations.add(expect);
+        return expect;
     }
 
-    @IntDef(value = {Gravity.LEFT, Gravity.RIGHT, Gravity.END, Gravity.START, Gravity.CENTER, Gravity.CENTER_HORIZONTAL})
-    public @interface GravityScaleHorizontalIntDef {
+    public ScaleAnimExpectation scale(float scaleX, float scaleY, @GravityScaleHorizontalIntDef int gravityHorizontal, @GravityScaleVerticalIntDef int gravityVertical) {
+        final ScaleAnimExpectationValues expect = new ScaleAnimExpectationValues(scaleX, scaleY, gravityHorizontal, gravityVertical);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static ScaleAnimExpectation atItsOriginalScale() {
-        return new ScaleAnimExpectationOriginalScale();
+    public ScaleAnimExpectation scale(float scaleX, float scaleY) {
+        final ScaleAnimExpectationValues expect = new ScaleAnimExpectationValues(scaleX, scaleY, null, null);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static ScaleAnimExpectation scale(float scaleX, float scaleY, @GravityScaleHorizontalIntDef int gravityHorizontal, @GravityScaleVerticalIntDef int gravityVertical) {
-        return new ScaleAnimExpectationValues(scaleX, scaleY, gravityHorizontal, gravityVertical);
+    public ScaleAnimExpectation height(int height, @GravityScaleHorizontalIntDef int gravityHorizontal, @GravityScaleVerticalIntDef int gravityVertical) {
+        final ScaleAnimExpectationHeight expect = new ScaleAnimExpectationHeight(height, gravityHorizontal, gravityVertical);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static ScaleAnimExpectation scale(float scaleX, float scaleY) {
-        return new ScaleAnimExpectationValues(scaleX, scaleY, null, null);
+    public ScaleAnimExpectation height(int height) {
+        final ScaleAnimExpectationHeight expect = new ScaleAnimExpectationHeight(height, null, null);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static ScaleAnimExpectation height(int height, @GravityScaleHorizontalIntDef int gravityHorizontal, @GravityScaleVerticalIntDef int gravityVertical) {
-        return new ScaleAnimExpectationHeight(height, gravityHorizontal, gravityVertical);
+    public ScaleAnimExpectation width(int width, @GravityScaleHorizontalIntDef int gravityHorizontal, @GravityScaleVerticalIntDef int gravityVertical) {
+        final ScaleAnimExpectationWidth expect = new ScaleAnimExpectationWidth(width, gravityHorizontal, gravityVertical);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static ScaleAnimExpectation height(int height) {
-        return new ScaleAnimExpectationHeight(height, null, null);
+    public ScaleAnimExpectation width(int width) {
+        final ScaleAnimExpectationWidth expect = new ScaleAnimExpectationWidth(width, null, null);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static ScaleAnimExpectation width(int width, @GravityScaleHorizontalIntDef int gravityHorizontal, @GravityScaleVerticalIntDef int gravityVertical) {
-        return new ScaleAnimExpectationWidth(width, gravityHorizontal, gravityVertical);
+    public ScaleAnimExpectation sameScaleAs(View otherView) {
+        final ScaleAnimExpectationSameScaleAs expect = new ScaleAnimExpectationSameScaleAs(otherView);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static ScaleAnimExpectation width(int width) {
-        return new ScaleAnimExpectationWidth(width, null, null);
+    public ScaleAnimExpectation sameWidthAs(View otherView) {
+        final ScaleAnimExpectationSameWidthAs expect = new ScaleAnimExpectationSameWidthAs(otherView, null, null);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static ScaleAnimExpectation sameScaleAs(View otherView) {
-        return new ScaleAnimExpectationSameScaleAs(otherView);
-    }
-
-    public static ScaleAnimExpectation sameWidthAs(View otherView) {
-        return new ScaleAnimExpectationSameWidthAs(otherView, null, null);
-    }
-
-    public static ScaleAnimExpectation sameHeightAs(View otherView) {
-        return new ScaleAnimExpectationSameHeightAs(otherView, null, null);
+    public ScaleAnimExpectation sameHeightAs(View otherView) {
+        final ScaleAnimExpectationSameHeightAs expect = new ScaleAnimExpectationSameHeightAs(otherView, null, null);
+        expectations.add(expect);
+        return expect;
     }
 
     //endregion
 
     //region custom
 
-    public static CustomAnimExpectation toHaveTextColor(int textColor) {
-        return new TextColorAnimExpectation(textColor);
+    public CustomAnimExpectation toHaveTextColor(int textColor) {
+        final TextColorAnimExpectation expect = new TextColorAnimExpectation(textColor);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static CustomAnimExpectation toHaveBackgroundAlpha(float alpha) {
-        return new ViewBackgroundAlphaAnimExpectation(alpha);
+    public CustomAnimExpectation toHaveBackgroundAlpha(float alpha) {
+        final ViewBackgroundAlphaAnimExpectation expect = new ViewBackgroundAlphaAnimExpectation(alpha);
+        expectations.add(expect);
+        return expect;
     }
 
 
@@ -232,38 +299,57 @@ public class Expectations {
 
     //region rotation
 
-    public static RotationExpectation rotated(float rotation) {
-        return new RotationExpectationValue(rotation);
+    public RotationExpectation rotated(float rotation) {
+        final RotationExpectationValue expect = new RotationExpectationValue(rotation);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static CameraDistanceExpectation withCameraDistance(float cameraDistance) {
-        return new CameraDistanceExpectationValue(cameraDistance);
+    public CameraDistanceExpectation withCameraDistance(float cameraDistance) {
+        final CameraDistanceExpectationValue expect = new CameraDistanceExpectationValue(cameraDistance);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static RotationExpectation flippedHorizontally() {
-        return new RotationFlipExpectationValue(0f, 180f);
+    public RotationExpectation flippedHorizontally() {
+        final RotationFlipExpectationValue expect = new RotationFlipExpectationValue(0f, 180f);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static RotationExpectation flippedVertically() {
-        return new RotationFlipExpectationValue(180f, 0f);
+    public RotationExpectation flippedVertically() {
+        final RotationFlipExpectationValue expect = new RotationFlipExpectationValue(180f, 0f);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static RotationExpectation flippedHorizontallyAndVertically() {
-        return new RotationFlipExpectationValue(180f, 180f);
+    public RotationExpectation flippedHorizontallyAndVertically() {
+        final RotationFlipExpectationValue expect = new RotationFlipExpectationValue(180f, 180f);
+        expectations.add(expect);
+        return expect;
     }
 
-    public static RotationExpectation vertical(boolean bottomOfViewAtLeft) {
+    public RotationExpectation vertical(boolean bottomOfViewAtLeft) {
+        final RotationExpectation expect;
         if (bottomOfViewAtLeft) {
-            return new RotationExpectationValue(90);
+            expect = new RotationExpectationValue(90);
         } else {
-            return new RotationExpectationValue(270);
+            expect = new RotationExpectationValue(270);
         }
+        expectations.add(expect);
+        return expect;
     }
 
-    public static RotationExpectation atItsOriginalRotation() {
-        return new RotationExpectationOriginal();
+    public RotationExpectation atItsOriginalRotation() {
+        final RotationExpectationOriginal expect = new RotationExpectationOriginal();
+        expectations.add(expect);
+        return expect;
     }
 
     //endregion
 
+
+    public List<AnimExpectation> getExpectations() {
+        return expectations;
+    }
 }

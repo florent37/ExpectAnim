@@ -7,7 +7,6 @@ import android.view.Gravity
 import android.view.View
 import com.github.florent37.expectanim.ExpectAnim
 import com.github.florent37.expectanim.animation
-import com.github.florent37.expectanim.core.Expectations.*
 
 
 class ExpectAnimSampleActivity : AppCompatActivity() {
@@ -36,64 +35,55 @@ class ExpectAnimSampleActivity : AppCompatActivity() {
         content = findViewById(R.id.content)
 
         animation {
-            expect(bottomLayout)
-                    .toBe(
-                            outOfScreen(Gravity.BOTTOM)
-                    )
-            expect(content)
-                    .toBe(
-                            outOfScreen(Gravity.BOTTOM),
-                            invisible()
-                    )
+            animate(bottomLayout) {
+                outOfScreen(Gravity.BOTTOM)
+            }
+            animate(content) {
+                outOfScreen(Gravity.BOTTOM)
+                invisible()
+            }
         }.setNow()
 
         this.expectAnimMove = animation(duration = 1500L) {
 
-            expect(avatar)
-                    .toBe(
-                            bottomOfParent().withMarginDp(36f),
-                            leftOfParent().withMarginDp(16f),
-                            width(40).toDp().keepRatio()
-                    )
+            animate(avatar) {
+                bottomOfParent().withMarginDp(36f)
+                leftOfParent().withMarginDp(16f)
+                width(40).toDp().keepRatio()
+            }
 
-            expect(name)
-                    .toBe(
-                            toRightOf(avatar).withMarginDp(16f),
-                            sameCenterVerticalAs(avatar),
-                            toHaveTextColor(Color.WHITE)
-                    )
+            animate(name) {
+                toRightOf(avatar).withMarginDp(16f)
+                sameCenterVerticalAs(avatar)
+                toHaveTextColor(Color.WHITE)
+            }
 
-            expect(subname)
-                    .toBe(
-                            toRightOf(name).withMarginDp(5f),
-                            sameCenterVerticalAs(name),
-                            toHaveTextColor(Color.WHITE)
-                    )
+            animate(subname) {
+                toRightOf(name).withMarginDp(5f)
+                sameCenterVerticalAs(name)
+                toHaveTextColor(Color.WHITE)
+            }
 
-            expect(follow)
-                    .toBe(
-                            rightOfParent().withMarginDp(4f),
-                            bottomOfParent().withMarginDp(12f),
-                            toHaveBackgroundAlpha(0f)
-                    )
+            animate(follow) {
+                rightOfParent().withMarginDp(4f)
+                bottomOfParent().withMarginDp(12f)
+                toHaveBackgroundAlpha(0f)
+            }
 
-            expect(message)
-                    .toBe(
-                            aboveOf(follow).withMarginDp(4f),
-                            rightOfParent().withMarginDp(4f),
-                            toHaveBackgroundAlpha(0f)
-                    )
+            animate(message) {
+                aboveOf(follow).withMarginDp(4f)
+                rightOfParent().withMarginDp(4f)
+                toHaveBackgroundAlpha(0f)
+            }
 
-            expect(bottomLayout)
-                    .toBe(
-                            atItsOriginalPosition()
-                    )
+            animate(bottomLayout) {
+                atItsOriginalPosition()
+            }
 
-            expect(content)
-                    .toBe(
-                            atItsOriginalPosition(),
-                            visible()
-                    )
+            animate(content) {
+                atItsOriginalPosition()
+                visible()
+            }
 
         }
 

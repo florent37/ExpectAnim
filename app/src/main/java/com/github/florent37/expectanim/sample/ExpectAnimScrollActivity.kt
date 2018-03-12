@@ -7,7 +7,6 @@ import android.view.Gravity
 import android.view.View
 import com.github.florent37.expectanim.ExpectAnim
 import com.github.florent37.expectanim.animation
-import com.github.florent37.expectanim.core.Expectations.*
 
 
 class ExpectAnimScrollActivity : AppCompatActivity() {
@@ -35,31 +34,27 @@ class ExpectAnimScrollActivity : AppCompatActivity() {
         height = resources.getDimensionPixelOffset(R.dimen.height)
 
         this.expectAnimMove = animation {
-            expect(avatar)
-                    .toBe(
-                            topOfParent().withMarginDp(20f),
-                            leftOfParent().withMarginDp(20f),
-                            scale(0.5f, 0.5f)
-                    )
+            animate(avatar) {
+                topOfParent().withMarginDp(20f)
+                leftOfParent().withMarginDp(20f)
+                scale(0.5f, 0.5f)
+            }
 
-            expect(username)
-                    .toBe(
-                            toRightOf(avatar).withMarginDp(16f),
-                            sameCenterVerticalAs(avatar),
+            animate(username) {
+                toRightOf(avatar).withMarginDp(16f)
+                sameCenterVerticalAs(avatar)
 
-                            alpha(0.5f)
-                    )
+                alpha(0.5f)
+            }
 
-            expect(follow)
-                    .toBe(
-                            rightOfParent().withMarginDp(20f),
-                            sameCenterVerticalAs(avatar)
-                    )
+            animate(follow) {
+                rightOfParent().withMarginDp(20f)
+                sameCenterVerticalAs(avatar)
+            }
 
-            expect(backbground)
-                    .toBe(
-                            height(height).withGravity(Gravity.LEFT, Gravity.TOP)
-                    )
+            animate(backbground) {
+                height(height).withGravity(Gravity.LEFT, Gravity.TOP)
+            }
         }
 
         scrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->

@@ -3,6 +3,8 @@ package com.github.florent37.expectanim.core.scale;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.github.florent37.expectanim.GravityScaleHorizontalIntDef;
+import com.github.florent37.expectanim.GravityScaleVerticalIntDef;
 import com.github.florent37.expectanim.core.AnimExpectation;
 import com.github.florent37.expectanim.core.Expectations;
 import com.github.florent37.expectanim.core.position.PositionAnimExpectation;
@@ -47,7 +49,7 @@ public abstract class ScaleAnimExpectation extends AnimExpectation {
         return gravityVertical;
     }
 
-    public ScaleAnimExpectation withGravity(@Expectations.GravityScaleHorizontalIntDef @Nullable Integer gravityHorizontal, @Expectations.GravityScaleVerticalIntDef @Nullable Integer gravityVertical) {
+    public ScaleAnimExpectation withGravity(@GravityScaleHorizontalIntDef @Nullable Integer gravityHorizontal, @GravityScaleVerticalIntDef @Nullable Integer gravityVertical) {
         if (gravityHorizontal != null) {
             this.gravityHorizontal = gravityHorizontal;
         }

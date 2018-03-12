@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.github.florent37.expectanim.ExpectAnim
 import com.github.florent37.expectanim.animation
-import com.github.florent37.expectanim.core.Expectations.*
 
 class ExpectAnimRotationActivity : AppCompatActivity() {
 
@@ -26,30 +25,26 @@ class ExpectAnimRotationActivity : AppCompatActivity() {
         text4 = findViewById(R.id.text4)
 
         this.expectAnimMove = animation(duration = 1500L) {
-            expect(text1)
-                    .toBe(
-                            topOfParent(),
-                            leftOfParent(),
-                            rotated(90f)
-                    )
+            animate(text1) {
+                topOfParent()
+                leftOfParent()
+                rotated(90f)
+            }
 
-            expect(text2)
-                    .toBe(
-                            alignLeft(text1),
-                            belowOf(text1)
-                    )
+            animate(text2) {
+                alignLeft(text1)
+                belowOf(text1)
+            }
 
-            expect(text3)
-                    .toBe(
-                            alignTop(text1),
-                            toRightOf(text1)
-                    )
+            animate(text3) {
+                alignTop(text1)
+                toRightOf(text1)
+            }
 
-            expect(text4)
-                    .toBe(
-                            belowOf(text3),
-                            alignLeft(text3)
-                    )
+            animate(text4) {
+                belowOf(text3)
+                alignLeft(text3)
+            }
         }
         
         findViewById(R.id.content).setOnClickListener {

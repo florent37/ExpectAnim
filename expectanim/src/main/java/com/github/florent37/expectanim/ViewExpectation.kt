@@ -3,6 +3,7 @@ package com.github.florent37.expectanim
 import android.animation.Animator
 import android.view.View
 import com.github.florent37.expectanim.core.AnimExpectation
+import com.github.florent37.expectanim.core.Expectations
 import com.github.florent37.expectanim.core.alpha.ExpectAnimAlphaManager
 import com.github.florent37.expectanim.core.anim3d.ExpectAnimCameraDistanceManager
 import com.github.florent37.expectanim.core.custom.ExpectAnimCustomManager
@@ -14,7 +15,7 @@ import java.util.*
 class ViewExpectation internal constructor(private val expectAnim: ExpectAnim, internal val viewToMove: View) {
     private val dependencies: MutableList<View> = mutableListOf()
     private val animations: MutableList<Animator> = mutableListOf()
-    private val animExpectations: MutableList<AnimExpectation> = mutableListOf()
+    internal val animExpectations: MutableList<AnimExpectation> = mutableListOf()
 
     private var willHasScaleX: Float? = null
     private var willHasScaleY: Float? = null
@@ -27,15 +28,6 @@ class ViewExpectation internal constructor(private val expectAnim: ExpectAnim, i
     private var willHaveRotationX: Float? = null
     private var willHaveRotationY: Float? = null
     private var willHaveCameraDistance: Float? = null
-
-    fun expect(view: View): ViewExpectation {
-        return expectAnim.expect(view)
-    }
-
-    fun toBe(vararg animExpectations: AnimExpectation): ViewExpectation {
-        this.animExpectations.addAll(Arrays.asList(*animExpectations))
-        return this
-    }
 
     private fun calculatePosition(viewCalculator: ViewCalculator) {
         val manager = ExpectAnimPositionManager(animExpectations, viewToMove, viewCalculator)

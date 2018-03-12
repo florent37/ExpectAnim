@@ -1,32 +1,23 @@
 package com.github.florent37.expectanim
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
+import android.animation.*
 import android.view.View
 import android.view.animation.Interpolator
-
+import com.github.florent37.expectanim.core.Expectations
 import com.github.florent37.expectanim.listener.AnimationEndListener
 import com.github.florent37.expectanim.listener.AnimationStartListener
-
-import java.util.ArrayList
+import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
-
-/**
- * Created by florentchampigny on 17/02/2017.
- */
 
 class ExpectAnim {
 
-    private val expectationList: MutableList<ViewExpectation>
+    private val expectationList: MutableList<ViewExpectation> = mutableListOf()
     private var anyView: View? = null
 
     private var startDelay: Long = 5
 
-    private val viewToMove: MutableList<View>
-    private val viewCalculator: ViewCalculator
+    private val viewToMove: MutableList<View> = mutableListOf()
+    private val viewCalculator: ViewCalculator = ViewCalculator()
 
     private var animatorSet: AnimatorSet? = null
 
@@ -38,16 +29,15 @@ class ExpectAnim {
     private var interpolator: Interpolator? = null
     private var duration: Long? = DEFAULT_DURATION
 
-    init {
-        this.expectationList = ArrayList()
-        this.viewToMove = ArrayList()
-        this.viewCalculator = ViewCalculator()
-    }
-
-    fun expect(view: View): ViewExpectation {
+    fun animate(view: View, block: (Expectations.() -> Unit)): ViewExpectation {
         this.anyView = view
         val viewExpectation = ViewExpectation(this, view)
         expectationList.add(viewExpectation)
+
+        val expectations = Expectations()
+        block.invoke(expectations)
+        viewExpectation.animExpectations.addAll(expectations.expectations)
+
         return viewExpectation
     }
 

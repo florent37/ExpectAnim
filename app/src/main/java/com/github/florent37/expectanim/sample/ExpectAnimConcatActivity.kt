@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.github.florent37.expectanim.ExpectAnim
 import com.github.florent37.expectanim.animation
-import com.github.florent37.expectanim.core.Expectations.*
 
 class ExpectAnimConcatActivity : AppCompatActivity() {
 
@@ -27,35 +26,29 @@ class ExpectAnimConcatActivity : AppCompatActivity() {
 
         this.expectAnimMove = ExpectAnim.concat(
                 animation(duration = 1000L) {
-                    expect(image1)
-                            .toBe(
-                                    withCameraDistance(500f),
-                                    flippedHorizontally()
-                            )
+                    animate(image1) {
+                        withCameraDistance(500f)
+                        flippedHorizontally()
+                    }
                 },
                 animation(duration = 500L) {
-                    expect(image2)
-                            .toBe(
-                                    withCameraDistance(1000f),
-                                    flippedVertically()
-                            )
+                    animate(image2) {
+                        withCameraDistance(1000f)
+                        flippedVertically()
+                    }
                 },
                 animation(duration = 300L) {
-                    expect(image3)
-                            .toBe(
-                                    withCameraDistance(1500f),
-                                    flippedVertically()
-                            )
+                    animate(image3) {
+                        withCameraDistance(1500f)
+                        flippedVertically()
+                    }
                 },
                 animation(duration = 1000L) {
-                    expect(image4)
-                            .toBe(
-                                    withCameraDistance(2000f),
-                                    flippedHorizontallyAndVertically()
-                            )
-                }
-        )
-                .start()
+                    animate(image4) {
+                        withCameraDistance(2000f)
+                        flippedHorizontallyAndVertically()
+                    }
+                }).start()
 
         findViewById(R.id.content).setOnClickListener {
             expectAnimMove!!.setPercent(0f)
