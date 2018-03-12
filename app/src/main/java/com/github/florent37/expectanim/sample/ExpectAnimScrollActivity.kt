@@ -35,20 +35,20 @@ class ExpectAnimScrollActivity : AppCompatActivity() {
 
         this.expectAnimMove = animation {
             animate(avatar) {
-                topOfParent().withMarginDp(20f)
-                leftOfParent().withMarginDp(20f)
+                topOfParent(marginDp = 20f)
+                leftOfParent(marginDp = 20f)
                 scale(0.5f, 0.5f)
             }
 
             animate(username) {
-                toRightOf(avatar).withMarginDp(16f)
+                toRightOf(avatar, marginDp = 16f)
                 sameCenterVerticalAs(avatar)
 
                 alpha(0.5f)
             }
 
             animate(follow) {
-                rightOfParent().withMarginDp(20f)
+                rightOfParent(marginDp = 20f)
                 sameCenterVerticalAs(avatar)
             }
 
