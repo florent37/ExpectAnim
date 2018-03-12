@@ -47,32 +47,32 @@ class ExpectAnimSampleActivity : AppCompatActivity() {
         this.expectAnimMove = animation(duration = 1500L) {
 
             animate(avatar) {
-                bottomOfParent().withMarginDp(36f)
-                leftOfParent().withMarginDp(16f)
-                width(40).toDp().keepRatio()
+                bottomOfParent(marginDp = 36f)
+                leftOfParent(marginDp = 16f)
+                width(40, keepRatio = true, toDp = true)
             }
 
             animate(name) {
-                toRightOf(avatar).withMarginDp(16f)
+                toRightOf(avatar, marginDp = 16f)
                 sameCenterVerticalAs(avatar)
                 toHaveTextColor(Color.WHITE)
             }
 
             animate(subname) {
-                toRightOf(name).withMarginDp(5f)
+                toRightOf(name, marginDp = 5f)
                 sameCenterVerticalAs(name)
                 toHaveTextColor(Color.WHITE)
             }
 
             animate(follow) {
-                rightOfParent().withMarginDp(4f)
-                bottomOfParent().withMarginDp(12f)
+                rightOfParent(marginDp = 4f)
+                bottomOfParent(marginDp = 12f)
                 toHaveBackgroundAlpha(0f)
             }
 
             animate(message) {
-                aboveOf(follow).withMarginDp(4f)
-                rightOfParent().withMarginDp(4f)
+                aboveOf(follow, marginDp = 4f)
+                rightOfParent(marginDp = 4f)
                 toHaveBackgroundAlpha(0f)
             }
 

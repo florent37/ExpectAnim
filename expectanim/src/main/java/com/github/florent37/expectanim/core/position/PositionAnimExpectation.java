@@ -76,8 +76,10 @@ public abstract class PositionAnimExpectation extends AnimExpectation {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
     }
 
-    public PositionAnimExpectation withMargin(float margin){
-        this.margin = margin;
+    public PositionAnimExpectation withMargin(@Nullable Float margin){
+        if (margin != null) {
+            this.margin = margin;
+        }
         return this;
     }
 
@@ -86,7 +88,7 @@ public abstract class PositionAnimExpectation extends AnimExpectation {
         return this;
     }
 
-    public PositionAnimExpectation withMarginDp(float marginDp){
+    public PositionAnimExpectation withMarginDp(@Nullable Float marginDp){
         this.marginDp = marginDp;
         return this;
     }

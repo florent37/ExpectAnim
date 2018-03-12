@@ -59,13 +59,11 @@ public abstract class ScaleAnimExpectation extends AnimExpectation {
         return this;
     }
 
-    public ScaleAnimExpectation toDp() {
-        this.toDp = true;
-        return this;
+    public void setToDp(boolean toDp) {
+        this.toDp = toDp;
     }
 
-    public ScaleAnimExpectation keepRatio() {
-        this.keepRatio = true;
-        return this;
+    public void setKeepRatio(boolean keepRatio) {
+        this.keepRatio = keepRatio;
     }
 }

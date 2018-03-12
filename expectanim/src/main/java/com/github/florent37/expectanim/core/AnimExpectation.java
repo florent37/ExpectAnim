@@ -7,10 +7,6 @@ import com.github.florent37.expectanim.ViewCalculator;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by florentchampigny on 17/02/2017.
- */
-
 public abstract class AnimExpectation {
 
     protected ViewCalculator viewCalculator;
