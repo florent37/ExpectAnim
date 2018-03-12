@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion project.sdk
@@ -14,6 +15,7 @@ android {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:' + project.supportVersion
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 
 ext {
@@ -45,3 +47,6 @@ ext {
 
 apply from: rootProject.file('gradle/install-v1.gradle')
 apply from: rootProject.file('gradle/bintray-android-v1.gradle')
+repositories {
+    mavenCentral()
+}
