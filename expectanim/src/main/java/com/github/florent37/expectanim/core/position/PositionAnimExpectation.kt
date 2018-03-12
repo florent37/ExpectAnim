@@ -7,6 +7,12 @@ import com.github.florent37.expectanim.core.AnimExpectation
 
 abstract class PositionAnimExpectation : AnimExpectation() {
 
+    companion object {
+        fun dpToPx(context: Context, dp: Float): Float {
+            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.resources.displayMetrics)
+        }
+    }
+
     var isForPositionY: Boolean = false
         protected set
     var isForPositionX: Boolean = false
@@ -17,7 +23,6 @@ abstract class PositionAnimExpectation : AnimExpectation() {
         protected set
 
     var margin: Float? = null
-    var marginRes: Int? = null
     var marginDp: Float? = null
 
     abstract fun getCalculatedValueX(viewToMove: View): Float?
@@ -26,15 +31,8 @@ abstract class PositionAnimExpectation : AnimExpectation() {
     fun getMargin(view: View): Float {
         return when {
             this.margin != null -> this.margin!!
-            this.marginRes != null -> view.context.resources.getDimension(marginRes!!)
             this.marginDp != null -> dpToPx(view.context, marginDp!!)
             else -> 0f
-        }
-    }
-
-    companion object {
-        fun dpToPx(context: Context, dp: Float): Float {
-            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.resources.displayMetrics)
         }
     }
 

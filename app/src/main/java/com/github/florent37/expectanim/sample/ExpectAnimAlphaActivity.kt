@@ -5,16 +5,14 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import com.github.florent37.expectanim.animation
+import kotlinx.android.synthetic.main.expectanim_activity_alpha.*
 
 class ExpectAnimAlphaActivity : AppCompatActivity() {
-
-    lateinit var image1: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.expectanim_activity_alpha)
 
-        image1 = findViewById(R.id.image_1)
         image1.setOnClickListener {
             Toast.makeText(baseContext, "click", Toast.LENGTH_SHORT).show()
         }

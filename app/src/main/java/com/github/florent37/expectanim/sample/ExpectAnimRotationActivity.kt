@@ -5,13 +5,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.github.florent37.expectanim.ExpectAnim
 import com.github.florent37.expectanim.animation
+import kotlinx.android.synthetic.main.expectanim_activity_rotation.*
 
 class ExpectAnimRotationActivity : AppCompatActivity() {
-
-    lateinit var text1: View
-    lateinit var text2: View
-    lateinit var text3: View
-    lateinit var text4: View
 
     private var expectAnimMove: ExpectAnim? = null
 
@@ -19,10 +15,6 @@ class ExpectAnimRotationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.expectanim_activity_rotation)
 
-        text1 = findViewById(R.id.text1)
-        text2 = findViewById(R.id.text2)
-        text3 = findViewById(R.id.text3)
-        text4 = findViewById(R.id.text4)
 
         this.expectAnimMove = animation(duration = 1500L) {
             animate(text1) {

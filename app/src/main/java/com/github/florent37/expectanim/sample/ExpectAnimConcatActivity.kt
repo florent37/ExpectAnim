@@ -5,24 +5,15 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.github.florent37.expectanim.ExpectAnim
 import com.github.florent37.expectanim.animation
+import kotlinx.android.synthetic.main.expectanim_activity_flip.*
 
 class ExpectAnimConcatActivity : AppCompatActivity() {
-
-    lateinit var image1: View
-    lateinit var image2: View
-    lateinit var image3: View
-    lateinit var image4: View
 
     private var expectAnimMove: ExpectAnim? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.expectanim_activity_flip)
-
-        image1 = findViewById(R.id.image_1)
-        image2 = findViewById(R.id.image_2)
-        image3 = findViewById(R.id.image_3)
-        image4 = findViewById(R.id.image_4)
 
         this.expectAnimMove = ExpectAnim.concat(
                 animation(duration = 1000L) {

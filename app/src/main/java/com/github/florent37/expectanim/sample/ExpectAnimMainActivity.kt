@@ -3,7 +3,7 @@ package com.github.florent37.expectanim.sample
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
+import kotlinx.android.synthetic.main.expectanim_activity_main.*
 
 
 class ExpectAnimMainActivity : AppCompatActivity() {
@@ -12,33 +12,37 @@ class ExpectAnimMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.expectanim_activity_main)
 
-        findViewById(R.id.sample).setOnClickListener {
-            startActivity(Intent(this@ExpectAnimMainActivity, ExpectAnimSampleActivity::class.java))
+        sample.setOnClickListener {
+            openScreen(ExpectAnimSampleActivity::class.java)
         }
 
-        findViewById(R.id.scroll).setOnClickListener {
-            startActivity(Intent(this@ExpectAnimMainActivity, ExpectAnimScrollActivity::class.java))
+        scroll.setOnClickListener {
+            openScreen(ExpectAnimScrollActivity::class.java)
         }
 
-        findViewById(R.id.rotation).setOnClickListener {
-            startActivity(Intent(this@ExpectAnimMainActivity, ExpectAnimRotationActivity::class.java))
+        rotation.setOnClickListener {
+            openScreen(ExpectAnimRotationActivity::class.java)
         }
 
-        findViewById(R.id.flip).setOnClickListener {
-            startActivity(Intent(this@ExpectAnimMainActivity, ExpectAnimFlipActivity::class.java))
+        flip.setOnClickListener {
+            openScreen(ExpectAnimFlipActivity::class.java)
         }
 
-        findViewById(R.id.setnow).setOnClickListener {
-            startActivity(Intent(this@ExpectAnimMainActivity, ExpectAnimSetNowActivity::class.java))
+        setnow.setOnClickListener {
+            openScreen(ExpectAnimSetNowActivity::class.java)
         }
 
-        findViewById(R.id.visible).setOnClickListener {
-            startActivity(Intent(this@ExpectAnimMainActivity, ExpectAnimAlphaActivity::class.java))
+        visible.setOnClickListener {
+            openScreen(ExpectAnimAlphaActivity::class.java)
         }
 
-        findViewById(R.id.concat).setOnClickListener {
-            startActivity(Intent(this@ExpectAnimMainActivity, ExpectAnimConcatActivity::class.java))
+        concat.setOnClickListener {
+            openScreen(ExpectAnimConcatActivity::class.java)
         }
+    }
+
+    private fun openScreen(screenClass: Class<*>) {
+        startActivity(Intent(this@ExpectAnimMainActivity, screenClass))
     }
 
 }

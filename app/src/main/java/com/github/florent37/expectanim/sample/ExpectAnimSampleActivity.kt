@@ -7,32 +7,16 @@ import android.view.Gravity
 import android.view.View
 import com.github.florent37.expectanim.ExpectAnim
 import com.github.florent37.expectanim.animation
+import kotlinx.android.synthetic.main.expectanim_activity_sample.*
 
 
 class ExpectAnimSampleActivity : AppCompatActivity() {
-
-    lateinit var name: View
-    lateinit var avatar: View
-    lateinit var subname: View
-    lateinit var follow: View
-    lateinit var message: View
-
-    lateinit var bottomLayout: View
-    lateinit var content: View
 
     private var expectAnimMove: ExpectAnim? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.expectanim_activity_sample)
-
-        name = findViewById(R.id.name)
-        avatar = findViewById(R.id.avatar)
-        subname = findViewById(R.id.subname)
-        follow = findViewById(R.id.follow)
-        message = findViewById(R.id.message)
-        bottomLayout = findViewById(R.id.bottomLayout)
-        content = findViewById(R.id.content)
 
         animation {
             animate(bottomLayout) {
@@ -87,8 +71,8 @@ class ExpectAnimSampleActivity : AppCompatActivity() {
 
         }
 
-        findViewById(R.id.message).setOnClickListener { expectAnimMove!!.start() }
+        message.setOnClickListener { expectAnimMove!!.start() }
 
-        findViewById(R.id.follow).setOnClickListener { expectAnimMove!!.reset() }
+        follow.setOnClickListener { expectAnimMove!!.reset() }
     }
 }

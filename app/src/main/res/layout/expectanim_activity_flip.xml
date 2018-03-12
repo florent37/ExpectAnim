@@ -21,7 +21,7 @@
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_1"
+                android:id="@+id/image1"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="8dp"
@@ -29,7 +29,7 @@
                 android:src="@drawable/expectanim_small" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_2"
+                android:id="@+id/image2"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="8dp"
@@ -43,7 +43,7 @@
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_3"
+                android:id="@+id/image3"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="8dp"
@@ -51,7 +51,7 @@
                 android:src="@drawable/expectanim_small" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_4"
+                android:id="@+id/image4"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="8dp"
