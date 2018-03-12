@@ -35,14 +35,4 @@ abstract class ScaleAnimExpectation(gravityHorizontal: Int?, gravityVertical: In
     abstract fun getCalculatedValueScaleX(viewToMove: View): Float?
 
     abstract fun getCalculatedValueScaleY(viewToMove: View): Float?
-
-    fun withGravity(@GravityScaleHorizontalIntDef gravityHorizontal: Int?, @GravityScaleVerticalIntDef gravityVertical: Int?): ScaleAnimExpectation {
-        if (gravityHorizontal != null) {
-            this.gravityHorizontal = gravityHorizontal
-        }
-        if (gravityVertical != null) {
-            this.gravityVertical = gravityVertical
-        }
-        return this
-    }
 }

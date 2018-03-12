@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
-import android.view.View
 import com.github.florent37.expectanim.ExpectAnim
 import com.github.florent37.expectanim.animation
 import kotlinx.android.synthetic.main.expectanim_activity_sample.*
@@ -31,41 +30,42 @@ class ExpectAnimSampleActivity : AppCompatActivity() {
         this.expectAnimMove = animation(duration = 1500L) {
 
             animate(avatar) {
-                bottomOfParent(marginDp = 36f)
-                leftOfParent(marginDp = 16f)
+                bottomOfHisParent(marginDp = 36f)
+                leftOfHisParent(marginDp = 16f)
+                visible()
                 width(40, keepRatio = true, toDp = true)
             }
 
             animate(name) {
-                toRightOf(avatar, marginDp = 16f)
+                rightOf(avatar, marginDp = 16f)
                 sameCenterVerticalAs(avatar)
-                toHaveTextColor(Color.WHITE)
+                textColor(Color.WHITE)
             }
 
             animate(subname) {
-                toRightOf(name, marginDp = 5f)
+                rightOf(name, marginDp = 5f)
                 sameCenterVerticalAs(name)
-                toHaveTextColor(Color.WHITE)
+                textColor(Color.WHITE)
             }
 
             animate(follow) {
-                rightOfParent(marginDp = 4f)
-                bottomOfParent(marginDp = 12f)
-                toHaveBackgroundAlpha(0f)
+                rightOfHisParent(marginDp = 4f)
+                bottomOfHisParent(marginDp = 12f)
+                backgroundAlpha(0f)
             }
 
             animate(message) {
                 aboveOf(follow, marginDp = 4f)
-                rightOfParent(marginDp = 4f)
-                toHaveBackgroundAlpha(0f)
+                rightOfHisParent(marginDp = 4f)
+                backgroundAlpha(0f)
             }
 
             animate(bottomLayout) {
-                atItsOriginalPosition()
+                originalPosition()
             }
 
             animate(content) {
-                atItsOriginalPosition()
+                originalPosition()
                 visible()
             }
 

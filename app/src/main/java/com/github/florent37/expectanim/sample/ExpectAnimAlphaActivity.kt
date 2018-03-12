@@ -2,7 +2,6 @@ package com.github.florent37.expectanim.sample
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import android.widget.Toast
 import com.github.florent37.expectanim.animation
 import kotlinx.android.synthetic.main.expectanim_activity_alpha.*

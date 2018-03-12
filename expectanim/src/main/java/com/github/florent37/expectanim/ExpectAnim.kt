@@ -4,6 +4,7 @@ import android.animation.*
 import android.view.View
 import android.view.animation.Interpolator
 import com.github.florent37.expectanim.core.Expectations
+import com.github.florent37.expectanim.core.anim3d.CameraDistanceExpectationValue
 import com.github.florent37.expectanim.listener.AnimationEndListener
 import com.github.florent37.expectanim.listener.AnimationStartListener
 import java.util.*
@@ -28,7 +29,7 @@ class ExpectAnim {
     private var interpolator: Interpolator? = null
     private var duration: Long = DEFAULT_DURATION
 
-    fun animate(view: View, block: (Expectations.() -> Unit)): ViewExpectation {
+    fun animate(view: View, cameraDistance: Float? = null,block: (Expectations.() -> Unit)): ViewExpectation {
         this.anyView = view
 
         val viewExpectation = ViewExpectation(this, view)
@@ -37,6 +38,10 @@ class ExpectAnim {
         val expectations = Expectations()
         block.invoke(expectations)
         viewExpectation.animExpectations.addAll(expectations.expectations)
+
+        if (cameraDistance != null) {
+            viewExpectation.animExpectations.add(CameraDistanceExpectationValue(cameraDistance!!))
+        }
 
         return viewExpectation
     }

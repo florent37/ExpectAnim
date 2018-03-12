@@ -15,20 +15,16 @@ class ExpectAnimFlipActivity : AppCompatActivity() {
         setContentView(R.layout.expectanim_activity_flip)
 
         this.expectAnimMove = animation(duration = 1500L) {
-            animate(image1) {
-                withCameraDistance(500f)
+            animate(image1, cameraDistance = 500f) {
                 flippedHorizontally()
             }
-            animate(image2) {
-                withCameraDistance(1000f)
+            animate(image2, cameraDistance = 1000f) {
                 flippedVertically()
             }
-            animate(image3) {
-                withCameraDistance(1500f)
+            animate(image3, cameraDistance = 1500f) {
                 flippedVertically()
             }
-            animate(image4) {
-                withCameraDistance(2000f)
+            animate(image4, cameraDistance = 2000f) {
                 flippedHorizontallyAndVertically()
             }
         }

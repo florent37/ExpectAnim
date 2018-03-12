@@ -6,8 +6,6 @@ import com.github.florent37.expectanim.GravityScaleHorizontalIntDef
 import com.github.florent37.expectanim.GravityScaleVerticalIntDef
 import com.github.florent37.expectanim.core.alpha.AlphaAnimExpectation
 import com.github.florent37.expectanim.core.alpha.AlphaAnimExpectationValue
-import com.github.florent37.expectanim.core.anim3d.CameraDistanceExpectation
-import com.github.florent37.expectanim.core.anim3d.CameraDistanceExpectationValue
 import com.github.florent37.expectanim.core.custom.CustomAnimExpectation
 import com.github.florent37.expectanim.core.custom.TextColorAnimExpectation
 import com.github.florent37.expectanim.core.custom.ViewBackgroundAlphaAnimExpectation
@@ -17,15 +15,12 @@ import com.github.florent37.expectanim.core.rotation.RotationExpectationOriginal
 import com.github.florent37.expectanim.core.rotation.RotationExpectationValue
 import com.github.florent37.expectanim.core.rotation.RotationFlipExpectationValue
 import com.github.florent37.expectanim.core.scale.*
-import java.util.*
 
 class Expectations {
 
     internal val expectations = mutableListOf<AnimExpectation>()
 
-    //region position
-
-    fun toRightOf(view: View, marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
+    fun rightOf(view: View, marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationRightOf(view).apply {
             expectations.add(this)
             this.marginDp = marginDp
@@ -33,7 +28,7 @@ class Expectations {
         }
     }
 
-    fun toLeftOf(view: View, marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
+    fun leftOf(view: View, marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationLeftOf(view).apply {
             expectations.add(this)
             this.marginDp = marginDp
@@ -57,7 +52,7 @@ class Expectations {
         }
     }
 
-    fun atItsOriginalPosition(): PositionAnimExpectation {
+    fun originalPosition(): PositionAnimExpectation {
         return PositionAnimExpectationOriginal().apply {
             expectations.add(this)
         }
@@ -111,7 +106,7 @@ class Expectations {
         }
     }
 
-    fun topOfParent(marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
+    fun topOfHisParent(marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationTopOfParent().apply {
             expectations.add(this)
             this.marginDp = marginDp
@@ -119,7 +114,7 @@ class Expectations {
         }
     }
 
-    fun rightOfParent(marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
+    fun rightOfHisParent(marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationRightOfParent().apply {
             expectations.add(this)
             this.marginDp = marginDp
@@ -127,7 +122,7 @@ class Expectations {
         }
     }
 
-    fun bottomOfParent(marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
+    fun bottomOfHisParent(marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationBottomOfParent().apply {
             expectations.add(this)
             this.marginDp = marginDp
@@ -135,7 +130,7 @@ class Expectations {
         }
     }
 
-    fun leftOfParent(marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
+    fun leftOfHisParent(marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationLeftOfParent().apply {
             expectations.add(this)
             this.marginDp = marginDp
@@ -143,7 +138,7 @@ class Expectations {
         }
     }
 
-    fun centerBetweenViewAndParent(otherView: View, horizontal: Boolean, vertical: Boolean, toBeOnRight: Boolean, toBeOnBottom: Boolean, marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
+    fun centerBetweenViewAndHisParent(otherView: View, horizontal: Boolean, vertical: Boolean, toBeOnRight: Boolean, toBeOnBottom: Boolean, marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationCenterBetweenViewAndParent(otherView, horizontal, vertical, toBeOnRight, toBeOnBottom).apply {
             expectations.add(this)
             this.marginDp = marginDp
@@ -183,11 +178,59 @@ class Expectations {
         }
     }
 
-    //endregion
+    fun originalScale(): ScaleAnimExpectation {
+        return ScaleAnimExpectationOriginalScale().apply {
+            expectations.add(this)
+        }
+    }
 
-    //region alpha
+    fun scale(scaleX: Float, scaleY: Float, @GravityScaleHorizontalIntDef gravityHorizontal: Int, @GravityScaleVerticalIntDef gravityVertical: Int): ScaleAnimExpectation {
+        return ScaleAnimExpectationValues(scaleX, scaleY, gravityHorizontal, gravityVertical).apply {
+            expectations.add(this)
+        }
+    }
 
-    fun alpha(alpha: Float): AlphaAnimExpectation {
+    fun scale(scaleX: Float, scaleY: Float): ScaleAnimExpectation {
+        return ScaleAnimExpectationValues(scaleX, scaleY, null, null).apply {
+            expectations.add(this)
+        }
+    }
+
+    fun height(height: Int, @GravityScaleHorizontalIntDef horizontalGravity: Int? = null, @GravityScaleVerticalIntDef verticalGravity: Int? = null, keepRatio: Boolean = false, toDp: Boolean = false): ScaleAnimExpectation {
+        return ScaleAnimExpectationHeight(height, horizontalGravity, verticalGravity).apply {
+            this.keepRatio = keepRatio
+            this.toDp = toDp
+            expectations.add(this)
+        }
+    }
+
+    fun width(width: Int, @GravityScaleHorizontalIntDef horizontalGravity: Int? = null, @GravityScaleVerticalIntDef verticalGravity: Int? = null, keepRatio: Boolean = false, toDp: Boolean = false): ScaleAnimExpectation {
+        return ScaleAnimExpectationWidth(width, horizontalGravity, verticalGravity).apply {
+            expectations.add(this)
+            this.keepRatio = keepRatio
+            this.toDp = toDp
+        }
+    }
+
+    fun sameScaleAs(otherView: View): ScaleAnimExpectation {
+        return ScaleAnimExpectationSameScaleAs(otherView).apply {
+            expectations.add(this)
+        }
+    }
+
+    fun sameWidthAs(otherView: View): ScaleAnimExpectation {
+        return ScaleAnimExpectationSameWidthAs(otherView, null, null).apply {
+            expectations.add(this)
+        }
+    }
+
+    fun sameHeightAs(otherView: View): ScaleAnimExpectation {
+        return ScaleAnimExpectationSameHeightAs(otherView, null, null).apply {
+            expectations.add(this)
+        }
+    }
+
+    fun toHaveAlpha(alpha: Float): AlphaAnimExpectation {
         return AlphaAnimExpectationValue(alpha).apply {
             expectations.add(this)
         }
@@ -211,108 +254,21 @@ class Expectations {
         }
     }
 
-    //endregion
-
-    //region scale
-
-
-    fun atItsOriginalScale(): ScaleAnimExpectation {
-        return ScaleAnimExpectationOriginalScale().apply {
-            expectations.add(this)
-        }
-    }
-
-    fun scale(scaleX: Float, scaleY: Float, @GravityScaleHorizontalIntDef gravityHorizontal: Int, @GravityScaleVerticalIntDef gravityVertical: Int): ScaleAnimExpectation {
-        return ScaleAnimExpectationValues(scaleX, scaleY, gravityHorizontal, gravityVertical).apply {
-            expectations.add(this)
-        }
-    }
-
-    fun scale(scaleX: Float, scaleY: Float): ScaleAnimExpectation {
-        return ScaleAnimExpectationValues(scaleX, scaleY, null, null).apply {
-            expectations.add(this)
-        }
-    }
-
-    fun height(height: Int, @GravityScaleHorizontalIntDef gravityHorizontal: Int, @GravityScaleVerticalIntDef gravityVertical: Int, keepRatio: Boolean = false, toDp: Boolean = false): ScaleAnimExpectation {
-        return ScaleAnimExpectationHeight(height, gravityHorizontal, gravityVertical).apply {
-            expectations.add(this)
-            this.keepRatio = keepRatio
-            this.toDp = toDp
-        }
-    }
-
-    fun height(height: Int, keepRatio: Boolean = false, toDp: Boolean = false): ScaleAnimExpectation {
-        return ScaleAnimExpectationHeight(height, null, null).apply {
-            this.keepRatio = keepRatio
-            this.toDp = toDp
-            expectations.add(this)
-        }
-    }
-
-    fun width(width: Int, @GravityScaleHorizontalIntDef gravityHorizontal: Int, @GravityScaleVerticalIntDef gravityVertical: Int, keepRatio: Boolean = false, toDp: Boolean = false): ScaleAnimExpectation {
-        return ScaleAnimExpectationWidth(width, gravityHorizontal, gravityVertical).apply {
-            expectations.add(this)
-            this.keepRatio = keepRatio
-            this.toDp = toDp
-        }
-    }
-
-    fun width(width: Int, keepRatio: Boolean = false, toDp: Boolean = false): ScaleAnimExpectation {
-        return ScaleAnimExpectationWidth(width, null, null).apply {
-            this.keepRatio = keepRatio
-            this.toDp = toDp
-            expectations.add(this)
-        }
-    }
-
-    fun sameScaleAs(otherView: View): ScaleAnimExpectation {
-        return ScaleAnimExpectationSameScaleAs(otherView).apply {
-            expectations.add(this)
-        }
-    }
-
-    fun sameWidthAs(otherView: View): ScaleAnimExpectation {
-        return ScaleAnimExpectationSameWidthAs(otherView, null, null).apply {
-            expectations.add(this)
-        }
-    }
-
-    fun sameHeightAs(otherView: View): ScaleAnimExpectation {
-        return ScaleAnimExpectationSameHeightAs(otherView, null, null).apply {
-            expectations.add(this)
-        }
-    }
-
-    //endregion
-
-    //region custom
-
-    fun toHaveTextColor(textColor: Int): CustomAnimExpectation {
+    fun textColor(textColor: Int): CustomAnimExpectation {
         return TextColorAnimExpectation(textColor).apply {
             expectations.add(this)
         }
     }
 
-    fun toHaveBackgroundAlpha(alpha: Float): CustomAnimExpectation {
+    fun backgroundAlpha(alpha: Float): CustomAnimExpectation {
         return ViewBackgroundAlphaAnimExpectation(alpha).apply {
             expectations.add(this)
         }
     }
 
 
-    //endregion
-
-    //region rotation
-
-    fun rotated(rotation: Float): RotationExpectation {
+    fun toBeRotated(rotation: Float): RotationExpectation {
         return RotationExpectationValue(rotation).apply {
-            expectations.add(this)
-        }
-    }
-
-    fun withCameraDistance(cameraDistance: Float): CameraDistanceExpectation {
-        return CameraDistanceExpectationValue(cameraDistance).apply {
             expectations.add(this)
         }
     }
@@ -346,12 +302,9 @@ class Expectations {
         return expect
     }
 
-    fun atItsOriginalRotation(): RotationExpectation {
+    fun originalRotation(): RotationExpectation {
         return RotationExpectationOriginal().apply {
             expectations.add(this)
         }
     }
-
-    //endregion
-
 }
