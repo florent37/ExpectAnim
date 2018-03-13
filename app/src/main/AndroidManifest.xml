@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.florent37.expectanim.sample">
+    package="com.github.florent37.kotlin.pleaseanimate.sample">
 
     <application
         android:allowBackup="true"
@@ -8,20 +8,20 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ExpectAnimMainActivity">
+        <activity android:name="com.github.florent37.kotlin.pleaseanimate.sample.AnimMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ExpectAnimScrollActivity"/>
-        <activity android:name=".ExpectAnimSampleActivity"/>
-        <activity android:name=".ExpectAnimRotationActivity"/>
-        <activity android:name=".ExpectAnimSetNowActivity"/>
-        <activity android:name=".ExpectAnimFlipActivity"/>
-        <activity android:name=".ExpectAnimAlphaActivity" />
-        <activity android:name=".ExpectAnimConcatActivity" />
+        <activity android:name="com.github.florent37.kotlin.pleaseanimate.sample.AnimScrollActivity"/>
+        <activity android:name="com.github.florent37.kotlin.pleaseanimate.sample.AnimSampleActivity"/>
+        <activity android:name="com.github.florent37.kotlin.pleaseanimate.sample.AnimRotationActivity"/>
+        <activity android:name="com.github.florent37.kotlin.pleaseanimate.sample.AnimSetNowActivity"/>
+        <activity android:name="com.github.florent37.kotlin.pleaseanimate.sample.AnimFlipActivity"/>
+        <activity android:name="com.github.florent37.kotlin.pleaseanimate.sample.AnimAlphaActivity" />
+        <activity android:name="com.github.florent37.kotlin.pleaseanimate.sample.AnimConcatActivity" />
     </application>
 
 </manifest>

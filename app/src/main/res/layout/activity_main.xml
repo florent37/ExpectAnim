@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context="com.github.florent37.kotlin.pleaseanimate.sample.AnimScrollActivity">
+
+    <Button
+        android:id="@+id/sample"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@color/colorPrimary"
+        android:text="sample" />
+
+    <Button
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@color/colorPrimary"
+        android:text="scroll" />
+
+    <Button
+        android:id="@+id/rotation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@color/colorPrimary"
+        android:text="rotation" />
+
+    <Button
+        android:id="@+id/flip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@color/colorPrimary"
+        android:text="flip" />
+
+    <Button
+        android:id="@+id/setnow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@color/colorPrimary"
+        android:text="set now" />
+
+    <Button
+        android:id="@+id/visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@color/colorPrimary"
+        android:text="visible" />
+
+    <Button
+        android:id="@+id/concat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@color/colorPrimary"
+        android:text="Chain" />
+</LinearLayout>

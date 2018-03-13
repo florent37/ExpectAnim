@@ -1,1 +1,1 @@
-include ':app', ':expectanim'
+include ':app', ':kotlinpleaseanimate'

@@ -1,5 +1,0 @@
-deployment:
-  release:
-    tag: /v.*/
-    commands:
-      - ./gradlew :expectanim:bintrayUpload

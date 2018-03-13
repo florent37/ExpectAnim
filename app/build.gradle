@@ -3,12 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion project.sdk
-    buildToolsVersion project.buildTools
+    compileSdkVersion project.COMPILE_SDK
 
     defaultConfig {
-        minSdkVersion project.minSdk
-        targetSdkVersion project.sdk
+        minSdkVersion project.MIN_SDK
+        targetSdkVersion project.TARGET_SDK
 
         applicationId "com.github.florent37.expectanim.sample"
 
@@ -25,7 +24,7 @@ dependencies {
 
     compile 'de.hdodenhof:circleimageview:2.1.0'
 
-    compile project(":expectanim")
+    compile project(':kotlinpleaseanimate')
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 repositories {

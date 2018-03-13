@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.github.florent37.kotlin.pleaseanimate.sample.AnimScrollActivity">
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="240dp" />
+
+            <include layout="@layout/cell" />
+
+            <include layout="@layout/cell" />
+
+            <include layout="@layout/cell" />
+
+            <include layout="@layout/cell" />
+
+            <include layout="@layout/cell" />
+
+            <include layout="@layout/cell" />
+
+            <include layout="@layout/cell" />
+
+            <include layout="@layout/cell" />
+
+            <include layout="@layout/cell" />
+
+            <include layout="@layout/cell" />
+
+            <include layout="@layout/cell" />
+
+            <include layout="@layout/cell" />
+
+            <include layout="@layout/cell" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="240dp">
+
+        <View
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:elevation="4dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/avatar"
+                android:src="@drawable/kotlin"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_above="@+id/username"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/circle"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#3A3A3A"
+                android:text="Please Kotlin Animate" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/revert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Github"
+                app:backgroundTint="@color/colorAccent"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+</FrameLayout>

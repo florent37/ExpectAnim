@@ -1,94 +1,73 @@
-# ExpectAnim
+# Kotlin Please Animate
 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ExpectAnim-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5335)
-[![CircleCI](https://circleci.com/gh/florent37/ExpectAnim/tree/master.svg?style=svg)](https://circleci.com/gh/florent37/ExpectAnim/tree/master)
+`Kotlin, please, can you animate my views ?`
 
-Describe your animation and run !
-
+A Kotlin way to declare and run beautiful animations ! 
+Please be gentle with Kotlin :)
 
 <a href="https://goo.gl/WXW8Dc">
   <img alt="Android app on Google Play" src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" />
 </a>
 
-
-
 [![gif](https://raw.githubusercontent.com/florent37/ExpectAnim/master/media/sample.gif)](https://github.com/florent37/ExpectAnim)
 
-```java
-new ExpectAnim()
-
-                .expect(avatar)
-                .toBe(
-                    Expectations...
-                )
-                .toAnimation()
-                .start();
+```kotlin
+please {
+   animate(avatar) toBe {
+      bottomOfHisParent(marginDp = 36f)
+      leftOfHisParent(marginDp = 16f)
+      width(40, keepRatio = true, toDp = true)
+   }
+}.start()
 ```
 
 # Download
 
 <a href='https://ko-fi.com/A160LCC' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi1.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
-In your module [![Download](https://api.bintray.com/packages/florent37/maven/ExpectAnim/images/download.svg)](https://bintray.com/florent37/maven/ExpectAnim/_latestVersion)
+In your module [![Download](https://api.bintray.com/packages/florent37/maven/KotlinPleaseAnimate/images/download.svg)](https://bintray.com/florent37/maven/KotlinPleaseAnimate/_latestVersion)
 ```groovy
-compile 'com.github.florent37:expectanim:1.0.7'
+compile 'com.github.florent37:kotlinpleaseanimate:1.0.0'
 ```
 
 This code describe the video above
 
-```java
-new ExpectAnim()
-
-                .expect(avatar)
-                .toBe(
-                        bottomOfParent().withMarginDp(16),
-                        leftOfParent().withMarginDp(16),
-                        width(40).toDp().keepRatio()
-                )
-
-                .expect(name)
-                .toBe(
-                        toRightOf(avatar).withMarginDp(16),
-                        sameCenterVerticalAs(avatar),
-                        toHaveTextColor(Color.WHITE)
-                )
-
-                .expect(subname)
-                .toBe(
-                        toRightOf(name).withMarginDp(5),
-                        sameCenterVerticalAs(name),
-                        toHaveTextColor(Color.WHITE)
-                )
-
-                .expect(follow)
-                .toBe(
-                        rightOfParent().withMarginDp(4),
-                        bottomOfParent().withMarginDp(12),
-                        toHaveBackgroundAlpha(0f)
-                )
-
-                .expect(message)
-                .toBe(
-                        aboveOf(follow).withMarginDp(4),
-                        rightOfParent().withMarginDp(4),
-                        toHaveBackgroundAlpha(0f)
-                )
-
-                .expect(bottomLayout)
-                .toBe(
-                        atItsOriginalPosition()
-                )
-
-                .expect(content)
-                .toBe(
-                        atItsOriginalPosition(),
-                        visible()
-                )
-
-                .toAnimation()
-                .setDuration(1500)
-
-                .start();
+```kotlin
+please(duration = 1500L) {
+   animate(avatar) toBe {
+      bottomOfHisParent(marginDp = 36f)
+      leftOfHisParent(marginDp = 16f)
+      visible()
+      width(40, keepRatio = true, toDp = true)
+   }
+   animate(name) toBe {
+      rightOf(avatar, marginDp = 16f)
+      sameCenterVerticalAs(avatar)
+      textColor(Color.WHITE)
+   }
+   animate(subname) toBe {
+      rightOf(name, marginDp = 5f)
+      sameCenterVerticalAs(name)
+      textColor(Color.WHITE)
+   }
+   animate(revert) toBe {
+      rightOfHisParent(marginDp = 4f)
+      bottomOfHisParent(marginDp = 12f)
+      backgroundAlpha(0f)
+   }
+   animate(start) toBe {
+      aboveOf(revert, marginDp = 4f)
+      rightOfHisParent(marginDp = 4f)
+      backgroundAlpha(0f)
+   }
+   animate(bottomLayout) toBe {
+      originalPosition()
+   }
+   animate(content) toBe {
+      originalPosition()
+      visible()
+   }
+}.start()
 ```
 
 ## Follow scroll
@@ -99,200 +78,136 @@ Use `setPercent` to apply modify the current step of the animation
 
 Exemple with a scrollview
 
-```java
-this.expectAnimMove = new ExpectAnim()
-                .expect(username)
-                .toBe(
-                        toRightOf(avatar).withMarginDp(16),
-                        sameCenterVerticalAs(avatar),
-                        alpha(0.5f)
-                )
+```kotlin
+val animation = please {
+        animate(avatar) toBe {
+           topOfHisParent(marginDp = 20f)
+           leftOfHisParent(marginDp = 20f)
+           scale(0.5f, 0.5f)
+        }
 
-                .expect(avatar)
-                .toBe(
-                        topOfParent(),
-                        leftOfParent().withMarginDp(16),
-                        scale(0.5f, 0.5f)
-                )
-                .expect(follow)
-                .toBe(
-                        rightOfParent().withMarginDp(16),
-                        sameCenterVerticalAs(avatar)
-                )
+        animate(username) toBe {
+           rightOf(avatar, marginDp = 16f)
+           sameCenterVerticalAs(avatar)
 
-                .expect(backbground)
-                .toBe(
-                        height(height).withGravity(Gravity.LEFT|Gravity.START, Gravity.TOP)
-                )
+           alpha(0.5f)
+        }
 
-                .toAnimation();
+        animate(revert) toBe {
+           rightOfHisParent(marginDp = 20f)
+           sameCenterVerticalAs(avatar)
+        }
 
-scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-    @Override
-    public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-        final float percent = (scrollY * 1f) / v.getMaxScrollAmount();
-
-        expectAnimMove.setPercent(percent);
-    }
-});
+        animate(background) toBe {
+           height(h, horizontalGravity = Gravity.LEFT, verticalGravity = Gravity.TOP)
+        }
+}
+scrollview.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+    val percent = scrollY * 1f / v.maxScrollAmount
+    animation.setPercent(percent)
+})
 ```
 
-## Concat
+## Chain animations
 
-You can play an anim after one other using `ExpectAnim.concat` (static method)
+Just ask the kotlin's animation if he wants to execute another animation after, using `thenCouldYou animate`
 
 ```
-ExpectAnim.concat(
-                new ExpectAnim()
-                        .expect(image1)
-                        .toBe(
-                                withCameraDistance(500f),
-                                flippedHorizontally()
-                        )
-                        .toAnimation()
-                        .setDuration(1000),
-                new ExpectAnim()
-                        .expect(image2)
-                        .toBe(
-                                withCameraDistance(1000f),
-                                flippedVertically()
-                        )
-                        .toAnimation()
-                        .setDuration(500)
-                )
-                .start()
+please(duration = 1000L) {
+   animate(image, withCameraDistance = 500f) toBe {
+      flippedHorizontally()
+   }
+}.thenCouldYou(duration = 500L) {
+   animate(image, withCameraDistance = 1000f) toBe {
+      alpha(0.5f)
+   }
+}.start()
 ```
 
 ## Apply directly
 
-Use `setNow` to apply directly the transformation
+If you want your animation to be applied directly, be bossy with kotlin and force it to apply it using `now()` !
 
-```java
-new ExpectAnim()
-                .expect(view)
-                .toBe(
-                        outOfScreen(Gravity.BOTTOM)
-                )
-                .toAnimation()
-                .setNow();
+```kotlin
+please {
+   animate(view) toBe {
+      outOfScreen(Gravity.BOTTOM)
+   }
+}.now();
 ```
 
 ## Reset
 
 Use `reset` to return to the initial state of views
 
-```java
-expectAnim.reset():
+```kotlin
+animation.reset():
 ```
 
 # List of expectations
 
 ```
-new ExpectAnim()
-                .expect(view)
-                .toBe(
+please {
+  animate(view) { //toBe is optional
 
-                    //.withMargin(marginPx)
-                    //.withMarginDp(margin)
-                    //.withMarginDimen(R.dimen.margin)
+     rightOf(view, marginDp=)
+     leftOf(view, marginDp=)
+     belowOf(view, marginDp=)
+     aboveOf(view, marginDp=)
 
-                    toRightOf(view)
-                    toLeftOf(view)
-                    belowOf(view)
-                    aboveOf(view)
+     originalPosition()
 
-                    atItsOriginalPosition()
+     sameCenterAs(view, horizontal=, vertical=)
+     sameCenterHorizontalAs(view)
+     sameCenterVerticalAs(view)
+     centerInParent(horizontal=, vertical=)
+     centerVerticalInParent()
+     centerHorizontalInParent()
 
+     centerBetweenViews(view1, view2, horizontal, vertical)
+     centerBetweenViewAndParent(otherView, horizontal, vertical, toBeOnRight, toBeOnBottom)
 
-                    sameCenterAs(view, horizontal, vertical)
-                    sameCenterHorizontalAs(view)
-                    sameCenterVerticalAs(view)
-                    centerInParent(horizontal, vertical)
-                    centerVerticalInParent()
-                    centerHorizontalInParent()
+     topOfHisParent()
+     rightOfHisParent()
+     bottomOfHisParent()
+     leftOfHisParent()
 
-                    centerBetweenViews(view1, view2, horizontal, vertical)
-                    centerBetweenViewAndParent(otherView, horizontal, vertical, toBeOnRight, toBeOnBottom)
+     alignBottom(otherView, marginDp=)
+     alignTop(otherView)
+     alignLeft(otherView)
+     alignRight(otherView)
 
-                    topOfParent()
-                    rightOfParent()
-                    bottomOfParent()
-                    leftOfParent()
+     outOfScreen(gravitiy)  //Gravity.LEFT / Gravity.RIGHT / Gravity.TOP / Gravity.BOTTOM
 
-                    alignBottom(otherView)
-                    alignTop(otherView)
-                    alignLeft(otherView)
-                    alignRight(otherView)
+     alpha(alpha)
+     sameAlphaAs(otherView)
+     visible()
+     invisible()
 
-                    outOfScreen(gravitiy)  //Gravity.LEFT / Gravity.RIGHT / Gravity.TOP / Gravity.BOTTOM
+     originalScale()
 
-                    alpha(alpha)
-                    sameAlphaAs(otherView)
-                    visible()
-                    invisible()
+     scale(scaleX, scaleY)
+     height(height, keepRatio=, useDp=)
+     width(width, keepRatio=, useDp=)
+     sameScaleAs(otherView)
+     sameWidthAs(otherView)
+     sameHeightAs(otherView)
 
-                    //.keepRatio()
-                    //.withGravity(horizontalGravity, verticalGravity)
+     textColor(textColor)
+     backgroundAlpha(alpha)
 
-                    atItsOriginalScale()
-
-                    scale(scaleX, scaleY)
-                    height(height)
-                    width(width)
-                    sameScaleAs(otherView)
-                    sameWidthAs(otherView)
-                    sameHeightAs(otherView)
-
-
-                    toHaveTextColor(textColor)
-                    toHaveBackgroundAlpha(alpha)
-
-                    rotated(rotation)
-                    vertical(bottomOfViewAtLeft)
-                    atItsOriginalRotation()
-                )
-
+     rotated(rotation)
+     vertical(bottomOfViewAtLeft)
+     atItsOriginalRotation()
+}
 ````
 
 # Proguard
 
 ```
--keep class com.github.florent37.expectanim.*{ *; }
--dontwarn com.github.florent37.expectanim.**
+-keep class com.github.florent37.kotlin.pleaseanimate.*{ *; }
+-dontwarn com.github.florent37.kotlin.pleaseanimate.**
 ```
-
-# Changelog
-
-## 1.0.7
-
-Added startDelay
-
-## 1.0.6
-
-Added ExpectAnim.concat
-
-## 1.0.4
-
-Fixed listeners references
-
-## 1.0.3
-
-Alpha 0 force view to be INVISIBLE`
-
-## 1.0.2
-
-Added `flips` rotations
-
-`flippedHorizontally()`
-`flippedVertically()`
-`flippedHorizontallyAndVertically()`
-`withCameraDistance(1000f)`
-
-## 1.0.1
-
-Added `rotations`
-
-[![gif](https://raw.githubusercontent.com/florent37/ExpectAnim/master/media/rotations.gif)](https://github.com/florent37/ExpectAnim)
 
 # Credits
 
@@ -300,6 +215,7 @@ Author: Florent Champigny [http://www.florentchampigny.com/](http://www.florentc
 
 Blog : [http://www.tutos-android-france.com/](http://www.tutos-android-france.com/)
 
+Forked from ExpectAnim: https://github.com/florent37/ExpectAnim
 
 <a href="https://goo.gl/WXW8Dc">
   <img alt="Android app on Google Play" src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" />
@@ -320,7 +236,7 @@ Blog : [http://www.tutos-android-france.com/](http://www.tutos-android-france.co
 
 # License
 
-    Copyright 2017 florent37, Inc.
+    Copyright 2018 florent37, Inc.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
