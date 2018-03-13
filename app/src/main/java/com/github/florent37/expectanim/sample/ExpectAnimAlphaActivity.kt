@@ -16,7 +16,7 @@ class ExpectAnimAlphaActivity : AppCompatActivity() {
             Toast.makeText(baseContext, "click", Toast.LENGTH_SHORT).show()
         }
 
-        findViewById(R.id.visible).setOnClickListener {
+        visible.setOnClickListener {
             please {
                 animate(image1) {
                     visible()
@@ -24,7 +24,7 @@ class ExpectAnimAlphaActivity : AppCompatActivity() {
             }.start()
         }
 
-        findViewById(R.id.invisible).setOnClickListener {
+        invisible.setOnClickListener {
             please(duration = 1000L) {
                 animate(image1) {
                     invisible()

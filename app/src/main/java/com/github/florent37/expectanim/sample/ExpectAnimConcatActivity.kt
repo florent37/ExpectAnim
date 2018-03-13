@@ -35,7 +35,7 @@ class ExpectAnimConcatActivity : AppCompatActivity() {
                 })
                 .start()
 
-        findViewById(R.id.content).setOnClickListener {
+        content.setOnClickListener {
             animation.setPercent(0f)
             animation.start()
         }

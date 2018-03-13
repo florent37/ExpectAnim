@@ -36,7 +36,7 @@ class ExpectAnimRotationActivity : AppCompatActivity() {
             }
 
         }
-        findViewById(R.id.content).setOnClickListener {
+        content.setOnClickListener {
             if (text1.rotation == 0f) {
                 animation.start()
             } else {
