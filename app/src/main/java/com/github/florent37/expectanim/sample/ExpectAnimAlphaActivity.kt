@@ -3,7 +3,7 @@ package com.github.florent37.expectanim.sample
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
-import com.github.florent37.expectanim.animation
+import com.github.florent37.expectanim.please
 import kotlinx.android.synthetic.main.expectanim_activity_alpha.*
 
 class ExpectAnimAlphaActivity : AppCompatActivity() {
@@ -17,7 +17,7 @@ class ExpectAnimAlphaActivity : AppCompatActivity() {
         }
 
         findViewById(R.id.visible).setOnClickListener {
-            animation {
+            please {
                 animate(image1) {
                     visible()
                 }
@@ -25,7 +25,7 @@ class ExpectAnimAlphaActivity : AppCompatActivity() {
         }
 
         findViewById(R.id.invisible).setOnClickListener {
-            animation(duration = 1000L) {
+            please(duration = 1000L) {
                 animate(image1) {
                     invisible()
                 }

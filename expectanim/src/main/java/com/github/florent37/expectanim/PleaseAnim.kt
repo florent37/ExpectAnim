@@ -7,10 +7,9 @@ import com.github.florent37.expectanim.core.Expectations
 import com.github.florent37.expectanim.core.anim3d.CameraDistanceExpectationValue
 import com.github.florent37.expectanim.listener.AnimationEndListener
 import com.github.florent37.expectanim.listener.AnimationStartListener
-import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
 
-class ExpectAnim {
+class PleaseAnim {
 
     private val expectationList: MutableList<ViewExpectation> = mutableListOf()
     private var anyView: View? = null
@@ -29,24 +28,24 @@ class ExpectAnim {
     private var interpolator: Interpolator? = null
     private var duration: Long = DEFAULT_DURATION
 
-    fun animate(view: View, cameraDistance: Float? = null,block: (Expectations.() -> Unit)): ViewExpectation {
+    fun animate(view: View, withCameraDistance: Float? = null, block: (Expectations.() -> Unit)? = null): ViewExpectation {
         this.anyView = view
 
         val viewExpectation = ViewExpectation(this, view)
         expectationList.add(viewExpectation)
 
-        val expectations = Expectations()
-        block.invoke(expectations)
-        viewExpectation.animExpectations.addAll(expectations.expectations)
-
-        if (cameraDistance != null) {
-            viewExpectation.animExpectations.add(CameraDistanceExpectationValue(cameraDistance!!))
+        if (withCameraDistance != null) {
+            viewExpectation.animExpectations.add(CameraDistanceExpectationValue(withCameraDistance!!))
         }
 
-        return viewExpectation
+        if(block != null) {
+            return viewExpectation.toBe(block)
+        } else {
+            return viewExpectation
+        }
     }
 
-    private fun calculate(): ExpectAnim {
+    private fun calculate(): PleaseAnim {
         if (animatorSet == null) {
             animatorSet = AnimatorSet()
 
@@ -115,22 +114,22 @@ class ExpectAnim {
 
     private fun notifyListenerStart() {
         startListeners.forEach { startListener ->
-            startListener.onAnimationStart(this@ExpectAnim)
+            startListener.onAnimationStart(this@PleaseAnim)
         }
     }
 
     private fun notifyListenerEnd() {
         endListeners.forEach { endListener ->
-            endListener.onAnimationEnd(this@ExpectAnim)
+            endListener.onAnimationEnd(this@PleaseAnim)
         }
     }
 
-    fun setStartDelay(startDelay: Long): ExpectAnim {
+    fun setStartDelay(startDelay: Long): PleaseAnim {
         this.startDelay = startDelay
         return this
     }
 
-    fun start(): ExpectAnim {
+    fun start(): PleaseAnim {
         executeAfterDraw(anyView, Runnable {
             calculate()
             animatorSet!!.start()
@@ -165,7 +164,7 @@ class ExpectAnim {
         return isPlaying.get()
     }
 
-    fun setNow() {
+    fun now() {
         executeAfterDraw(anyView, Runnable { setPercent(1f) })
     }
 
@@ -182,27 +181,27 @@ class ExpectAnim {
         objectAnimator.start()
     }
 
-    fun setInterpolator(interpolator: Interpolator): ExpectAnim {
+    fun setInterpolator(interpolator: Interpolator): PleaseAnim {
         this.interpolator = interpolator
         return this
     }
 
-    fun setDuration(duration: Long): ExpectAnim {
+    fun setDuration(duration: Long): PleaseAnim {
         this.duration = duration
         return this
     }
 
-    fun addEndListener(listener: AnimationEndListener): ExpectAnim {
+    fun addEndListener(listener: AnimationEndListener): PleaseAnim {
         this.endListeners.add(listener)
         return this
     }
 
-    fun addStartListener(listener: AnimationStartListener): ExpectAnim {
+    fun addStartListener(listener: AnimationStartListener): PleaseAnim {
         this.startListeners.add(listener)
         return this
     }
 
-    private fun concatWith(otherAnim: ExpectAnim) {
+    private fun concatWith(otherAnim: PleaseAnim) {
         addEndListener(AnimationEndListener { otherAnim.start() })
     }
 
@@ -210,11 +209,11 @@ class ExpectAnim {
 
         private val DEFAULT_DURATION = 300L
 
-        fun concat(expectAnim: ExpectAnim, vararg expectAnims: ExpectAnim): ExpectAnim {
-            if (expectAnims.size > 0) {
-                expectAnim.concatWith(expectAnims[0])
-                for (i in 0 until expectAnims.size - 1) {
-                    expectAnims[i].concatWith(expectAnims[i + 1])
+        fun concat(expectAnim: PleaseAnim, vararg pleaseAnims: PleaseAnim): PleaseAnim {
+            if (pleaseAnims.size > 0) {
+                expectAnim.concatWith(pleaseAnims[0])
+                for (i in 0 until pleaseAnims.size - 1) {
+                    pleaseAnims[i].concatWith(pleaseAnims[i + 1])
                 }
             }
             return expectAnim

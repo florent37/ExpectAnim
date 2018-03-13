@@ -20,6 +20,17 @@ class Expectations {
 
     internal val expectations = mutableListOf<AnimExpectation>()
 
+    internal val startActions: MutableList<() -> Unit> = mutableListOf()
+    internal val endActions: MutableList<() -> Unit> = mutableListOf()
+
+    fun withStartAction(action: () -> Unit){
+        startActions.add(action)
+    }
+
+    fun withEndAction(action: () -> Unit){
+        endActions.add(action)
+    }
+
     fun rightOf(view: View, marginDp: Float? = null, margin: Float? = null): PositionAnimExpectation {
         return PositionAnimExpectationRightOf(view).apply {
             expectations.add(this)

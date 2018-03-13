@@ -4,20 +4,18 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
-import com.github.florent37.expectanim.ExpectAnim
-import com.github.florent37.expectanim.animation
+import com.github.florent37.expectanim.PleaseAnim
+import com.github.florent37.expectanim.please
 import kotlinx.android.synthetic.main.expectanim_activity_sample.*
 
 
 class ExpectAnimSampleActivity : AppCompatActivity() {
 
-    private var expectAnimMove: ExpectAnim? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.expectanim_activity_sample)
 
-        animation {
+        please {
             animate(bottomLayout) {
                 outOfScreen(Gravity.BOTTOM)
             }
@@ -25,9 +23,9 @@ class ExpectAnimSampleActivity : AppCompatActivity() {
                 outOfScreen(Gravity.BOTTOM)
                 invisible()
             }
-        }.setNow()
+        }.now()
 
-        this.expectAnimMove = animation(duration = 1500L) {
+        val animation = please(duration = 1500L) {
 
             animate(avatar) {
                 bottomOfHisParent(marginDp = 36f)
@@ -71,8 +69,8 @@ class ExpectAnimSampleActivity : AppCompatActivity() {
 
         }
 
-        message.setOnClickListener { expectAnimMove!!.start() }
+        message.setOnClickListener { animation.start() }
 
-        follow.setOnClickListener { expectAnimMove!!.reset() }
+        follow.setOnClickListener { animation.reset() }
     }
 }

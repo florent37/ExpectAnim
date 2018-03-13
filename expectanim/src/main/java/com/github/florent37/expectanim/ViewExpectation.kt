@@ -10,9 +10,8 @@ import com.github.florent37.expectanim.core.custom.ExpectAnimCustomManager
 import com.github.florent37.expectanim.core.position.ExpectAnimPositionManager
 import com.github.florent37.expectanim.core.rotation.ExpectAnimRotationManager
 import com.github.florent37.expectanim.core.scale.ExpectAnimScaleManager
-import java.util.*
 
-class ViewExpectation internal constructor(private val expectAnim: ExpectAnim, internal val viewToMove: View) {
+class ViewExpectation internal constructor(private val expectAnim: PleaseAnim, internal val viewToMove: View) {
     private val dependencies: MutableList<View> = mutableListOf()
     private val animations: MutableList<Animator> = mutableListOf()
     internal val animExpectations: MutableList<AnimExpectation> = mutableListOf()
@@ -74,7 +73,7 @@ class ViewExpectation internal constructor(private val expectAnim: ExpectAnim, i
         animations.addAll(manager.getAnimators())
     }
 
-    internal fun start(): ExpectAnim {
+    internal fun start(): PleaseAnim {
         return expectAnim.start()
     }
 
@@ -137,5 +136,12 @@ class ViewExpectation internal constructor(private val expectAnim: ExpectAnim, i
 
     internal fun getFuturPositionY(): Float? {
         return willHasPositionY
+    }
+
+    infix fun toBe(block: Expectations.() -> Unit): ViewExpectation {
+        val expectations = Expectations()
+        block.invoke(expectations)
+        this.animExpectations.addAll(expectations.expectations)
+        return this
     }
 }

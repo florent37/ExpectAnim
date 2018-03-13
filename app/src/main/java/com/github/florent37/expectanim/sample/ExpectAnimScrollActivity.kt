@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.support.v4.widget.NestedScrollView
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
-import com.github.florent37.expectanim.ExpectAnim
-import com.github.florent37.expectanim.animation
+import com.github.florent37.expectanim.PleaseAnim
+import com.github.florent37.expectanim.please
 import kotlinx.android.synthetic.main.expectanim_activity_scroll.*
 
 
@@ -13,29 +13,27 @@ class ExpectAnimScrollActivity : AppCompatActivity() {
 
     internal var h: Int = 0
 
-    private var expectAnimMove: ExpectAnim? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.expectanim_activity_scroll)
 
         h = resources.getDimensionPixelOffset(R.dimen.height)
 
-        this.expectAnimMove = animation {
-            animate(avatar) {
+        val animation = please {
+            animate(avatar) toBe {
                 topOfHisParent(marginDp = 20f)
                 leftOfHisParent(marginDp = 20f)
                 scale(0.5f, 0.5f)
             }
 
-            animate(username) {
+            animate(username) toBe {
                 rightOf(avatar, marginDp = 16f)
                 sameCenterVerticalAs(avatar)
 
                 toHaveAlpha(0.5f)
             }
 
-            animate(follow) {
+            animate(follow) toBe {
                 rightOfHisParent(marginDp = 20f)
                 sameCenterVerticalAs(avatar)
             }
@@ -47,7 +45,7 @@ class ExpectAnimScrollActivity : AppCompatActivity() {
 
         scrollview.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             val percent = scrollY * 1f / v.maxScrollAmount
-            expectAnimMove!!.setPercent(percent)
+            animation.setPercent(percent)
         })
     }
 
