@@ -2,7 +2,7 @@ package com.github.florent37.expectanim.core.position;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 
 import com.github.florent37.expectanim.core.AnimExpectation;

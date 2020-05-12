@@ -1,12 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion project.sdk
-    buildToolsVersion project.buildTools
-
+    compileSdkVersion project.COMPILE_SDK
     defaultConfig {
-        minSdkVersion project.minSdk
-        targetSdkVersion project.sdk
+        minSdkVersion project.MIN_SDK
+        targetSdkVersion project.TARGET_SDK
 
         applicationId "com.github.florent37.expectanim.sample"
 
@@ -18,13 +16,13 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:' + project.supportVersion
-    compile 'com.android.support:cardview-v7:' + project.supportVersion
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation "androidx.cardview:cardview:1.0.0"
 
-    compile 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
 
-    compile 'com.jakewharton:butterknife:8.1.0'
+    implementation 'com.jakewharton:butterknife:8.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.1.0'
 
-    compile project(":expectanim")
+    implementation project(":expectanim")
 }

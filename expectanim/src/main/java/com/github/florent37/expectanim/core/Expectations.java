@@ -1,8 +1,9 @@
 package com.github.florent37.expectanim.core;
 
-import android.support.annotation.IntDef;
 import android.view.Gravity;
 import android.view.View;
+
+import androidx.annotation.IntDef;
 
 import com.github.florent37.expectanim.core.alpha.AlphaAnimExpectation;
 import com.github.florent37.expectanim.core.alpha.AlphaAnimExpectationValue;

@@ -1,19 +1,17 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion project.sdk
-    buildToolsVersion project.buildTools
-
+    compileSdkVersion project.COMPILE_SDK
     defaultConfig {
-        minSdkVersion project.minSdk
-        targetSdkVersion project.sdk
+        minSdkVersion project.MIN_SDK
+        targetSdkVersion project.TARGET_SDK
         versionCode 1
         versionName "1.0"
     }
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:' + project.supportVersion
+    implementation 'androidx.appcompat:appcompat:1.1.0'
 }
 
 ext {

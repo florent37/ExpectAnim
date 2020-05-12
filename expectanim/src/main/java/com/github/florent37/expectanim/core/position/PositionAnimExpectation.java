@@ -1,8 +1,9 @@
 package com.github.florent37.expectanim.core.position;
 
 import android.content.Context;
-import android.support.annotation.DimenRes;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.DimenRes;
+import androidx.annotation.Nullable;
 import android.util.TypedValue;
 import android.view.View;
 

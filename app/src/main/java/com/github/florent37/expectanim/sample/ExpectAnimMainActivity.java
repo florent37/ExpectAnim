@@ -2,14 +2,11 @@ package com.github.florent37.expectanim.sample;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static com.github.florent37.expectanim.core.Expectations.height;
-import static com.github.florent37.expectanim.core.Expectations.scale;
-
 
 public class ExpectAnimMainActivity extends AppCompatActivity {
 

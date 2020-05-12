@@ -3,7 +3,7 @@ package com.github.florent37.expectanim.core.anim3d;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.os.Build;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 
 import com.github.florent37.expectanim.ViewCalculator;
